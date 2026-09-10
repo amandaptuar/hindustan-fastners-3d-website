@@ -1,0 +1,1075 @@
+Create a **premium, world-class, highly interactive 3D corporate website for HINDUSTAN FASTENERS**, a precision manufacturer of high-tensile nuts, bolts, screws, fasteners, special cold-forged components, and customer-engineered fastening solutions.
+
+The website must feel like a **high-end global engineering and manufacturing brand**, NOT like a traditional hardware shop, generic industrial website, cheap template, or ordinary corporate website.
+
+The primary goal is to impress a potential client within the first 5–10 seconds while communicating:
+
+**PRECISION. ENGINEERING. RELIABILITY. QUALITY. SCALE.**
+
+The website should feel like something created by a top-tier digital design agency.
+
+---
+
+# 1. BRAND POSITIONING
+
+Brand:
+
+**HINDUSTAN FASTENERS**
+
+Primary positioning:
+
+**Precision Fasteners · Engineered for Extreme Performance**
+
+Core message:
+
+**Every critical assembly depends on the strength of its connection.**
+
+Hindustan Fasteners manufactures precision fastening solutions for demanding automotive, EV, industrial, infrastructure, renewable-energy, and engineering applications.
+
+The company should be presented as an **engineering partner**, not merely a fastener supplier.
+
+---
+
+# 2. VISUAL DIRECTION
+
+Use a sophisticated:
+
+### LIGHT INDUSTRIAL LUXURY
+
+The visual language should combine:
+
+* Premium engineering
+* Modern product design
+* Automotive technology
+* Precision manufacturing
+* Minimal editorial design
+* Realistic 3D metal
+* Technical blueprint aesthetics
+
+Think:
+
+**Apple-level minimalism + premium automotive presentation + advanced engineering laboratory.**
+
+Do NOT make the website dark by default.
+
+Primary background:
+
+**Warm White / Ivory / Very Light Grey**
+
+Secondary backgrounds:
+
+**White / Soft Grey**
+
+Typography:
+
+**Deep Charcoal / Near Black**
+
+3D materials:
+
+**Brushed Stainless Steel**
+**Machined Steel**
+**Chrome**
+**Matte Metal**
+**Blackened Steel**
+
+Accent color:
+
+Use ONE restrained accent, preferably:
+
+**Deep Engineering Blue**
+
+or a very subtle **Industrial Orange**.
+
+Do not use many colors.
+
+---
+
+# 3. THE MOST IMPORTANT RULE
+
+The website should NOT simply place a 3D nut or bolt on every section.
+
+Instead, use **3D as a storytelling device**.
+
+The user should feel that they are exploring the engineering behind a precision fastener.
+
+Create a visual journey:
+
+**FASTENER → JOINT → ENGINEERING → MANUFACTURING → QUALITY → APPLICATION → TRUST**
+
+This storytelling structure is extremely important.
+
+---
+
+# 4. HERO — THE WOW MOMENT
+
+Create a spectacular full-screen hero section.
+
+Use a photorealistic 3D assembly consisting of:
+
+**High-Tensile Bolt + Precision Nut + Washer**
+
+The object should be extremely detailed and realistic.
+
+Show it floating in a clean premium white studio environment.
+
+Use realistic:
+
+* Reflections
+* Metal roughness
+* Micro-scratches
+* Edge highlights
+* Soft shadows
+* Studio lighting
+* Ambient occlusion
+
+The 3D model should look like an actual premium engineering product photograph.
+
+### HERO TEXT
+
+Small label:
+
+**PRECISION FASTENERS**
+
+Large headline:
+
+# ENGINEERED TO CONNECT.
+
+Supporting text:
+
+**High-performance fastening solutions engineered for demanding automotive, EV and industrial assemblies.**
+
+Primary CTA:
+
+**EXPLORE PRODUCTS →**
+
+Secondary CTA:
+
+**REQUEST A QUOTE →**
+
+Under the buttons, show three concise trust indicators:
+
+**IATF 16949**
+**±5 µm CONTROL**
+**<5 PPM TARGET**
+
+Do not overload the hero with information.
+
+---
+
+# 5. HERO 3D INTERACTION
+
+Make the hero 3D object interactive.
+
+Mouse movement:
+
+* Slight rotation
+* Subtle camera parallax
+* Natural lighting response
+
+Scrolling:
+
+The bolt begins rotating.
+
+The nut slowly unscrews.
+
+The washer separates.
+
+Technical annotations begin appearing.
+
+The camera moves closer.
+
+The animation should be extremely smooth.
+
+Use:
+
+**GSAP ScrollTrigger / React Three Fiber / Three.js**
+
+where appropriate.
+
+Avoid aggressive animation.
+
+Everything should feel:
+
+**Precise. Cinematic. Controlled.**
+
+---
+
+# 6. BRAND STATEMENT SECTION
+
+After the hero, create a large whitespace-driven section.
+
+Display:
+
+# SMALL COMPONENT.
+
+# CRITICAL CONNECTION.
+
+Supporting copy:
+
+**From automotive powertrains to EV battery systems and industrial assemblies, Hindustan Fasteners engineers the connections that keep critical systems together.**
+
+Then show a slowly rotating 3D fastener in the background.
+
+Keep the section extremely minimal.
+
+---
+
+# 7. LIVE ENGINEERING ASSEMBLY
+
+Create a visually impressive section called:
+
+# ONE VEHICLE.
+
+# THOUSANDS OF CONNECTIONS.
+
+Show a premium 3D vehicle silhouette or technical CAD-style vehicle assembly.
+
+Around it, show small fasteners appearing at critical points.
+
+As the user scrolls:
+
+* Fasteners fly toward the vehicle
+* Components assemble
+* Critical joints highlight
+* The vehicle gradually becomes complete
+
+Display only three statistics:
+
+### 3,400+
+
+Fasteners per vehicle
+
+### <5 PPM
+
+Defect target
+
+### 100%
+
+Optical inspection
+
+Do not show unnecessary statistics.
+
+The purpose is to communicate:
+
+**Scale + reliability + engineering importance.**
+
+---
+
+# 8. INTERACTIVE 3D FASTENER LAB
+
+Create a section:
+
+# ENGINEERING, DOWN TO THE THREAD.
+
+Display a large interactive 3D high-tensile bolt.
+
+Create a technical UI around it.
+
+Show only relevant specifications:
+
+**ISO METRIC**
+M12 × 1.75
+
+**PROPERTY CLASS**
+10.9
+
+**HEAD**
+Cold-Forged Hex Flange
+
+**THREAD**
+Rolled · Class 6g
+
+**TENSILE**
+1040 MPa
+
+**CORROSION**
+Geomet 500B
+
+**PROOF LOAD**
+72.5 kN
+
+**TORQUE**
+120 Nm nominal
+
+As the user rotates the object, technical callout lines should follow the relevant components.
+
+Make it look like a premium engineering visualization.
+
+---
+
+# 9. EXPLODED 3D EXPERIENCE
+
+This should be one of the hero sections of the entire website.
+
+Heading:
+
+# EVERY COMPONENT MATTERS.
+
+Start with:
+
+**Bolt + Washer + Nut**
+
+fully assembled.
+
+As the user scrolls:
+
+1. Bolt rotates
+2. Nut begins unthreading
+3. Washer separates
+4. Components move apart
+5. Technical dimensions appear
+6. Thread geometry becomes visible
+7. Material information appears
+8. Components finally return to the assembled state
+
+Add a small indicator:
+
+**ASSEMBLED → DISASSEMBLED → INSPECTED**
+
+Use blueprint-style lines.
+
+Do NOT make it look like a gaming interface.
+
+It should feel like a sophisticated engineering inspection system.
+
+---
+
+# 10. ENGINEERING CAPABILITIES
+
+Create a section:
+
+# NOT JUST FASTENERS.
+
+# COMPLETE JOINT ENGINEERING.
+
+Show six capabilities only.
+
+### PRECISION COLD FORGING
+
+Multi-station cold forging creates complex geometries with continuous grain flow for fatigue performance.
+
+### APPLICATION ENGINEERING
+
+Custom fastening solutions based on torque, shear loads, clamp-load targets and customer CAD requirements.
+
+### PRECISION THREAD ROLLING
+
+Cold-formed threads engineered for strength, consistency and fatigue resistance.
+
+### INTEGRATED MANUFACTURING
+
+Wire preparation, forging, machining, heat treatment and surface finishing managed within an integrated manufacturing ecosystem.
+
+### METALLURGICAL TESTING
+
+Chemical verification, tensile testing, hardness testing and corrosion testing.
+
+### CUSTOM FASTENERS
+
+Special fasteners manufactured to customer drawings and application requirements.
+
+Use six elegant cards with subtle 3D/micro-interactions.
+
+---
+
+# 11. MANUFACTURING — THE ENGINEERING JOURNEY
+
+Create a cinematic horizontal/vertical scroll experience.
+
+Heading:
+
+# FROM WIRE ROD
+
+# TO PRECISION FASTENER.
+
+Show a simplified 10-stage manufacturing journey.
+
+Do NOT put huge paragraphs on the screen.
+
+Show each stage with one key metric.
+
+### 01 — MATERIAL
+
+Certified steel + chemistry verification
+
+### 02 — WIRE
+
+Precision wire drawing
+
+### 03 — FORGING
+
+5-die & 6-die cold forging
+
+### 04 — MACHINING
+
+±5 µm repeatability
+
+### 05 — THREADING
+
+Precision thread rolling
+
+### 06 — HEAT TREATMENT
+
+Controlled hardening & tempering
+
+### 07 — FINISHING
+
+Advanced corrosion protection
+
+### 08 — TESTING
+
+Mechanical & metallurgical testing
+
+### 09 — OPTICAL SORTING
+
+100% automated inspection
+
+### 10 — TRACEABILITY
+
+Barcode / QR batch traceability
+
+Use animated machinery/metal/fastener visuals.
+
+The user should feel like they are physically moving through a modern manufacturing plant.
+
+---
+
+# 12. PRODUCT RANGE
+
+Create a premium product section.
+
+Heading:
+
+# ENGINEERED FOR EVERY JOINT.
+
+Only show the major categories.
+
+### HIGH-TENSILE BOLTS
+
+Property classes 8.8 · 10.9 · 12.9
+M6–M48
+
+Examples:
+
+* Hex Flange Bolts
+* Wheel & Hub Studs
+* Engine Bolts
+* Suspension Fasteners
+* Structural Bolts
+
+### PRECISION NUTS
+
+M4–M52
+Standard & Fine Pitch
+
+Examples:
+
+* Prevailing Torque Nuts
+* Self-Locking Nuts
+* Heavy-Duty Flange Nuts
+* Wheel Nuts
+* Custom Threaded Collars
+
+### PRECISION SCREWS
+
+M2.5–M24
+
+Examples:
+
+* Socket Head Screws
+* Torx Screws
+* Thread-Forming Screws
+* Countersunk Screws
+* Automotive Screws
+
+### CUSTOM ENGINEERED SPECIALS
+
+Manufactured to customer CAD/drawings.
+
+Examples:
+
+* EV Battery Fasteners
+* Transmission Components
+* Steering Fasteners
+* Stepped Fasteners
+* Anti-Vibration Studs
+
+Use beautiful 3D product renders.
+
+Avoid showing 20+ products simultaneously.
+
+---
+
+# 13. PRODUCT INTERACTION
+
+When the user hovers over a product:
+
+* Product subtly rotates
+* Camera moves closer
+* Product specification appears
+* Background becomes slightly darker/lighter
+* A technical outline appears
+
+On click:
+
+Open a clean product detail panel containing:
+
+**Application**
+**Material**
+**Property Class**
+**Dimensions**
+**Finish**
+**Available Configurations**
+
+Add:
+
+**REQUEST A QUOTE →**
+
+---
+
+# 14. QUALITY SECTION
+
+Create a visually powerful section:
+
+# QUALITY ENGINEERED
+
+# INTO EVERY THREAD.
+
+Use an elegant laboratory environment.
+
+Show only the most important testing capabilities:
+
+### UNIVERSAL TENSILE TESTING
+
+Up to 1000 kN
+
+### HARDNESS TESTING
+
+Vickers & Rockwell
+
+### CHEMICAL ANALYSIS
+
+Optical emission spectroscopy
+
+### CORROSION TESTING
+
+Salt spray testing up to 1500h
+
+### OPTICAL INSPECTION
+
+Automated dimensional inspection
+
+### TORQUE-TENSION TESTING
+
+Clamp load & friction analysis
+
+Use subtle animated laboratory imagery and technical 3D objects.
+
+---
+
+# 15. ZERO-DEFECT STORY
+
+Create a minimalist section.
+
+Huge text:
+
+# QUALITY IS NOT
+
+# THE LAST STEP.
+
+Then animate a line traveling backward through:
+
+**FINAL INSPECTION**
+→
+**TESTING**
+→
+**HEAT TREATMENT**
+→
+**THREAD ROLLING**
+→
+**FORGING**
+→
+**RAW MATERIAL**
+
+Text:
+
+**Quality begins with the material and continues through every stage of manufacturing.**
+
+This should communicate their quality philosophy without unnecessary text.
+
+---
+
+# 16. CERTIFICATIONS
+
+Create a clean premium certification section.
+
+Heading:
+
+# CERTIFIED SYSTEMS.
+
+# PROVEN RELIABILITY.
+
+Display:
+
+**IATF 16949:2016**
+Automotive Quality Management
+
+**ISO 9001:2015**
+Quality Management
+
+**ISO 14001:2015**
+Environmental Management
+
+**ISO 45001:2018**
+Occupational Health & Safety
+
+**RoHS & REACH**
+Compliance
+
+Do not make fake-looking certificate images.
+
+Use clean typographic badges and only use actual certificate imagery if supplied.
+
+---
+
+# 17. INDUSTRIES
+
+Create a sophisticated interactive section:
+
+# FASTENING CRITICAL
+
+# ASSEMBLIES WORLDWIDE.
+
+Show six industries.
+
+### AUTOMOTIVE
+
+Chassis · Powertrain · Suspension · Braking
+
+### ELECTRIC VEHICLES
+
+Battery systems · Inverters · E-axles
+
+### HEAVY ENGINEERING
+
+Structural assemblies · Infrastructure
+
+### RENEWABLE ENERGY
+
+Wind · Solar · Outdoor applications
+
+### AGRICULTURAL & CONSTRUCTION
+
+Tractors · Equipment · Earthmoving
+
+### INDUSTRIAL MACHINERY
+
+Robotics · Machine tools · Hydraulic systems
+
+Each industry should have:
+
+* One strong visual
+* One short description
+* One relevant fastener visualization
+
+Hovering should create a smooth transition.
+
+---
+
+# 18. CUSTOM ENGINEERING CTA
+
+Create a high-conversion section.
+
+Heading:
+
+# HAVE A DRAWING?
+
+# LET'S ENGINEER THE CONNECTION.
+
+Supporting text:
+
+**Share your CAD drawing, fastening requirement or joint specification with our engineering team.**
+
+Buttons:
+
+**UPLOAD DRAWING →**
+**TALK TO AN ENGINEER →**
+
+Show supported formats:
+
+**PDF · DWG · STEP**
+
+Then show a simple 5-step process:
+
+**CAD REVIEW**
+→
+**TOOLING**
+→
+**PROTOTYPE**
+→
+**PPAP**
+→
+**PRODUCTION**
+
+Keep it visually clean.
+
+---
+
+# 19. FINAL CTA
+
+End the website with a memorable premium section.
+
+Large 3D nut and bolt assembly floating in space.
+
+Headline:
+
+# EVERY GREAT STRUCTURE
+
+# STARTS WITH A CONNECTION.
+
+Supporting text:
+
+**Precision fastening solutions engineered for the demands of tomorrow.**
+
+Primary button:
+
+**REQUEST A QUOTE →**
+
+Secondary:
+
+**EXPLORE PRODUCTS →**
+
+The 3D object slowly rotates while the background subtly changes as the user approaches the footer.
+
+---
+
+# 20. FOOTER
+
+Keep the footer extremely clean.
+
+Logo/name:
+
+**HINDUSTAN FASTENERS**
+
+Tagline:
+
+**Precision Engineering. Zero-Defect Manufacturing.**
+
+Navigation:
+
+Products
+Manufacturing
+Quality
+Industries
+About
+Contact
+
+Engineering Support:
+
+**Industrial Area Phase II, Greater Noida, NCR, India**
+
+Phone:
+
+**+91 (0) 120 456 7890**
+
+Email:
+
+**[engineering@hindustanfasteners.com](mailto:engineering@hindustanfasteners.com)**
+
+CTA:
+
+**UPLOAD DRAWING →**
+
+Copyright:
+
+**© 2026 Hindustan Fasteners Limited. All rights reserved.**
+
+---
+
+# 21. NAVIGATION
+
+Create a premium sticky navigation bar.
+
+Left:
+
+**HINDUSTAN FASTENERS**
+
+Center/right:
+
+Products
+Manufacturing
+Quality
+Industries
+About
+
+Right:
+
+**REQUEST A QUOTE →**
+
+On scroll:
+
+* Navigation becomes slightly translucent
+* Background becomes white
+* Subtle shadow/border appears
+* Logo remains visible
+
+Keep it elegant.
+
+---
+
+# 22. MICRO-INTERACTIONS
+
+Add sophisticated micro-interactions everywhere.
+
+Buttons:
+
+* Magnetic hover
+* Smooth arrow movement
+* Subtle scale
+
+Cards:
+
+* 2–4px lift
+* Soft shadow
+* Image/3D movement
+
+Text:
+
+* Smooth reveal
+* Masked text animation
+* Slight upward movement
+
+3D:
+
+* Mouse parallax
+* Scroll rotation
+* Camera movement
+* Assembly/disassembly
+* Material/light response
+
+Never make animations distracting.
+
+---
+
+# 23. 3D QUALITY STANDARD
+
+The 3D fasteners must NOT look like simple low-quality game assets.
+
+They should look like:
+
+**high-end product photography rendered in 3D.**
+
+Include realistic:
+
+* Thread geometry
+* Chamfers
+* Fillets
+* Machined edges
+* Surface imperfections
+* Metal roughness
+* Reflections
+* Contact shadows
+
+The geometry should communicate actual engineering precision.
+
+---
+
+# 24. DESIGN SYSTEM
+
+Use a consistent design system.
+
+Spacing:
+
+Generous.
+
+Grid:
+
+12-column desktop grid.
+
+Border radius:
+
+Subtle — approximately 8–16px.
+
+Cards:
+
+Minimal.
+
+Shadows:
+
+Very soft.
+
+Typography:
+
+Use **Manrope / Inter / Satoshi / Plus Jakarta Sans**.
+
+Headlines:
+
+Large, bold, tight.
+
+Example:
+
+**ENGINEERED**
+**TO CONNECT.**
+
+Use small uppercase labels for technical information.
+
+---
+
+# 25. RESPONSIVE DESIGN
+
+Desktop should provide the full cinematic 3D experience.
+
+Tablet:
+
+Reduce object size and animation complexity.
+
+Mobile:
+
+Prioritize:
+
+* Speed
+* Readability
+* Touch interactions
+* Clean layouts
+
+Simplify heavy 3D animations if necessary.
+
+Never allow:
+
+* Horizontal scrolling
+* Tiny text
+* Broken animations
+* Overlapping content
+* Slow-loading hero
+
+If device performance is low, replace complex real-time 3D with high-quality rendered imagery.
+
+---
+
+# 26. PERFORMANCE
+
+Optimize aggressively.
+
+Use:
+
+* GLTF/GLB models
+* Draco compression
+* Lazy loading
+* Optimized textures
+* WebP/AVIF
+* Code splitting
+* Dynamic imports
+* Level-of-detail models
+
+Load the primary hero 3D model first.
+
+Lazy-load lower-page 3D scenes.
+
+Maintain smooth scrolling.
+
+---
+
+# 27. ACCESSIBILITY
+
+Maintain:
+
+* Strong contrast
+* Keyboard navigation
+* Visible focus states
+* Semantic HTML
+* Accessible buttons
+* Proper heading hierarchy
+* Alt text
+* Reduced-motion support
+
+If the user enables reduced motion, provide a static but premium version of the experience.
+
+---
+
+# 28. TECH STACK
+
+Prefer:
+
+**Next.js**
+**React**
+**TypeScript**
+**Tailwind CSS**
+**Three.js**
+**React Three Fiber**
+**Drei**
+**GSAP / ScrollTrigger**
+**Framer Motion**
+
+Use modular reusable components.
+
+Keep the code production-ready and maintainable.
+
+---
+
+# 29. CONTENT RULE
+
+This is extremely important:
+
+DO NOT put every piece of company information on the homepage.
+
+The homepage should sell the company's:
+
+**Capability + Quality + Engineering + Trust.**
+
+Technical specifications should appear only where useful.
+
+Avoid unnecessary paragraphs.
+
+Avoid repetitive statements.
+
+Avoid fake statistics.
+
+Avoid invented clients.
+
+Avoid invented certifications.
+
+Avoid invented awards.
+
+Avoid invented factories or machinery.
+
+Use ONLY the supplied company information.
+
+Where information is unavailable, create a clean placeholder rather than inventing facts.
+
+---
+
+# 30. FINAL EXPERIENCE
+
+The final website should feel like the visitor is entering a **precision engineering laboratory**.
+
+The experience should progress naturally:
+
+**INTRODUCE THE BRAND**
+↓
+**SHOW THE FASTENER**
+↓
+**SHOW THE ENGINEERING**
+↓
+**SHOW MANUFACTURING**
+↓
+**SHOW QUALITY**
+↓
+**SHOW APPLICATIONS**
+↓
+**BUILD TRUST**
+↓
+**REQUEST A QUOTE**
+
+The visitor should finish the website thinking:
+
+> **"These aren't just people selling nuts and bolts. They understand engineering, manufacturing and critical fastening applications."**
+
+Make the final result visually exceptional, highly polished, technically credible, fast, responsive and memorable.
+
+The website should look like a **premium international engineering brand**, with a level of design quality suitable for a major automotive/EV supplier.
+
+Do not settle for a template.
+
+Create something distinctive.
+Create something cinematic.
+Create something that makes **HINDUSTAN FASTENERS** look like a company operating at the highest level of precision manufacturing.
