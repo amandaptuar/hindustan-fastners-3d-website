@@ -652,42 +652,39 @@ const AnimatedCounter: React.FC<{ target: number; suffix?: string; prefix?: stri
   return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
 };
 
-/* ─────────────────────────── 3D COIN FLIP COMPONENT ─────────────────────────── */
+/* ─────────────────────────── 3D AUTOMATIC COIN FLIP COMPONENT ─────────────────────────── */
 const CoinFlipBadge: React.FC = () => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [flipCount, setFlipCount] = useState(0);
 
-  const handleCoinClick = () => {
-    setIsFlipped(!isFlipped);
-    setFlipCount((prev) => prev + 1);
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIsFlipped((prev) => !prev);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center my-6">
-      <div
-        className="perspective-1000 cursor-pointer select-none group"
-        onClick={handleCoinClick}
-        title="Click to Flip Coin between Hindustan Fasteners & Precision Forging"
-      >
+      <div className="perspective-1000 select-none group">
         {/* The 3D Rotating Coin with metallic chrome rim */}
         <div
-          className={`relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-full transform-style-preserve-3d transition-transform duration-700 ease-out shadow-2xl ${
+          className={`relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full transform-style-preserve-3d transition-transform duration-700 ease-out shadow-2xl ${
             isFlipped ? 'rotate-y-180' : ''
           }`}
         >
           {/* SIDE A: Hindustan Fasteners (1970) */}
           <div className="absolute inset-0 backface-hidden rounded-full coin-metallic-rim p-2 flex items-center justify-center border-4 border-slate-600/80 shadow-[0_0_25px_rgba(56,189,248,0.35)]">
-            <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-4 text-center shadow-inner relative overflow-hidden">
+            <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-2.5 sm:p-4 text-center shadow-inner relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-white/60 pointer-events-none" />
               <img
                 src="/logo/HF LOGO (1).png"
                 alt="Hindustan Fasteners Logo"
-                className="max-h-16 max-w-full object-contain mb-1 drop-shadow-sm group-hover:scale-105 transition-transform"
+                className="max-h-10 sm:max-h-14 max-w-[82%] object-contain mb-0.5 sm:mb-1 drop-shadow-sm group-hover:scale-105 transition-transform"
               />
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-900">
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-tight text-gray-900 leading-tight">
                 Hindustan Fasteners
               </span>
-              <span className="text-[9px] font-mono font-bold text-blue-600">
+              <span className="text-[8px] sm:text-[9px] font-mono font-bold text-blue-600 leading-tight">
                 ESTABLISHED 1970
               </span>
             </div>
@@ -695,17 +692,17 @@ const CoinFlipBadge: React.FC = () => {
 
           {/* SIDE B: Precision Forging & Stamping (1982) */}
           <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-full coin-metallic-rim p-2 flex items-center justify-center border-4 border-slate-600/80 shadow-[0_0_25px_rgba(56,189,248,0.35)]">
-            <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-4 text-center shadow-inner relative overflow-hidden">
+            <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-2.5 sm:p-4 text-center shadow-inner relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-white/60 pointer-events-none" />
               <img
                 src="/logo/PFS logo.png"
                 alt="Precision Forging and Stamping Logo"
-                className="max-h-16 max-w-full object-contain mb-1 drop-shadow-sm group-hover:scale-105 transition-transform"
+                className="max-h-10 sm:max-h-14 max-w-[82%] object-contain mb-0.5 sm:mb-1 drop-shadow-sm group-hover:scale-105 transition-transform"
               />
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-900">
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-tight text-gray-900 leading-tight">
                 Precision Forging
               </span>
-              <span className="text-[9px] font-mono font-bold text-blue-600">
+              <span className="text-[8px] sm:text-[9px] font-mono font-bold text-blue-600 leading-tight">
                 EXPANDED 1982
               </span>
             </div>
@@ -713,19 +710,6 @@ const CoinFlipBadge: React.FC = () => {
         </div>
       </div>
 
-      {/* Interactive Controls & Subtitle */}
-      <div className="mt-4 flex flex-col items-center">
-        <button
-          onClick={handleCoinClick}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-blue-500/40 text-white text-xs font-mono font-bold hover:bg-slate-800 hover:border-blue-400 transition-all duration-300 shadow-md group"
-        >
-          <RotateCcw className="w-3.5 h-3.5 text-cyan-400 group-hover:rotate-180 transition-transform duration-500" />
-          <span>Click to Flip Coin: {isFlipped ? 'Viewing Precision Forging' : 'Viewing Hindustan Fasteners'}</span>
-        </button>
-        <span className="text-[11px] text-gray-400 mt-2 font-mono">
-          Two Manufacturing Powerhouses under One Unified Roof (Flips: {flipCount})
-        </span>
-      </div>
     </div>
   );
 };
@@ -1124,10 +1108,10 @@ export default function App() {
       buttonCode: '01RAW',
       shortName: 'Raw Material',
       stageTitle: 'RAW MATERIAL VERIFICATION',
-      metric: 'Certified coils + Optical Emission Spectrometer chemistry analysis',
-      simpleExpl: 'Before making any bolt, we test every incoming bundle of steel wire with our laboratory laser spectrometer. We ensure the steel has the exact chemical blend of Carbon, Manganese, Chromium, and Boron so it will never crack or bend under heavy loads.',
-      whyItMatters: 'Guarantees your fasteners have zero hidden impurities before any cutting or forging begins.',
-      icon: <Microscope className="w-7 h-7 text-blue-600" />,
+      metric: 'Optical Emission Spectrometer Chemistry Analysis',
+      simpleExpl: 'We laser-test incoming steel wire coils to verify exact carbon and alloy chemistry before forging.',
+      whyItMatters: 'Guarantees zero hidden raw material impurities or weak steel.',
+      icon: <Microscope className="w-6 h-6 text-blue-600" />,
       tag: 'Chemical Verification Gate',
       equipment: 'Optical Emission Spectrometer (OES)',
     },
@@ -1136,112 +1120,112 @@ export default function App() {
       buttonCode: '02INCOMING',
       shortName: 'Quarantine',
       stageTitle: 'INCOMING QUARANTINE',
-      metric: 'Strict physical segregation into Accepted vs Rejected Quarantine Racks',
-      simpleExpl: 'Certified steel wire goes directly into clean green racks. Any imperfect metal coils from suppliers are immediately placed into locked red quarantine racks with layered audits so bad steel can never accidentally enter the factory.',
-      whyItMatters: 'Ensures zero defective raw material ever touches our production machinery.',
-      icon: <ShieldCheck className="w-7 h-7 text-blue-600" />,
-      tag: 'Quarantine Segregation Gate',
-      equipment: 'Physical Segregation Racks & Layered Audits',
+      metric: 'Physical Segregation into Red / Green Racks',
+      simpleExpl: 'Approved steel coils go to green racks; unverified bundles stay locked in red quarantine racks.',
+      whyItMatters: 'Defective raw steel can never touch production machines.',
+      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />,
+      tag: 'Quarantine Gate',
+      equipment: 'Physical Segregation Racks & Audits',
     },
     {
       num: '03',
       buttonCode: '03IN-HOUSE',
       shortName: 'Tooling Fab',
       stageTitle: 'IN-HOUSE TOOL FABRICATION',
-      metric: 'Dedicated tooling department fabricating carbide dies and heading punches',
-      simpleExpl: 'Rather than waiting on outside tool shops, our in-house master toolmakers grind and carve our own super-hard tungsten carbide dies and punches down to the thickness of a single strand of hair.',
-      whyItMatters: 'Gives us instant tooling replacement, zero production downtime, and sub-micron dimensional accuracy on every custom bolt.',
-      icon: <Wrench className="w-7 h-7 text-blue-600" />,
-      tag: 'In-House Tooling Gate',
-      equipment: 'Carbide Die Grinders & EDM Wire Cutters',
+      metric: 'Tungsten Carbide Die Grinding',
+      simpleExpl: 'Our in-house master toolmakers carve tungsten carbide dies down to hair-thin precision.',
+      whyItMatters: 'Instant tool replacements and sub-micron accuracy.',
+      icon: <Wrench className="w-6 h-6 text-blue-600" />,
+      tag: 'Tooling Gate',
+      equipment: 'Carbide Die Grinders & EDM Cutters',
     },
     {
       num: '04',
       buttonCode: '045',
       shortName: '5 & 6-Die Forge',
       stageTitle: '5 & 6-DIE COLD FORGING',
-      metric: 'Continuous metallurgical grain flow, high fatigue life, M4 to M24 capability',
-      simpleExpl: 'Our giant 5-die and 6-die heading machines hammer solid steel wire into bolt shapes at hundreds of strokes per minute. Because the steel is cold-forged rather than cut, the metal grains stay continuous, making the bolt 300% stronger.',
-      whyItMatters: 'Unbroken steel grain lines mean your bolts will not snap under violent vehicle vibrations or heavy chassis loads.',
-      icon: <Factory className="w-7 h-7 text-blue-600" />,
+      metric: 'Continuous Metallurgical Grain Flow (M4 to M24)',
+      simpleExpl: 'High-speed 5 & 6-die formers hammer steel wire into bolts without cutting internal metal grains.',
+      whyItMatters: 'Unbroken grain lines stop bolts from snapping under vibration.',
+      icon: <Factory className="w-6 h-6 text-blue-600" />,
       tag: 'Cold Forging Gate',
-      equipment: 'Multi-Station 5-Die & 6-Die Cold Formers',
+      equipment: '5-Die & 6-Die Cold Formers',
     },
     {
       num: '05',
       buttonCode: '05SECONDARY',
       shortName: 'Secondary Ops',
       stageTitle: 'SECONDARY IN-HOUSE OPERATIONS',
-      metric: 'Automatic tapping, slot milling, grinding, grooving, trimming, and CNC turning',
-      simpleExpl: 'Special shapes like screwdriver slots, retaining ring grooves, cotter pin holes, and nut threads are carved automatically on high-speed machines—all under one unified management roof.',
-      whyItMatters: 'Zero reliance on outside vendors means lightning-fast delivery and tight tolerances.',
-      icon: <Cog className="w-7 h-7 text-blue-600" />,
+      metric: 'Automatic Tapping, Slotting & CNC Turning',
+      simpleExpl: 'Automatic slot milling, tapping, grooving, and CNC turning completed 100% under one roof.',
+      whyItMatters: 'Faster turnaround and zero vendor dependency.',
+      icon: <Cog className="w-6 h-6 text-blue-600" />,
       tag: 'Secondary Machining Gate',
-      equipment: 'CNC Lathes, Tappers & Centerless Grinders',
+      equipment: 'CNC Lathes & Centerless Grinders',
     },
     {
       num: '06',
       buttonCode: '06SEMS',
       shortName: 'SEMS Washers',
       stageTitle: 'SEMS WASHER THREAD ROLLING',
-      metric: 'Single / double captive washer assembly rolling and precision thread rolling',
-      simpleExpl: 'We slide flat, spring, or conical washers directly onto the bolt shank before rolling the screw threads. The washer spins freely but is permanently trapped so factory workers never drop loose washers on the assembly floor.',
-      whyItMatters: 'Speeds up automotive assembly by 35% and guarantees workers never forget a washer.',
-      icon: <Layers className="w-7 h-7 text-blue-600" />,
-      tag: 'Captive SEMS Assembly Gate',
-      equipment: 'Rotary & Flat Die Thread Rollers',
+      metric: 'Captive Pre-Assembled Washer Rolling',
+      simpleExpl: 'Washers are loaded onto bolt shanks before thread rolling so they spin freely but never fall off.',
+      whyItMatters: 'Accelerates vehicle assembly and prevents missing washers.',
+      icon: <Layers className="w-6 h-6 text-blue-600" />,
+      tag: 'Captive SEMS Gate',
+      equipment: 'Rotary Die Thread Rollers',
     },
     {
       num: '07',
       buttonCode: '07SCADA',
       shortName: 'SCADA Furnace',
       stageTitle: 'SCADA HEAT TREATMENT',
-      metric: 'Continuous mesh belt hardening & tempering with SCADA automated interlocks',
-      simpleExpl: 'Our continuous mesh-belt furnaces are monitored 24/7 by SCADA computer software. We heat the bolts to glowing cherry red and quench them in oil to lock in maximum tensile strength, stopping automatically if temperatures drift by even 2 degrees.',
-      whyItMatters: 'Gives the bolt rock-solid hardness while keeping the core flexible enough to absorb hard shocks.',
-      icon: <Flame className="w-7 h-7 text-blue-600" />,
+      metric: 'Continuous Mesh-Belt SCADA Hardening & Tempering',
+      simpleExpl: 'Continuous mesh furnaces harden bolts 24/7 with computer temperature locks.',
+      whyItMatters: 'Locks in high tensile strength while keeping core toughness.',
+      icon: <Flame className="w-6 h-6 text-blue-600" />,
       tag: 'SCADA Thermal Gate',
-      equipment: 'Continuous Mesh-Belt Furnaces + SCADA',
+      equipment: 'Mesh-Belt Furnaces + SCADA',
     },
     {
       num: '08',
       buttonCode: '08AUTOMATIC',
       shortName: 'PLC Plating',
       stageTitle: 'AUTOMATIC PLC SURFACE COATING',
-      metric: 'Trivalent Zinc, Zinc Flake (Geomet), Phosphating, Hot Dip, Loctite pre-applied',
-      simpleExpl: 'Robot hoists lower the bolts through computer-timed chemical tanks to apply protective coatings like silver zinc plating, zinc flake (Geomet), or black phosphating. These shields stop rust even after years of rain and winter road salt.',
-      whyItMatters: 'Bolts survive up to 1,500+ hours in salt spray chambers without forming rust spots.',
-      icon: <Zap className="w-7 h-7 text-blue-600" />,
+      metric: 'Zinc, Geomet Zinc Flake & Phosphating',
+      simpleExpl: 'Robotic hoists apply protective coatings like trivalent zinc, Geomet, or phosphating.',
+      whyItMatters: 'Protects fasteners against rust for up to 1,500+ salt-spray hours.',
+      icon: <Zap className="w-6 h-6 text-blue-600" />,
       tag: 'PLC Plating Gate',
-      equipment: 'Automated Barrel & Rack Hoist Lines',
+      equipment: 'Automated Barrel & Rack Lines',
     },
     {
       num: '09',
       buttonCode: '09TECHNOFOUR',
       shortName: 'Eddy Current',
       stageTitle: 'TECHNOFOUR EDDY CURRENT SORTING',
-      metric: 'Non-destructive 100% sorting for surface seams, hardness discrepancies & cracks',
-      simpleExpl: 'Every single finished bolt travels through our Technofour electronic eddy-current scanner. Invisible magnetic waves inspect the metal for microscopic cracks or hardness errors. Any imperfect bolt is instantly kicked into a locked scrap box.',
-      whyItMatters: 'Guarantees that 100% of the fasteners sent to your assembly line are completely flawless.',
-      icon: <Gauge className="w-7 h-7 text-blue-600" />,
-      tag: '100% Non-Destructive Gate',
-      equipment: 'Technofour Multifect-EC High-Speed Systems',
+      metric: '100% High-Speed NDT Electronic Scanning',
+      simpleExpl: 'Every single bolt passes magnetic eddy-current scanners to detect surface cracks or hardness flaws.',
+      whyItMatters: '100% non-destructive sorting ensures zero defective parts.',
+      icon: <Gauge className="w-6 h-6 text-blue-600" />,
+      tag: '100% NDT Gate',
+      equipment: 'Technofour Multifect-EC Systems',
     },
     {
       num: '10',
       buttonCode: '10AUTOMATED',
       shortName: 'Dispatch & QR',
       stageTitle: 'AUTOMATED PACKAGING & DISPATCH',
-      metric: 'Customer minimum inventory safety buffer store + barcode batch traceability',
-      simpleExpl: 'Finished fasteners are weighed and packed on automated packaging lines, labeled with QR barcodes, and stored in our dedicated warehouse buffer stock so vehicle assembly lines never experience emergency shortages.',
-      whyItMatters: 'On-time delivery every single time with complete traceability back to the original steel coil.',
-      icon: <Truck className="w-7 h-7 text-blue-600" />,
-      tag: 'Safety Stock & Traceability Gate',
-      equipment: 'Automated Packaging Lines & Barcode Systems',
+      metric: 'Safety Stock Store & Barcode Traceability',
+      simpleExpl: 'Fasteners are weighed, packed, QR-labeled, and stocked in customer buffer stores.',
+      whyItMatters: 'Guarantees on-time delivery with complete coil traceability.',
+      icon: <Truck className="w-6 h-6 text-blue-600" />,
+      tag: 'Safety Stock Gate',
+      equipment: 'Automated Packaging & Barcode Lines',
     },
   ];
 
-  /* ─── DATA: 10 SECONDARY OPERATIONS (FOR SMOOTH AUTO SLIDER) ─── */
+    /* ─── DATA: 10 SECONDARY OPERATIONS (FOR SMOOTH AUTO SLIDER) ─── */
   const secondaryOperations = [
     { num: '01', title: 'Automatic Tapping', desc: 'Fast, automated tapping to create smooth, clean internal threads inside flange and weld nuts without metal burrs.' },
     { num: '02', title: 'Slot Milling', desc: 'Precision carving of screwdriver slots and castle nut slots so drivers and safety pins fit like a glove.' },
@@ -1577,21 +1561,27 @@ export default function App() {
         scrolled ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 py-3 shadow-md' : 'bg-white/80 backdrop-blur-md py-4 border-b border-gray-200/80'
       }`}>
         <div className="container-custom flex items-center justify-between">
-          {/* Single Logo */}
-          <a href="#" onClick={(e) => { e.preventDefault(); openHomePage(); }} className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="h-9 sm:h-10 px-2 py-0.5 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-200">
+          {/* Both Logos: Hindustan Fasteners & Precision Forging */}
+          <a href="#" onClick={(e) => { e.preventDefault(); openHomePage(); }} className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0">
+            <div className="h-9 sm:h-10 px-2 py-0.5 bg-white rounded-lg flex items-center gap-1.5 sm:gap-2 shadow-sm border border-gray-200">
               <img
                 src="/logo/HF LOGO (1).png"
                 alt="Hindustan Fasteners"
-                className="h-6 sm:h-7 w-auto object-contain"
+                className="h-5 sm:h-6 w-auto object-contain"
+              />
+              <div className="h-4 w-[1px] bg-gray-300" />
+              <img
+                src="/logo/PFS logo.png"
+                alt="Precision Forging & Stamping"
+                className="h-5 sm:h-6 w-auto object-contain"
               />
             </div>
             <div className="hidden lg:flex flex-col">
-              <span className="font-display font-black text-[13px] tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight">
-                HINDUSTAN FASTENERS
+              <span className="font-display font-black text-[12px] tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight">
+                HINDUSTAN FASTENERS &amp; PRECISION FORGING
               </span>
               <span className="text-[9px] font-mono font-bold text-gray-500 leading-tight">
-                EST. 1970 · Nashik
+                EST. 1970 &amp; 1982 · Satpur MIDC, Nashik
               </span>
             </div>
           </a>
@@ -1686,13 +1676,6 @@ export default function App() {
         </div>
 
         <div className="container-custom relative z-10 py-16 sm:py-24 text-white">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/80 backdrop-blur-md border border-blue-500/30 text-blue-300 text-xs font-mono font-bold uppercase tracking-wider mb-6 shadow-md">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span>50+ Years of Manufacturing Excellence · Satpur MIDC, Nashik</span>
-            </div>
-          </Reveal>
-
           <Reveal delay={100}>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display uppercase tracking-tight leading-[1.05] mb-6 text-white">
               STRONG FASTENERS.<br />
@@ -1843,97 +1826,58 @@ export default function App() {
         </div>
       </section>
 
-      {/* ════════════ THE 10-STAGE VERTICAL MANUFACTURING PIPELINE: ANIMATED STEP SLIDER ════════════ */}
-      <section id="pipeline" className="py-16 sm:py-24 md:py-28 bg-[#FAFAF9] relative overflow-hidden border-t border-gray-200">
-        {/* Floating Nut & Bolt SVG Watermarks & Animations */}
-        <WatermarkNut className="-right-20 -top-20 opacity-40" size={480} />
-        <div className="absolute top-1/4 left-6 pointer-events-none animate-float-2 hidden lg:block z-0">
-          <BoltSvg size={85} opacity={0.85} rotation={-15} />
-        </div>
-        <div className="absolute bottom-16 right-8 pointer-events-none animate-float-1 hidden lg:block z-0">
-          <NutSvg size={85} opacity={0.85} />
-        </div>
+      {/* ════════════ 10-STAGE VERTICAL MANUFACTURING PIPELINE ════════════ */}
+      <section id="pipeline" className="py-14 sm:py-24 bg-[#FAFAF9] border-t border-gray-200 relative overflow-hidden">
+        {/* Ambient background SVGs & Watermarks */}
+        <WatermarkNut className="-right-20 top-12" size={460} />
+        <WatermarkBolt className="-left-24 bottom-12" size={440} rotation={-18} />
 
-        <div className="container-custom relative z-10 px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
+        <div className="container-custom relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-wider mb-2 sm:mb-3 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" /> Interactive Manufacturing Pipeline
-            </div>
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-gray-950">
-              THE 10-STAGE VERTICAL MANUFACTURING PIPELINE
-            </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-2 font-medium max-w-2xl mx-auto">
-              Click any stage button to inspect its process details and engineering quality gates.
-            </p>
+            <Reveal>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-wider mb-2 sm:mb-3 shadow-xs">
+                <Cog className="w-3.5 h-3.5 text-blue-600 animate-spin" style={{ animationDuration: '10s' }} />
+                100% In-House Continuous Process
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-gray-950 mb-2 sm:mb-3">
+                10-STAGE MANUFACTURING PIPELINE
+              </h2>
+            </Reveal>
+            <Reveal delay={200}>
+              <p className="text-xs sm:text-sm text-gray-600 max-w-xl mx-auto px-4">
+                Click or swipe any stage below to inspect process details and quality gates.
+              </p>
+            </Reveal>
           </div>
 
-          {/* 10 Stage Quick-Jump Pipeline Ribbon — Mobile Horizontal Scroll Strip */}
-          <div className="sm:hidden mb-4">
-            <div className="flex items-center justify-between text-xs font-mono text-gray-500 mb-2 px-1">
-              <span className="font-bold text-gray-900 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-                STAGE {presentationStage + 1} OF 10
-              </span>
-              <span className="text-[11px] text-blue-600 font-semibold">Swipe or tap chip</span>
-            </div>
-            <div className="flex overflow-x-auto gap-2 pb-2 -mx-4 px-4 scroll-smooth no-scrollbar">
-              {presentationStages.map((st, idx) => {
-                const isActive = presentationStage === idx;
-                const isPassed = idx < presentationStage;
-                return (
-                  <button
-                    key={`mob-stage-${st.buttonCode}`}
-                    id={`mob-pill-${idx}`}
-                    onClick={() => goToStage(idx)}
-                    className={`flex-shrink-0 px-3 py-2 rounded-xl text-center transition-all border font-mono text-xs flex items-center gap-1.5 shadow-sm active:scale-95 ${
-                      isActive
-                        ? 'bg-blue-600 text-white border-blue-500 shadow-md ring-2 ring-blue-400/40 font-black'
-                        : isPassed
-                        ? 'bg-emerald-50 text-emerald-900 border-emerald-200 font-semibold'
-                        : 'bg-white text-gray-800 border-gray-200 font-medium'
-                    }`}
-                  >
-                    <span className={`text-[11px] font-black ${isActive ? 'text-white' : isPassed ? 'text-emerald-700' : 'text-blue-600'}`}>
-                      {st.num}
-                    </span>
-                    <span className="text-[11px] uppercase tracking-tight font-bold whitespace-nowrap">
-                      {st.shortName}
-                    </span>
-                    {isPassed && <Check className="w-3 h-3 text-emerald-600 flex-shrink-0" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* 10 Stage Quick-Jump Pipeline Ribbon — Tablet & Desktop Grid */}
-          <div className="hidden sm:grid sm:grid-cols-5 lg:grid-cols-10 gap-2 mb-6">
+          {/* Desktop & Tablet Stage Buttons Bar */}
+          <div className="hidden sm:grid grid-cols-5 lg:grid-cols-10 gap-2 mt-8 mb-6">
             {presentationStages.map((st, idx) => {
-              const isActive = presentationStage === idx;
+              const isActive = idx === presentationStage;
               const isPassed = idx < presentationStage;
               return (
                 <button
                   key={st.buttonCode}
                   onClick={() => goToStage(idx)}
-                  className={`p-2.5 sm:py-3 rounded-xl text-center transition-all duration-300 border font-mono text-xs flex flex-col items-center justify-center gap-0.5 shadow-sm relative ${
+                  className={`p-2 rounded-xl font-mono text-center transition-all duration-300 flex flex-col items-center justify-between border cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white border-blue-500 shadow-lg scale-105 ring-2 ring-blue-400/40 z-10 font-black'
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-400/40 scale-105 font-bold'
                       : isPassed
-                      ? 'bg-emerald-50 text-emerald-950 border-emerald-200 hover:border-blue-300 font-bold'
-                      : 'bg-white hover:bg-blue-50 text-gray-800 border-gray-200 hover:border-blue-300 font-semibold'
+                      ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold'
+                      : 'bg-white text-gray-700 hover:bg-blue-50 border-gray-200 hover:border-blue-300'
                   }`}
                 >
-                  <div className="flex items-center gap-1">
-                    <span className={`text-[10px] font-black ${isActive ? 'text-white' : isPassed ? 'text-emerald-700' : 'text-blue-600'}`}>
-                      STAGE {st.num}
-                    </span>
-                    {isPassed && <Check className="w-3 h-3 text-emerald-600" />}
-                  </div>
-                  <span className="truncate w-full text-[11px] uppercase tracking-tight font-extrabold">
+                  <span className={`text-[10px] font-bold block uppercase ${isActive ? 'text-blue-100' : isPassed ? 'text-emerald-700' : 'text-gray-400'}`}>
+                    Stage {st.num}
+                  </span>
+                  <span className="text-[11px] font-bold font-display line-clamp-1 my-0.5">
                     {st.shortName}
                   </span>
-                  <span className={`text-[9px] font-mono tracking-tighter ${isActive ? 'text-blue-100' : 'text-gray-400'}`}>
+                  <span className={`text-[9px] font-mono px-1 py-0.5 rounded font-bold ${
+                    isActive ? 'bg-blue-700 text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
                     {st.buttonCode}
                   </span>
                 </button>
@@ -1941,81 +1885,56 @@ export default function App() {
             })}
           </div>
 
-          {/* Conveyor Live Status & Auto-Play Control Strip */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-3 sm:p-4 rounded-2xl bg-white border border-gray-200 shadow-sm mb-6">
-            <div className="flex items-center justify-between sm:justify-start gap-3">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
-                <span className="text-gray-950 uppercase text-xs font-mono font-bold">
-                  STAGE {presentationStages[presentationStage].num} OF 10:
-                </span>
-              </div>
-              <span className="text-blue-900 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-300 text-xs font-mono font-bold">
-                {presentationStages[presentationStage].buttonCode}
-              </span>
-            </div>
-
-            {/* Interactive Step Progress Line */}
-            <div className="flex items-center gap-2 flex-1 max-w-none sm:max-w-xs md:max-w-md sm:mx-4">
-              <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden border border-gray-200">
-                <div
-                  className="h-full bg-gradient-to-r from-gray-900 to-blue-600 transition-all duration-500 rounded-full"
-                  style={{ width: `${((presentationStage + 1) / 10) * 100}%` }}
-                />
-              </div>
-              <span className="text-[10px] sm:text-[11px] font-mono font-bold text-gray-500">
-                {Math.round(((presentationStage + 1) / 10) * 100)}%
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between sm:justify-end gap-2">
-              <span className="sm:hidden text-[10px] text-gray-500 font-mono">
-                Swipe card to step
-              </span>
-              <button
-                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className={`flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-mono font-bold border transition shadow-sm ${
-                  isAutoPlaying
-                    ? 'bg-blue-600 text-white border-blue-500'
-                    : 'bg-gray-50 hover:bg-gray-100 text-gray-800 border-gray-300 hover:border-blue-400'
-                }`}
-              >
-                {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 text-blue-600" />}
-                <span>{isAutoPlaying ? 'Auto Playing' : 'Auto-Slide'}</span>
-              </button>
-            </div>
+          {/* Mobile Horizontal Scrollable Stage Bar */}
+          <div className="flex sm:hidden items-center gap-2 overflow-x-auto no-scrollbar py-2 mb-4 px-1" style={{ WebkitOverflowScrolling: 'touch' }}>
+            {presentationStages.map((st, idx) => {
+              const isActive = idx === presentationStage;
+              const isPassed = idx < presentationStage;
+              return (
+                <button
+                  key={`mob-stage-${st.buttonCode}`}
+                  id={`mob-pill-${idx}`}
+                  onClick={() => goToStage(idx)}
+                  className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all duration-300 flex items-center gap-1.5 border cursor-pointer ${
+                    isActive
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-300'
+                      : isPassed
+                      ? 'bg-emerald-50 text-emerald-900 border-emerald-300'
+                      : 'bg-white text-gray-700 border-gray-200'
+                  }`}
+                >
+                  <span className="text-[10px] opacity-80">#{st.num}</span>
+                  <span>{st.shortName}</span>
+                </button>
+              );
+            })}
           </div>
+        </div>
 
-          {/* ════════════ TRUE HORIZONTAL CONVEYOR SLIDER TRACK WITH TOUCH GESTURES ════════════ */}
-          <div
-            className="relative overflow-hidden w-full py-1 sm:py-4"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Floating Left Navigation Button — Desktop */}
+        {/* ─── SLIDING STAGE CARDS TRACK ─── */}
+        <div className="relative w-full overflow-hidden">
+          <div className="container-custom relative">
+            {/* Desktop Prev / Next Navigation Arrows */}
             <button
               onClick={prevStage}
-              className="hidden sm:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/95 backdrop-blur-md border-2 border-blue-500 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-110 group cursor-pointer"
+              className="hidden sm:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-gray-300 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-105 group cursor-pointer"
               aria-label="Previous manufacturing stage"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-900 group-hover:text-blue-600 transition-colors" />
+              <ChevronLeft className="w-6 h-6 text-gray-800 group-hover:text-blue-600 transition-colors" />
             </button>
-
-            {/* Floating Right Navigation Button — Desktop */}
             <button
               onClick={nextStage}
-              className="hidden sm:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/95 backdrop-blur-md border-2 border-blue-500 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-110 group cursor-pointer"
+              className="hidden sm:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-gray-300 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-105 group cursor-pointer"
               aria-label="Next manufacturing stage"
             >
-              <ChevronRight className="w-6 h-6 text-gray-900 group-hover:text-blue-600 transition-colors" />
+              <ChevronRight className="w-6 h-6 text-gray-800 group-hover:text-blue-600 transition-colors" />
             </button>
 
             {/* Continuous Sliding Flex Track */}
             <div
               className="flex gap-3 sm:gap-6 transition-transform duration-500 ease-out will-change-transform items-stretch"
               style={{
-                transform: `translateX(calc(50% - ${(presentationStage + 0.5)} * min(880px, 92vw) - ${presentationStage} * 16px))`,
+                transform: `translateX(calc(50% - ${(presentationStage + 0.5)} * min(840px, 92vw) - ${presentationStage} * 16px))`,
               }}
             >
               {presentationStages.map((st, idx) => {
@@ -2027,122 +1946,92 @@ export default function App() {
                   <div
                     key={`card-${st.buttonCode}`}
                     onClick={() => { if (!isActive) goToStage(idx); }}
-                    className={`w-[min(880px,92vw)] flex-shrink-0 rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8 transition-all duration-500 flex flex-col justify-between relative overflow-hidden ${
+                    className={`w-[min(840px,92vw)] flex-shrink-0 rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 transition-all duration-500 flex flex-col justify-between relative overflow-hidden ${
                       isActive
-                        ? 'bg-white border-2 border-blue-600 shadow-2xl ring-4 ring-blue-500/20 scale-100 opacity-100 z-20'
+                        ? 'bg-white border-2 border-blue-600 shadow-2xl ring-4 ring-blue-500/15 scale-100 opacity-100 z-20'
                         : isNext
-                        ? 'bg-white/95 border-2 border-dashed border-blue-400 shadow-md scale-95 opacity-75 hover:opacity-100 cursor-pointer z-10 hover:scale-[0.97]'
+                        ? 'bg-white/95 border-2 border-dashed border-blue-300 shadow-md scale-95 opacity-75 hover:opacity-100 cursor-pointer z-10'
                         : isPrev
-                        ? 'bg-white/90 border border-emerald-300 shadow-md scale-95 opacity-65 hover:opacity-95 cursor-pointer z-10 hover:scale-[0.97]'
+                        ? 'bg-white/90 border border-emerald-300 shadow-md scale-95 opacity-65 hover:opacity-95 cursor-pointer z-10'
                         : 'bg-white/80 border border-gray-200 shadow-sm scale-90 opacity-40 hover:opacity-80 cursor-pointer z-0'
                     }`}
                   >
-                    {/* Top Status Teaser Ribbon for non-active preview cards */}
+                    {/* Non-active Preview Ribbon */}
                     {!isActive && (
-                      <div className={`mb-3 sm:mb-4 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-mono font-bold flex items-center justify-between ${
-                        isNext ? 'bg-blue-100 text-blue-950 border border-blue-200' : 'bg-emerald-100 text-emerald-950 border border-emerald-300'
+                      <div className={`mb-2 px-3 py-1 rounded-xl text-xs font-mono font-bold flex items-center justify-between ${
+                        isNext ? 'bg-blue-50 text-blue-900 border border-blue-200' : 'bg-emerald-50 text-emerald-900 border border-emerald-200'
                       }`}>
-                        <span className="truncate">{isNext ? `👉 UPCOMING: ${st.buttonCode}` : `✓ QUALITY GATE PASSED (STAGE ${st.num})`}</span>
+                        <span className="truncate">{isNext ? `👉 UPCOMING: ${st.buttonCode}` : `✓ GATE PASSED (STAGE ${st.num})`}</span>
                         <span className="text-[10px] uppercase underline flex-shrink-0 ml-2">Inspect →</span>
                       </div>
                     )}
 
                     {/* Active Card Content */}
                     <div>
-                      {/* Stage Badge & Category Tag */}
-                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 mb-2.5 sm:mb-4">
-                        <span className="px-2.5 py-0.5 sm:px-3.5 sm:py-1 rounded-full bg-blue-600 text-white text-[11px] sm:text-xs font-mono font-black shadow-xs">
-                          Stage {st.num}
-                        </span>
-                        <span className="text-gray-400 font-bold text-xs">/</span>
-                        <span className="text-[10px] sm:text-xs font-mono font-extrabold text-gray-800 uppercase tracking-wider bg-gray-100 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border border-gray-300">
-                          {st.tag}
-                        </span>
-                        <span className="text-[10px] sm:text-[11px] text-gray-500 font-mono ml-auto">
-                          ID: <strong className="text-gray-800">{st.buttonCode}</strong>
+                      {/* Top Header Badge Row */}
+                      <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[11px] sm:text-xs font-mono font-black shadow-xs">
+                            Stage {st.num}
+                          </span>
+                          <span className="text-[10px] sm:text-xs font-mono font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
+                            {st.tag}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-gray-500">
+                          ID: <strong className="text-gray-900">{st.buttonCode}</strong>
                         </span>
                       </div>
 
                       {/* Stage Title */}
-                      <h3 className="text-lg sm:text-2xl md:text-3xl font-black font-display uppercase tracking-tight text-gray-950 leading-snug mb-2 sm:mb-3">
+                      <h3 className="text-base sm:text-2xl font-black font-display uppercase tracking-tight text-gray-950 mb-1.5 sm:mb-3">
                         {st.stageTitle}
                       </h3>
 
-                      {/* Stage Metric / Quality Target */}
-                      <div className="p-2 sm:p-3 rounded-xl bg-gray-50 border border-gray-300 text-xs sm:text-sm font-semibold text-gray-900 font-mono mb-3 sm:mb-5 flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 flex-shrink-0" />
+                      {/* Metric Banner */}
+                      <div className="p-2 sm:p-3 rounded-xl bg-blue-50/80 border border-blue-200 text-xs sm:text-sm font-semibold text-blue-950 font-mono mb-2.5 sm:mb-4 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
                         <span className="leading-snug">{st.metric}</span>
                       </div>
 
-                      {/* Mobile Station Strip (Compact on phones) */}
-                      <div className="lg:hidden flex items-center gap-2.5 p-2.5 rounded-xl bg-gradient-to-r from-blue-50/80 to-slate-50 border border-blue-200 mb-3 shadow-2xs">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center flex-shrink-0 shadow-sm">
-                          {st.icon}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-[10px] font-mono text-blue-900 font-extrabold uppercase">
-                            STATION #{st.num} · {st.buttonCode}
-                          </div>
-                          <div className="text-xs font-bold text-gray-900 truncate">
-                            {st.equipment}
-                          </div>
-                        </div>
-                        <div className="text-[10px] font-mono text-emerald-700 bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded-full font-bold flex items-center gap-1 flex-shrink-0">
-                          <Check className="w-3 h-3 text-emerald-600" /> Passed
-                        </div>
-                      </div>
-
-                      {/* Main Grid: Explanation + Desktop Station Card */}
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 items-stretch mb-3 sm:mb-6">
-                        <div className="lg:col-span-8 space-y-2.5 sm:space-y-4 flex flex-col justify-between">
-                          {/* Simple Language Explanation */}
-                          <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FAFAF9] border border-gray-200 text-gray-800 text-xs sm:text-sm leading-relaxed shadow-xs">
-                            <span className="text-[10px] sm:text-xs font-mono text-blue-900 font-bold uppercase tracking-wider block mb-1">
-                              What Happens in this Stage (Simple Words):
+                      {/* Main Section: Concise Explanation + Quality Gate */}
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-2.5 sm:gap-6 items-stretch mb-2.5 sm:mb-4">
+                        <div className="lg:col-span-8 space-y-2 sm:space-y-3">
+                          {/* Plain English Explanation */}
+                          <div className="p-2.5 sm:p-4 rounded-xl bg-[#FAFAF9] border border-gray-200 text-xs sm:text-sm text-gray-800 leading-relaxed">
+                            <span className="text-[10px] sm:text-xs font-mono text-blue-900 font-bold uppercase tracking-wider block mb-0.5">
+                              Process Explanation:
                             </span>
-                            <p className="text-gray-700 font-normal">{st.simpleExpl}</p>
+                            <p className="text-gray-700 font-normal text-xs sm:text-sm">{st.simpleExpl}</p>
                           </div>
 
-                          {/* Engineering Quality Gate */}
-                          <div className="p-2.5 sm:p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 font-medium flex items-center gap-2 sm:gap-2.5 shadow-2xs">
-                            <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600 flex-shrink-0" />
-                            <span className="leading-snug">
-                              <strong className="text-emerald-900">Engineering Quality Gate:</strong> {st.whyItMatters}
-                            </span>
+                          {/* Quality Gate */}
+                          <div className="p-2 sm:p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 font-medium flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                            <span><strong className="text-emerald-900">Quality Gate:</strong> {st.whyItMatters}</span>
                           </div>
                         </div>
 
-                        {/* Station Graphic Card — Desktop Only */}
-                        <div className="hidden lg:flex lg:col-span-4 flex-col items-center justify-center p-5 rounded-2xl bg-gradient-to-br from-blue-50 via-white to-gray-50 border-2 border-blue-200 text-center shadow-md">
-                          <div className="w-18 h-18 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center mb-3 shadow-lg relative">
+                        {/* Station Graphic — Desktop Only */}
+                        <div className="hidden lg:flex lg:col-span-4 flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 text-center shadow-sm">
+                          <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-2 shadow-md relative">
                             {st.icon}
-                            <div className="absolute -top-2 -right-2 bg-gray-950 text-white font-mono text-[10px] font-black px-2 py-0.5 rounded-full border border-blue-400">
+                            <div className="absolute -top-1.5 -right-1.5 bg-gray-950 text-white font-mono text-[9px] font-black px-1.5 py-0.5 rounded-full border border-blue-400">
                               #{st.num}
                             </div>
                           </div>
-
-                          <div className="text-[10px] font-mono text-blue-900 font-extrabold uppercase tracking-widest mb-0.5">
-                            Process Station
+                          <div className="text-[10px] font-mono text-blue-900 font-bold uppercase">
+                            Station #{st.num} · {st.buttonCode}
                           </div>
-                          <div className="text-base font-black font-display text-gray-950 mb-1">
-                            {st.buttonCode}
-                          </div>
-                          <div className="text-[11px] font-mono text-gray-600 bg-white px-2.5 py-1 rounded-lg border border-gray-200 shadow-xs max-w-xs mb-3 leading-snug">
+                          <div className="text-xs font-bold text-gray-900 mt-0.5">
                             {st.equipment}
-                          </div>
-
-                          <div className="pt-2.5 border-t border-gray-200 w-full flex items-center justify-between text-[11px] font-mono text-gray-600 font-semibold">
-                            <span>Satpur MIDC Nashik</span>
-                            <span className="text-emerald-700 font-bold flex items-center gap-1">
-                              <Check className="w-3.5 h-3.5" /> Gate Passed
-                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Bottom Slide Footer Controls */}
-                    <div className="pt-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    {/* Bottom Controls Ribbon */}
+                    <div className="pt-2 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                       {/* Mobile 10-Dot Progress Indicator */}
                       <div className="flex items-center justify-center gap-1.5 py-0.5 sm:hidden">
                         {presentationStages.map((_, dotIdx) => (
@@ -2164,20 +2053,20 @@ export default function App() {
                       <div className="flex items-center gap-2 w-full sm:w-auto">
                         <button
                           onClick={(e) => { e.stopPropagation(); prevStage(); }}
-                          className="flex-1 sm:flex-none px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 active:bg-gray-300 border border-gray-300 text-gray-800 text-xs font-mono font-bold transition flex items-center justify-center gap-1.5 cursor-pointer active:scale-95"
+                          className="flex-1 sm:flex-none px-3.5 py-1.5 sm:py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-mono font-bold transition flex items-center justify-center gap-1 cursor-pointer active:scale-95"
                         >
                           <ChevronLeft className="w-4 h-4" /> Previous
                         </button>
                         <button
                           onClick={(e) => { e.stopPropagation(); nextStage(); }}
-                          className="flex-1 sm:flex-none btn-primary px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-bold font-mono cursor-pointer flex items-center justify-center gap-1 active:scale-95 shadow-sm"
+                          className="flex-1 sm:flex-none btn-primary px-4 py-1.5 sm:py-2 text-xs font-bold font-mono cursor-pointer flex items-center justify-center gap-1 active:scale-95 shadow-sm"
                         >
                           Next Stage →
                         </button>
                       </div>
 
-                      <div className="text-[11px] sm:text-xs font-mono text-gray-500 text-center sm:text-right">
-                        Gate <strong>{st.num} of 10</strong> · Continuous In-House Line
+                      <div className="text-[11px] font-mono text-gray-500 text-center sm:text-right">
+                        Stage <strong>{st.num} of 10</strong> · Satpur MIDC Nashik
                       </div>
                     </div>
                   </div>
@@ -2189,59 +2078,62 @@ export default function App() {
       </section>
 
       {/* ════════════ 3D FLIP CARD GALLERY SCROLLER — "OUR AREA AND GALLERY" ════════════ */}
-      <section id="gallery" className="py-16 sm:py-24 bg-[#080E1E] text-white relative overflow-hidden border-t border-slate-800">
-        {/* Ambient background glows */}
+      <section id="gallery" className="py-14 sm:py-24 bg-[#060C1B] text-white relative overflow-hidden border-t border-slate-800">
+        {/* Ambient background glow orbs */}
         <div className="absolute top-10 left-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container-custom relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/90 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold uppercase tracking-wider mb-3.5 shadow-sm">
-                <RotateCcw className="w-3.5 h-3.5 text-cyan-300" /> Interactive Plant Tour &amp; 3D Cards
+              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-950/90 border border-cyan-500/40 text-cyan-300 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider mb-2.5 sm:mb-3.5 shadow-sm">
+                <RotateCcw className="w-3.5 h-3.5 text-cyan-300" /> Interactive Plant Tour · 3D Cards
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-white mb-3">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-white mb-2 sm:mb-3">
                 OUR AREA &amp; PLANT GALLERY
               </h2>
             </Reveal>
             <Reveal delay={200}>
-              <p className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed px-4">
-                Slide horizontally across our 1,60,000 sq.m. campus in Satpur MIDC, Nashik. Click or tap any card to <strong className="text-cyan-300">flip in 3D</strong> to inspect high-precision machinery, capacities, and zero-defect quality gates.
+              <p className="text-xs sm:text-sm text-gray-300 px-2 sm:px-4">
+                Explore our Satpur MIDC plant campus. Tap any photo to <strong className="text-cyan-300">flip in 3D</strong> for technical specs.
               </p>
             </Reveal>
           </div>
 
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-6 sm:mb-8 px-2">
-            {[
-              { id: 'all', label: 'All Areas (12)' },
-              { id: 'plant', label: 'Campus & Infrastructure (2)' },
-              { id: 'forging', label: 'Cold Forging & Machining (4)' },
-              { id: 'heat', label: 'SCADA Heat & Plating (2)' },
-              { id: 'testing', label: 'Eddy Current & Labs (2)' },
-              { id: 'warehouse', label: 'Warehousing & Dispatch (1)' },
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setGalleryCategory(cat.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer active:scale-95 ${
-                  galleryCategory === cat.id
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40 ring-2 ring-cyan-400/50'
-                    : 'bg-slate-800/90 text-gray-300 hover:bg-slate-700 hover:text-white border border-slate-700'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          {/* Horizontal Scrollable Category Filter Pills (Mobile Friendly) */}
+          <div className="w-full mb-5 sm:mb-8">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 sm:justify-center w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
+              {[
+                { id: 'all', label: 'All Areas (12)' },
+                { id: 'plant', label: 'Campus & Infrastructure (2)' },
+                { id: 'forging', label: 'Cold Forging & Machining (4)' },
+                { id: 'heat', label: 'SCADA Heat & Plating (2)' },
+                { id: 'testing', label: 'Eddy Current & Labs (2)' },
+                { id: 'warehouse', label: 'Warehousing & Dispatch (1)' },
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setGalleryCategory(cat.id)}
+                  className={`flex-shrink-0 whitespace-nowrap px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer active:scale-95 ${
+                    galleryCategory === cat.id
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40 ring-2 ring-cyan-400/50'
+                      : 'bg-slate-800/90 text-gray-300 hover:bg-slate-700 hover:text-white border border-slate-700'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Scroller Control Ribbon (Desktop & Mobile) */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-4 sm:mb-6 px-3 sm:px-4 py-2.5 rounded-2xl bg-slate-800/60 border border-slate-700/80 backdrop-blur-md">
-            {/* Status Pill */}
-            <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded-lg bg-cyan-950 border border-cyan-700/60 text-cyan-300 font-mono font-bold text-xs">
+          {/* Scroller Control Ribbon (Desktop & Mobile Unified) */}
+          <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-slate-800/70 border border-slate-700/80 backdrop-blur-md">
+            {/* Left: Active Area Count */}
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-1 rounded-lg bg-cyan-950 border border-cyan-700/70 text-cyan-300 font-mono font-bold text-xs shadow-xs">
                 AREA {String(activeGalleryIndex + 1).padStart(2, '0')} / {String(filteredGalleryCards.length).padStart(2, '0')}
               </span>
               <span className="text-xs font-display font-bold text-white hidden md:inline truncate max-w-xs">
@@ -2249,8 +2141,8 @@ export default function App() {
               </span>
             </div>
 
-            {/* Hint & Actions */}
-            <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+            {/* Right: Actions */}
+            <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setIsGalleryAutoPlaying(!isGalleryAutoPlaying)}
                 className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-xs font-mono font-bold flex items-center gap-1.5 border transition cursor-pointer active:scale-95 ${
@@ -2260,21 +2152,21 @@ export default function App() {
                 }`}
               >
                 {isGalleryAutoPlaying ? <Pause className="w-3.5 h-3.5 text-cyan-300" /> : <Play className="w-3.5 h-3.5" />}
-                <span className="hidden sm:inline">{isGalleryAutoPlaying ? 'Pause Auto-Tour' : 'Auto-Slide'}</span>
+                <span className="hidden sm:inline">{isGalleryAutoPlaying ? 'Pause Tour' : 'Auto-Slide'}</span>
               </button>
 
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => scrollGallery('left')}
                   className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-700 hover:bg-blue-600 active:bg-blue-700 text-white border border-slate-600 hover:border-blue-400 flex items-center justify-center transition cursor-pointer active:scale-95 shadow-sm"
-                  aria-label="Previous plant card"
+                  aria-label="Previous plant area"
                 >
                   <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button
                   onClick={() => scrollGallery('right')}
                   className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white border border-blue-400 flex items-center justify-center transition cursor-pointer active:scale-95 shadow-md shadow-blue-600/30"
-                  aria-label="Next plant card"
+                  aria-label="Next plant area"
                 >
                   <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
@@ -2286,13 +2178,13 @@ export default function App() {
         {/* ─── HORIZONTAL SMOOTH CARD SCROLLER ─── */}
         <div className="relative w-full">
           {/* Subtle edge gradients for desktop depth */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#080E1E] to-transparent pointer-events-none z-10 hidden sm:block" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#080E1E] to-transparent pointer-events-none z-10 hidden sm:block" />
+          <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-16 bg-gradient-to-r from-[#060C1B] to-transparent pointer-events-none z-10 hidden sm:block" />
+          <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-16 bg-gradient-to-l from-[#060C1B] to-transparent pointer-events-none z-10 hidden sm:block" />
 
           <div
             ref={galleryScrollRef}
             onScroll={handleGalleryScroll}
-            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory py-4 px-4 sm:px-12 md:px-20 no-scrollbar scroll-smooth"
+            className="flex gap-3 sm:gap-6 overflow-x-auto snap-x snap-mandatory py-2 sm:py-4 px-4 sm:px-12 md:px-20 no-scrollbar scroll-smooth"
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
           >
             {filteredGalleryCards.map((card, idx) => {
@@ -2302,8 +2194,8 @@ export default function App() {
               return (
                 <div
                   key={card.id}
-                  className={`gallery-card-item perspective-1000 w-[84vw] max-w-[340px] sm:w-[380px] md:w-[420px] h-[490px] sm:h-[510px] flex-shrink-0 snap-center cursor-pointer select-none group transition-all duration-300 ${
-                    isActive ? 'scale-100 ring-2 ring-cyan-500/50 rounded-2xl' : 'scale-[0.98] opacity-90 hover:opacity-100'
+                  className={`gallery-card-item perspective-1000 w-[86vw] max-w-[340px] sm:w-[380px] md:w-[420px] h-[470px] sm:h-[510px] flex-shrink-0 snap-center cursor-pointer select-none group transition-all duration-300 ${
+                    isActive ? 'scale-100 ring-2 ring-cyan-500/60 rounded-2xl shadow-cyan-900/20' : 'scale-[0.98] opacity-90 hover:opacity-100'
                   }`}
                   onClick={() => toggleCardFlip(card.id)}
                 >
@@ -2315,69 +2207,69 @@ export default function App() {
                     {/* ── CARD FRONT ── */}
                     <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden bg-slate-800/95 border border-slate-700/80 flex flex-col justify-between shadow-2xl">
                       {/* Photo Header */}
-                      <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-slate-950 flex-shrink-0">
+                      <div className="relative h-48 sm:h-60 w-full overflow-hidden bg-slate-950 flex-shrink-0">
                         <img
                           src={card.img}
                           alt={card.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           loading="lazy"
                         />
-                        <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-mono text-cyan-300 font-bold border border-white/10 uppercase tracking-wider shadow">
+                        <div className="absolute top-2.5 left-2.5 bg-black/80 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-mono text-cyan-300 font-bold border border-white/10 uppercase tracking-wider shadow">
                           {card.areaTag}
                         </div>
-                        <div className="absolute top-3 right-3 bg-blue-900/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-mono text-white font-bold border border-blue-400/40 shadow">
+                        <div className="absolute top-2.5 right-2.5 bg-blue-900/90 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-mono text-white font-bold border border-blue-400/40 shadow">
                           {card.metric}
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                      <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
                         <div>
-                          <div className="flex items-center gap-2 mb-1.5">
-                            <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/50">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-800/60">
                               Area #{String(card.id).padStart(2, '0')}
                             </span>
                             <span className="text-[10px] font-mono text-gray-400">
-                              Satpur MIDC
+                              Satpur MIDC Plant
                             </span>
                           </div>
-                          <h3 className="text-base sm:text-lg font-bold font-display text-white mb-1.5 group-hover:text-cyan-300 transition-colors line-clamp-2">
+                          <h3 className="text-sm sm:text-lg font-bold font-display text-white mb-1 group-hover:text-cyan-300 transition-colors line-clamp-2">
                             {card.title}
                           </h3>
-                          <p className="text-xs text-gray-300 line-clamp-3 leading-relaxed">
+                          <p className="text-[11px] sm:text-xs text-gray-300 line-clamp-3 leading-relaxed">
                             {card.shortDesc}
                           </p>
                         </div>
 
-                        {/* Front Bottom Bar */}
-                        <div className="pt-3 border-t border-slate-700/70 flex items-center justify-between mt-2">
-                          <span className="text-[11px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 group-hover:underline">
+                        {/* Front Bottom Bar — High contrast action callout */}
+                        <div className="pt-2.5 sm:pt-3 border-t border-slate-700/70 flex items-center justify-between mt-1">
+                          <span className="text-[10px] sm:text-[11px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-800/50">
                             <RotateCcw className="w-3.5 h-3.5 text-cyan-300 group-hover:rotate-180 transition-transform duration-500" />
-                            Tap to Flip Specs ↻
+                            Tap Card to 3D Flip ↻
                           </span>
                           <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 bg-slate-700/70 px-2 py-0.5 rounded">
-                            3D Spec Card
+                            Spec Backside
                           </span>
                         </div>
                       </div>
                     </div>
 
                     {/* ── CARD BACK (180deg) ── */}
-                    <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl overflow-y-auto bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 border-2 border-cyan-500/50 p-4 sm:p-5 flex flex-col justify-between shadow-2xl">
+                    <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl overflow-y-auto bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 border-2 border-cyan-500/60 p-3.5 sm:p-5 flex flex-col justify-between shadow-2xl">
                       <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/90 px-2.5 py-1 rounded border border-cyan-700 shadow-sm">
+                        <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/90 px-2.5 py-0.5 rounded border border-cyan-700 shadow-sm">
                             {card.backDepartment}
                           </span>
                           <span className="text-[10px] font-mono text-gray-400">Area #{card.id} Spec</span>
                         </div>
 
-                        <h3 className="text-base font-bold font-display text-white mb-2 leading-snug">
+                        <h3 className="text-sm sm:text-base font-bold font-display text-white mb-2 leading-snug">
                           {card.backTitle}
                         </h3>
 
-                        <div className="space-y-2 text-xs text-gray-200 mb-2">
+                        <div className="space-y-1.5 sm:space-y-2 text-xs text-gray-200 mb-2">
                           <div className="p-2 rounded-xl bg-slate-900/80 border border-cyan-900/60">
                             <span className="text-[10px] font-mono text-cyan-400 font-bold uppercase block mb-0.5">Machinery &amp; Tech:</span>
                             <p className="text-gray-300 text-[11px] leading-snug line-clamp-2">{card.equipment}</p>
@@ -2394,13 +2286,13 @@ export default function App() {
                       </div>
 
                       {/* Back Bottom Bar */}
-                      <div className="pt-2.5 border-t border-white/15 flex items-center justify-between">
-                        <span className="text-[10px] font-mono text-cyan-300/80 font-semibold truncate max-w-[180px]">
+                      <div className="pt-2 sm:pt-2.5 border-t border-white/15 flex items-center justify-between mt-auto">
+                        <span className="text-[10px] font-mono text-cyan-300/80 font-semibold truncate max-w-[170px]">
                           {card.capacity}
                         </span>
                         <button
                           onClick={(e) => { e.stopPropagation(); toggleCardFlip(card.id); }}
-                          className="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-[11px] font-mono font-bold transition flex items-center gap-1 border border-cyan-500/40 cursor-pointer"
+                          className="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-[10px] sm:text-[11px] font-mono font-bold transition flex items-center gap-1 border border-cyan-500/40 cursor-pointer"
                         >
                           <RotateCcw className="w-3 h-3" /> Flip Back
                         </button>
@@ -2413,10 +2305,20 @@ export default function App() {
           </div>
         </div>
 
-        {/* ─── BOTTOM CONTROLS & DOT INDICATORS ─── */}
-        <div className="container-custom mt-6 sm:mt-8 relative z-10">
+        {/* ─── BOTTOM CONTROLS, PROGRESS BAR & THUMB BUTTONS (MOBILE FIRST) ─── */}
+        <div className="container-custom mt-4 sm:mt-8 relative z-10">
+          {/* Glowing Continuous Progress Bar */}
+          <div className="max-w-md mx-auto w-full h-1.5 bg-slate-800/90 rounded-full overflow-hidden mb-3 border border-slate-700/60">
+            <div
+              className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-300"
+              style={{
+                width: `${((activeGalleryIndex + 1) / Math.max(filteredGalleryCards.length, 1)) * 100}%`,
+              }}
+            />
+          </div>
+
           {/* Indicator Dots */}
-          <div className="flex items-center justify-center gap-1.5 flex-wrap px-4 mb-4">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap px-2 mb-4">
             {filteredGalleryCards.map((_, dotIdx) => (
               <button
                 key={`dot-${dotIdx}`}
@@ -2431,24 +2333,24 @@ export default function App() {
             ))}
           </div>
 
-          {/* Mobile Bottom Quick Navigation Buttons */}
-          <div className="flex sm:hidden items-center justify-center gap-3">
+          {/* Mobile Bottom Quick Thumb Navigation Buttons */}
+          <div className="flex sm:hidden items-center justify-center gap-2.5">
             <button
               onClick={() => scrollGallery('left')}
-              className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-gray-200 text-xs font-mono font-bold flex items-center justify-center gap-1.5 active:scale-95"
+              className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-700 text-gray-200 text-xs font-mono font-bold flex items-center justify-center gap-1.5 active:scale-95 shadow-sm cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" /> Prev Area
             </button>
             <button
               onClick={() => scrollGallery('right')}
-              className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono font-bold flex items-center justify-center gap-1.5 active:scale-95 shadow-md"
+              className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-mono font-bold flex items-center justify-center gap-1.5 active:scale-95 shadow-md shadow-blue-600/30 cursor-pointer"
             >
               Next Area <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
-          <div className="mt-4 text-center text-[11px] font-mono text-gray-400">
-            Tip: Swipe left/right on mobile to scroll through cards · Tap any photo card to 3D flip between plant view and engineering specifications.
+          <div className="mt-3.5 text-center text-[10px] sm:text-[11px] font-mono text-gray-400">
+            Tip: Swipe cards horizontally on mobile · Tap any photo card to 3D flip between plant view and engineering specifications.
           </div>
         </div>
       </section>
@@ -2471,8 +2373,8 @@ export default function App() {
           <h2 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-gray-950">
             IN-HOUSE SECONDARY OPERATIONS
           </h2>
-          <p className="text-sm text-gray-600 max-w-2xl mx-auto mt-2">
-            We don't send your parts to outside sub-contractors. All 10 specialized secondary operations happen right inside our own plant under our direct control!
+          <p className="text-xs sm:text-sm text-gray-600 max-w-xl mx-auto mt-1.5">
+            100% in-house secondary processing with zero subcontractor dependency.
           </p>
         </div>
 
@@ -2536,8 +2438,8 @@ export default function App() {
               <h2 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-gray-950">
                 OUR FASTENERS &amp; BOLTS SHOWCASE
               </h2>
-              <p className="text-sm text-gray-600 mt-2 max-w-2xl leading-relaxed">
-                Continuous moving product slider. Hover over any card to pause and inspect, or click on any bolt or nut to open its <strong>big technical dialogue box</strong> with high-res photos and instant quotes!
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 max-w-xl">
+                Click any fastener card below to open technical specifications and get an instant quote.
               </p>
             </div>
 
@@ -2688,11 +2590,8 @@ export default function App() {
                 </h2>
               </Reveal>
               <Reveal delay={200}>
-                <p className="text-base text-gray-700 leading-relaxed mb-6">
-                  Founded in <strong className="text-blue-900">1970</strong> as Hindustan Fasteners and expanded in <strong className="text-blue-900">1982</strong> with Precision Forging and Stamping, we have grown into one of India’s foremost cold-formed fastener manufacturers with a turnover exceeding ₹120 Cr and an annual capacity of 36,000 Metric Tonnes.
-                </p>
-                <p className="text-base text-gray-700 leading-relaxed mb-8">
-                  Operating out of 4 interconnected plants across 1,60,000 Sq.M. in Satpur MIDC, Nashik, we supply over 1,00,000 varieties of standard and specialized fasteners directly to major OEMs in India and export to demanding clients in the United States.
+                <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6">
+                  Founded in <strong className="text-blue-900">1970</strong> and expanded in <strong className="text-blue-900">1982</strong>, we operate 4 modern plants across 1,60,000 m² in Satpur MIDC, Nashik. Producing 36,000 MT annually with ₹120+ Cr turnover, we serve India’s top vehicle OEMs and global exports.
                 </p>
               </Reveal>
 
