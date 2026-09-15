@@ -1,0 +1,240 @@
+        transition: `opacity 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+/* ─────────────────────────── MAIN APP ─────────────────────────── */
+export default function App() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quoteProduct, setQuoteProduct] = useState<string | undefined>();
+  const [activeStage, setActiveStage] = useState(0);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
+  const [certModal, setCertModal] = useState<{ isOpen: boolean; img: string; title: string; unit: string }>({
+    isOpen: false,
+    img: '',
+    title: '',
+    unit: '',
+  });
+  const [selectedProductTab, setSelectedProductTab] = useState<number>(0);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const openQuote = (prod?: string) => {
+    setQuoteProduct(prod);
+    setQuoteOpen(true);
+    setMenuOpen(false);
+  };
+
+  const toggleCardFlip = (id: number) => {
+    setFlippedCards((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  /* ─── CORPORATE & TECHNICAL CAPABILITIES DATA ─── */
+
+  // Top esteemed customer names
+  const customersTrack1 = [
+    { name: 'TATA MOTORS', tier: 'Commercial & Passenger' },
+    { name: 'MAHINDRA & MAHINDRA', tier: 'Auto & Farm Equipment' },
+    { name: 'BOSCH INDIA', tier: 'Automotive Systems' },
+    { name: 'BAJAJ AUTO', tier: '2W & 3W Mobility' },
+    { name: 'BHARAT FORGE', tier: 'Global Powertrain' },
+    { name: 'ASHOK LEYLAND', tier: 'Heavy Commercial Vehicles' },
+    { name: 'JOHN DEERE', tier: 'Agricultural Tractors' },
+    { name: 'TVS MOTOR COMPANY', tier: 'Two-Wheeler Platform' },
+    { name: 'ENDURANCE TECHNOLOGIES', tier: 'Suspension & Transmission' },
+    { name: 'CUMMINS INDIA', tier: 'Diesel & Gas Engines' },
+  ];
+
+  const customersTrack2 = [
+    { name: 'ESCORTS KUBOTA', tier: 'Agri Machinery' },
+    { name: 'DANA CORPORATION', tier: 'Driveline & E-Propulsion' },
+    { name: 'GABRIEL INDIA', tier: 'Ride Control Systems' },
+    { name: 'BREMBO BRAKES', tier: 'Performance Braking' },
+    { name: 'MARUTI SUZUKI TIER-1', tier: 'Chassis Fasteners' },
+    { name: 'HERO MOTOCORP', tier: 'Motorcycle Assemblies' },
+    { name: 'FORCE MOTORS', tier: 'Light Commercial & Utility' },
+    { name: 'EICHER COMMERCIAL', tier: 'Trucks & Buses' },
+    { name: 'GREAVES COTTON', tier: 'Engines & E-Mobility' },
+    { name: 'UNITED STATES EXPORT', tier: 'Heavy Industrial Fasteners' },
+  ];
+
+  // 12 Plant Area & Facility Flip Cards
+  const facilityCards = [
+    {
+      id: 1,
+      category: 'plant',
+      areaTag: 'Satpur MIDC Nashik · 4 Plant Campus',
+      title: '1,60,000 SQ.M. Manufacturing Footprint',
+      metric: '4 Modern Production Plants',
+      img: '/images/pptx/slide-media-54.jpeg',
+      shortDesc: 'Aerial view of Hindustan Fasteners campus across 1,60,000 square meters in Satpur MIDC, Nashik, Maharashtra.',
+      backTitle: 'Integrated Fastener Manufacturing Ecosystem',
+      backDepartment: 'Plant 1, 2, 3 & 4 · Satpur MIDC Nashik',
+      equipment: 'Cold Forging Bay, Tooling Room, SCADA Furnaces, Plating Lines, Quality Labs',
+      explanation: 'Spread across 1,60,000 square meters, our 4 fully integrated manufacturing plants in Satpur MIDC bring every critical fastener operation under one unified roof. This complete vertical integration guarantees end-to-end quality control and eliminates subcontractor dependencies.',
+      pokaYoke: 'Single management control across wire drawing, cold heading, heat treatment, surface finishing, and automated optical sorting.',
+      capacity: '36,000 MT per annum aggregate output capacity.',
+    },
+    {
+      id: 2,
+      category: 'plant',
+      areaTag: 'Corporate & Engineering HQ',
+      title: 'Administrative & Technical Center',
+      metric: 'Est. 1970 & 1982',
+      img: '/images/pptx/slide-media-5.jpeg',
+      shortDesc: 'Corporate headquarters housing OEM application engineering, customer design review, and PPAP level 3/4 validation.',
+      backTitle: 'Engineering & Customer Operations Hub',
+      backDepartment: 'Corporate Headquarters · Nashik',
+      equipment: 'CAD/CAM SolidWorks Stations, ERP Live Tracking, Customer RFQ Review Suite',
+      explanation: 'Our modern headquarters coordinates automotive OEM drawings, reverse engineering from physical customer samples, supply chain planning, and global dispatch to destinations including the United States.',
+      pokaYoke: 'Digitized contract review and feasibility audit prior to die tooling manufacturing.',
+      capacity: '500+ Qualified Team Members across operations & metallurgy.',
+    },
+    {
+      id: 3,
+      category: 'forging',
+      areaTag: 'Cold Forging Division',
+      title: 'Multi-Station Cold Heading Production Bay',
+      metric: 'M4 to M24 · Up to 300 mm',
+      img: '/images/pptx/slide-media-70.jpeg',
+      shortDesc: 'Spacious cold forging bay equipped with multi-station headers, overhead material cranes, and uninterrupted grain flow tooling.',
+      backTitle: 'High-Tensile Cold Forging Operations',
+      backDepartment: 'Heavy Cold Heading Department',
+      equipment: 'Multi-Station High-Speed Cold Formers, Overhead Gantry Cranes, Coil Uncoilers',
+      explanation: 'This high-capacity bay houses banks of multi-die cold formers producing high-tensile bolts, engine bolts, chassis fasteners, and wheel studs. Cold forging preserves continuous metallurgical grain flow without cutting fibers, dramatically boosting fatigue strength.',
+      pokaYoke: 'In-line acoustic and optical wire-diameter sensors to prevent under-filled or sheared heads.',
+      capacity: 'Over 1,00,000 fastener varieties manufactured.',
+    },
+    {
+      id: 4,
+      category: 'forging',
+      areaTag: 'Cold Heading Workcells',
+      title: 'Automated High-Speed Header Line',
+      metric: 'Hundreds of strokes / min',
+      img: '/images/pptx/slide-media-71.jpeg',
+      shortDesc: 'Clean, green-floor automated header workcells with trained technicians operating high-speed bolt formers.',
+      backTitle: 'Precision Bolt & Screw Heading Cell',
+      backDepartment: 'Cold Heading Workcell #2',
+      equipment: 'High-Speed Bolt Makers, Automated Lubrication Circulation, Part Chutes',
+      explanation: 'Technicians oversee dedicated cold heading cells producing precision socket head cap screws, hex flange bolts, and specialty cold-formed blanks. Clean shop floor practices and standardized 5S maintenance ensure consistent zero-defect output.',
+      pokaYoke: 'Hourly statistical process control (SPC) sampling with digital micrometers and go/no-go gauges.',
+      capacity: 'Tensile classes 8.8, 10.9, and 12.9 high tensile.',
+    },
+    {
+      id: 5,
+      category: 'forging',
+      areaTag: 'Heavy Forging & Forming',
+      title: '5-Die & 6-Die Heavy Heading Center',
+      metric: 'Extreme Geometry Repeatability',
+      img: '/images/pptx/slide-media-8.jpeg',
+      shortDesc: 'Heavy-duty multi-station former with elevated operator platform for large-diameter automotive chassis studs and special pins.',
+      backTitle: 'Multi-Die Complex Component Forging',
+      backDepartment: 'Heavy Forming Workstation',
+      equipment: 'Multi-Station 5-Die / 6-Die Progressive Cold Header, Step-up Operator Console',
+      explanation: 'Designed for intricate fastener geometries requiring multiple progressive reductions, flange upsets, and collar formations. This machine creates stepped fasteners, lock bolts, and transmission studs with zero material waste.',
+      pokaYoke: 'Integrated tool load monitoring stops machine instantly if forging tonnage exceeds safe limits.',
+      capacity: 'Bolt lengths from 10 mm up to 300 mm.',
+    },
+    {
+      id: 6,
+      category: 'forging',
+      areaTag: 'Tooling & Secondary Machining',
+      title: 'In-House Tooling & Secondary Machining Bay',
+      metric: '100% In-House Management',
+      img: '/images/pptx/slide-media-9.jpeg',
+      shortDesc: 'Complete in-house secondary department: CNC turning, automatic tapping, slot milling, grooving, and bolt head trimming.',
+      backTitle: 'Comprehensive Secondary Operations',
+      backDepartment: 'Tooling & Secondary Machining Bay',
+      equipment: 'Automatic Tappers, Slot Milling Units, Centerless Grinders, CNC Lathes, Trimmers',
+      explanation: 'All secondary operations are completed in-house: Automatic Tapping, Slot Milling, Grinding, Grooving, Special Pointing, CNC Machining, Bolt Head Trimming, Washer Assembly Thread Rolling for SEMS, Nut Crimping, and Precision Drilling.',
+      pokaYoke: 'Poka-yoke orientation fixtures ensure symmetric slotting and zero misaligned tapping.',
+      capacity: 'Precision tolerances down to ±5 µm.',
+    },
+    {
+      id: 7,
+      category: 'heat',
+      areaTag: 'SCADA Heat Treatment',
+      title: 'Continuous Atmosphere SCADA Furnaces',
+      metric: 'SCADA + Poka-Yoke Controls',
+      img: '/images/pptx/slide-media-37.jpeg',
+      shortDesc: 'Continuous mesh-belt hardening and tempering furnace line supervised by SCADA software with automated poka-yoke locks.',
+      backTitle: 'Automated Hardening & Tempering',
+      backDepartment: 'Heat Treatment Facility',
+      equipment: 'SCADA Mesh-Belt Continuous Furnaces, Protective Atmosphere Generators, Oil Quench',
+      explanation: 'Fasteners undergo continuous controlled hardening and tempering under an endothermic protective atmosphere to eliminate surface decarburization. SCADA monitors zone temperatures, atmosphere carbon potential, quench oil temperature, and conveyor speeds in real time.',
+      pokaYoke: 'SCADA automated interlocking halts feed if temperature or carbon potential drifts by ±2°C.',
+      capacity: 'Neutral hardening, carburizing, and stress relieving.',
+    },
+    {
+      id: 8,
+      category: 'heat',
+      areaTag: 'Automated Plating',
+      title: 'PLC-Controlled Automatic Plating Line',
+      metric: 'Uniform Micron Coating',
+      img: '/images/pptx/slide-media-35.jpeg',
+      shortDesc: 'Automated multi-tank surface treatment line controlled by PLCs for Zinc Electroplating, Zinc Flake, and Phosphating.',
+      backTitle: 'Anti-Corrosion Surface Finishing',
+      backDepartment: 'Automated Plating & Coating Plant',
+      equipment: 'PLC Overhead Hoists, Barrel & Rack Plating Tanks, Ultrasonic Cleaners, Dryers',
+      explanation: 'In-house coatings include Trivalent Zinc Electroplating, Zinc Phosphating, Aluminium Zinc Flake Coating (Geomet/Dacromet), Hot Dip Galvanizing, and Loctite Microencapsulation. PLC hoists strictly control immersion times and current density.',
+      pokaYoke: 'Automated chemistry dosers maintain bath balance; continuous bath temperature and pH logging.',
+      capacity: 'Corrosion protection exceeding 1,000 to 1,500 hours salt spray.',
+    },
+    {
+      id: 9,
+      category: 'testing',
+      areaTag: 'Non-Destructive Testing (NDT)',
+      title: 'Technofour Multifect-EC Eddy Current Sorting',
+      metric: '100% High-Speed NDT',
+      img: '/images/pptx/slide-media-38.jpeg',
+      shortDesc: 'Technofour Multifect-EC eddy current sorting bays for automated metallurgical structure, crack, and hardness inspection.',
+      backTitle: 'Technofour Eddy Current Verification',
+      backDepartment: 'Non-Destructive Testing Bay',
+      equipment: 'Technofour Multifect-EC Systems, Automated Bowl Feeders, Dual Sorting Gates',
+      explanation: 'High-speed eddy current sorting verifies that every fastener has reached the specified hardness profile and is completely free from surface seams, quenching cracks, or metallurgical mixing. Parts failing thresholds are automatically kicked into locked rejection bins.',
+      pokaYoke: 'Dual optical verify gates prevent rejected bolts from bouncing back into acceptable bins.',
+      capacity: 'Tests up to 300 parts per minute.',
+    },
+    {
+      id: 10,
+      category: 'warehouse',
+      areaTag: 'Logistics & Safety Stock',
+      title: 'Systematic Dispatch Storage Warehouse',
+      metric: 'Minimum Buffer Maintained',
+      img: '/images/pptx/slide-media-33.jpeg',
+      shortDesc: 'Multi-level mezzanine warehouse maintaining minimum inventory safety buffers tailored to individual OEM consumption.',
+      backTitle: 'Automated Packaging & Dispatch Store',
+      backDepartment: 'Central Logistics & Warehousing',
+      equipment: 'Two-Tier Heavy Pallet Racks, Mezzanine Deck, Automated Weighing & Packaging Lines',
+      explanation: 'To eliminate critical line shortages for our automotive OEM clients, this systematic dispatch warehouse maintains dedicated safety buffer stock keyed to individual customer consumption patterns. Barcode and QR tracking ensure flawless FIFO dispatch.',
+      pokaYoke: 'Barcode-driven dispatch verification matches customer purchase orders before gate exit.',
+      capacity: 'Zero OEM line shortages achieved consistently.',
+    },
+    {
+      id: 11,
+      category: 'testing',
+      areaTag: 'Quality Metrology Lab',
+      title: 'Microstructure & Spectrometer Testing Lab',
+      metric: 'NABL Aligned Metrology',
+      img: '/images/quality-lab.jpg',
+      shortDesc: 'In-house metallurgical lab equipped with optical emission spectrometer, image analyser, and UTM tensile machine.',
+      backTitle: 'Complete Metallurgical & Mechanical Lab',
+      backDepartment: 'Quality Assurance & Metallurgy',
+      equipment: 'Optical Emission Spectrometer (OES), Microstructure Image Analyser, UTM, Rockwell & Vickers Testers, DFT Meter, Salt Spray Chamber',
+      explanation: 'Incoming coils and finished fasteners are tested for chemical composition (C, Mn, Cr, Mo, B), grain structure, core and surface hardness, proof load, tensile elongation, and plating thickness per ASTM/ISO specifications.',
+      pokaYoke: 'Layered audit protocol requires senior metallurgical sign-off before raw material release.',
+      capacity: '&lt;5 PPM target with zero-defect philosophy.',
+    },
+    {
+      id: 12,
+      category: 'plant',

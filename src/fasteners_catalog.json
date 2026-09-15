@@ -1,0 +1,218 @@
+[
+  {
+    "id": "hex-banjo",
+    "name": "Hex & Banjo Bolts",
+    "category": "Bolts & Screws",
+    "desc": "Everyday super-strong hex head bolts for holding heavy machinery together, plus hollow banjo bolts that allow fuel, brake, and hydraulic oil to flow through without leaking.",
+    "img": "/extracted_bolts/gen_hex_banjo.jpg",
+    "specs": "Sizes: M4 to M24 | Length: 10 mm to 300 mm | High-Strength Grade 8.8, 10.9 & 12.9",
+    "use": "Car engines, brake oil lines, fuel lines & industrial pumps"
+  },
+  {
+    "id": "pivot-ubolt",
+    "name": "Pivot & U-Bolts",
+    "category": "Bolts & Screws",
+    "desc": "Heavy-duty curved U-shaped bolts and solid pivot pins built to clamp truck leaf springs and wheel axles securely even on bumpy roads.",
+    "img": "/extracted_bolts/gen_pivot_ubolt.jpg",
+    "specs": "Sizes: M6 to M24 | Custom Bends & Heavy Lock Nuts",
+    "use": "Truck suspension, tractor axles & heavy trailer leaf springs"
+  },
+  {
+    "id": "carriage-position",
+    "name": "Carriage & Position Screws",
+    "category": "Bolts & Screws",
+    "desc": "Smooth rounded dome-head bolts with a square neck underneath that locks into wood or metal holes so the bolt cannot spin when you tighten the nut.",
+    "img": "/extracted_bolts/gen_carriage_screw.jpg",
+    "specs": "Sizes: M5 to M16 | Smooth Anti-Tamper Head",
+    "use": "Vehicle frames, metal fixtures, gates & safety enclosures"
+  },
+  {
+    "id": "eye-dhead",
+    "name": "Eye & D-Head Bolts",
+    "category": "Specialty Fasteners",
+    "desc": "Bolts with a circular loop ring on top for lifting heavy engine blocks and cranes, plus flat-sided D-head bolts made for tight recessed tracks.",
+    "img": "/extracted_bolts/gen_eye_dhead.jpg",
+    "specs": "Drop-Forged Solid Steel | High Lifting Capacity",
+    "use": "Lifting hooks, crane ropes, engine rigging & channel locking"
+  },
+  {
+    "id": "wheel-bolt",
+    "name": "Wheel Hub Serrated Bolt",
+    "category": "Specialty Fasteners",
+    "desc": "Extra-durable wheel studs with ribbed (serrated) shanks that press tightly into car and truck wheel hubs so wheels never shake loose.",
+    "img": "/extracted_bolts/image41.png",
+    "specs": "Sizes: M12 to M22 | High-Strength Grade 10.9 / 12.9",
+    "use": "Cars, buses, heavy trucks & agricultural tractors"
+  },
+  {
+    "id": "cylinder-bolt",
+    "name": "Engine Cylinder Head Bolt",
+    "category": "Specialty Fasteners",
+    "desc": "Precision long steel bolts that squeeze the car engine head down tight, keeping an airtight seal so engine oil and fire gases never escape.",
+    "img": "/extracted_bolts/image42.png",
+    "specs": "Length up to 280 mm | Extreme Heat & Pressure Resisting Alloy",
+    "use": "Automotive engine blocks & EV battery structural frames"
+  },
+  {
+    "id": "plumber-block",
+    "name": "Plummer / Pillow Block Cover Bolt",
+    "category": "Specialty Fasteners",
+    "desc": "Heavy-duty bolts that firmly clamp the housing caps over giant rotating metal bearings, keeping industrial motors and rollers spinning smoothly.",
+    "img": "/extracted_bolts/image43.png",
+    "specs": "High Tensile Steel | Heavy Hex Flange Grip",
+    "use": "Factory conveyor belts, flour mills & heavy bearing assemblies"
+  },
+  {
+    "id": "double-end-stud",
+    "name": "Double End Stud Bolt",
+    "category": "Studs & Rods",
+    "desc": "Steel rod threaded at both ends with a plain center collar, allowing two heavy machine parts to bolt together easily without bulky bolt heads.",
+    "img": "/extracted_bolts/image44.png",
+    "specs": "Sizes: M6 to M24 | Equal or Unequal Thread Lengths",
+    "use": "Car exhaust manifolds, turbochargers & pipeline flanges"
+  },
+  {
+    "id": "camber-cam-bolt",
+    "name": "Camber Alignment Cam Bolt",
+    "category": "Specialty Fasteners",
+    "desc": "Clever offset eccentric washer bolt that lets vehicle mechanics adjust wheel angles for smooth steering and prevent uneven tire wear.",
+    "img": "/extracted_bolts/image45.png",
+    "specs": "Precision Cam Lobes | Rust-Proof Zinc Flake Coating",
+    "use": "Automotive suspension struts & wheel alignment systems"
+  },
+  {
+    "id": "square-head-screw",
+    "name": "Square Head Bolt / Screw",
+    "category": "Bolts & Screws",
+    "desc": "Classic 4-sided square head fastener that gives giant spanners a huge grip, ideal for tightening in muddy, greasy, or harsh factory conditions.",
+    "img": "/extracted_bolts/image46.png",
+    "specs": "Class 8.8 / 10.9 | High Torque Wrench Grip",
+    "use": "Railway track joints, construction cranes & mining equipment"
+  },
+  {
+    "id": "self-tapping-screw",
+    "name": "Self-Tapping Thread Screw",
+    "category": "Specialized Screws",
+    "desc": "Smart screws with razor-sharp hardened threads that cut their own screw path directly into metal or plastic, saving time on drilling.",
+    "img": "/extracted_bolts/image47.png",
+    "specs": "Case-Hardened Core | Sharp Fast-Cutting Thread",
+    "use": "Car dashboard panels, home appliances & sheet metal ducting"
+  },
+  {
+    "id": "slotted-screw",
+    "name": "Precision Slotted Screw",
+    "category": "Specialized Screws",
+    "desc": "Clean, smooth single-slot screw made with sub-millimeter precision for flush mounting and easy tightening with a standard flat screwdriver.",
+    "img": "/extracted_bolts/image48.png",
+    "specs": "Sizes: M3 to M10 | Flat, Pan & Countersunk Heads",
+    "use": "Electrical switchboards, meters & electronics panels"
+  },
+  {
+    "id": "allen-bolt",
+    "name": "Allen Socket Head Bolt",
+    "category": "Specialized Screws",
+    "desc": "Smooth round cylindrical head with an internal hexagonal keyhole, designed to sink flush into deep counterbored holes where wrenches cannot fit.",
+    "img": "/extracted_bolts/image49.png",
+    "specs": "Ultra-High Grade 12.9 Alloy Steel | Internal Hex Socket",
+    "use": "Gearboxes, CNC machines, motorcycle engines & robotics"
+  },
+  {
+    "id": "torx-six-lobe",
+    "name": "Six-Lobe (Torx) Screw",
+    "category": "Advanced Drive Systems",
+    "desc": "Star-shaped 6-point screw head that stops power screwdrivers from slipping or stripping, making factory robot assembly super fast and reliable.",
+    "img": "/extracted_bolts/image50.png",
+    "specs": "T10 to T60 Star Drive | Zero Driver Slippage Design",
+    "use": "Automated car assembly, motorbikes & electronic control units"
+  },
+  {
+    "id": "external-torx",
+    "name": "External 6-Lobe (E-Torx) Bolt",
+    "category": "Advanced Drive Systems",
+    "desc": "Raised star-shaped bolt head that allows mechanics to apply immense tightening torque without rounding off or damaging the bolt edges.",
+    "img": "/extracted_bolts/image51.png",
+    "specs": "E6 to E24 Star Profile | High Fatigue Resistance",
+    "use": "Car engine blocks, transmission housings & heavy axles"
+  },
+  {
+    "id": "combi-sems",
+    "name": "Combi Screws / SEMS Fasteners",
+    "category": "Advanced Drive Systems",
+    "desc": "Pre-assembled screws with trapped washers that can spin freely but never fall off, stopping workers from losing washers on busy factory lines.",
+    "img": "/extracted_bolts/image52.png",
+    "specs": "Single or Double Captive Washers | Flat & Spring Styles",
+    "use": "Car alternators, starter motors & automotive electronics"
+  },
+  {
+    "id": "drilled-pin",
+    "name": "Cross-Drilled Locking Pin & Bolt",
+    "category": "Pins & Special Bolts",
+    "desc": "Solid steel pin or bolt with tiny precision holes drilled across the tip, so a safety wire or cotter pin can be inserted to prevent loosening.",
+    "img": "/extracted_bolts/image53.png",
+    "specs": "Precision Chamfered Edge | Smooth Deburred Holes",
+    "use": "Vehicle brake pedals, steering knuckles & racing suspension"
+  },
+  {
+    "id": "special-faced-bolt",
+    "name": "Special Faced OEM Bolt",
+    "category": "Pins & Special Bolts",
+    "desc": "Custom-designed bolts with teeth, ribs, or grooves under the head that bite directly into mating steel to stop vibration back-out completely.",
+    "img": "/extracted_bolts/image54.png",
+    "specs": "Custom OEM Drawings | High Surface Hardness",
+    "use": "Car differential gears, flywheels & driveline couplings"
+  },
+  {
+    "id": "battery-bolt",
+    "name": "Corrosion-Proof Battery Bolt",
+    "category": "Pins & Special Bolts",
+    "desc": "Specially coated steel bolts with square heads designed to withstand acidic battery fumes and moisture without ever corroding or rusting.",
+    "img": "/extracted_bolts/image55.png",
+    "specs": "Acid-Resistant Barrier Coating | Anti-Spark Finish",
+    "use": "Automotive batteries, inverters, solar packs & commercial trucks"
+  },
+  {
+    "id": "hex-nut",
+    "name": "Standard & Flange Hex Nuts",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Classic 6-sided nuts and wide-flange nuts that spread the clamping pressure evenly across surfaces without requiring a separate loose washer.",
+    "img": "/extracted_bolts/image57.png",
+    "specs": "Class 8, 10 & 12 | Threads: M4 to M24",
+    "use": "Universal structural joints, automotive chassis & machinery"
+  },
+  {
+    "id": "wheel-nut",
+    "name": "Heavy Vehicle Wheel Nut",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Extra-strong forged steel nuts with tapered or ball seats that center the rim and clamp heavy truck and tractor wheels tightly in place.",
+    "img": "/extracted_bolts/image58.png",
+    "specs": "Heavy Duty Class 10 | Conical & Spherical Seating",
+    "use": "Heavy commercial trucks, buses, trailers & tractors"
+  },
+  {
+    "id": "round-weld-nut",
+    "name": "Round & Tab Weld Nuts",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Nuts with small welding tips that are permanently welded directly onto stamped car body panels to provide a strong pre-fixed screw hole.",
+    "img": "/extracted_bolts/image59.png",
+    "specs": "3 or 4 Welding Pips | Clean Weldable Surface Finish",
+    "use": "Car body frames, chassis members & sheet metal cabinets"
+  },
+  {
+    "id": "nylock-nut",
+    "name": "Nylock Self-Locking Nut",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Nut with an integrated blue nylon collar inside that firmly hugs bolt threads so it can never rattle or shake loose from intense engine vibrations.",
+    "img": "/extracted_bolts/image60.png",
+    "specs": "Prevailing Torque Nylon Ring | Reusable Grip",
+    "use": "Motorbike frames, engine mounts, go-karts & suspension"
+  },
+  {
+    "id": "u-nut-lock-nut",
+    "name": "U-Nut & Speed Clip Nut",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Spring-steel U-shaped clips that slide easily over the edge of metal or plastic panels, giving an instant threaded hole for super fast screw mounting.",
+    "img": "/extracted_bolts/image61.png",
+    "specs": "Spring Steel | Multi-Panel Thickness Fit",
+    "use": "Car bumpers, headlights, door trims & dashboard consoles"
+  }
+]

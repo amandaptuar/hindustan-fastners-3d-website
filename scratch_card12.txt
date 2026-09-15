@@ -1,0 +1,40 @@
+      capacity: '&lt;5 PPM target with zero-defect philosophy.',
+    },
+    {
+      id: 12,
+      category: 'plant',
+      areaTag: 'International Quality Accreditations',
+      title: 'BSI IATF 16949:2016 Certified Operations',
+      metric: 'BSI Certificate # 705083',
+      img: '/images/pptx/slide-media-126.png',
+      shortDesc: 'Official certificate of registration from BSI UK for both Hindustan Fasteners and Precision Forging & Stamping units.',
+      backTitle: 'Global Automotive Quality Standard',
+      backDepartment: 'Certified by British Standards Institution (BSI)',
+      equipment: 'Quality Management Systems conforming to IATF 16949:2016 and ISO 9001:2015',
+      explanation: 'Our manufacturing plants hold formal IATF 16949:2016 certification issued by BSI for "The Manufacture of High Tensile Fasteners". Every process from tool design to layered audit conforms to global automotive OEM Tier-1 criteria.',
+      pokaYoke: 'Annual surveillance audits by BSI ensure continuous procedural rigor.',
+      capacity: 'Scope covers cold and hot formed high tensile fasteners and components.',
+    },
+  ];
+
+  // Filter facility cards
+  const filteredCards = activeCategory === 'all'
+    ? facilityCards
+    : facilityCards.filter((c) => c.category === activeCategory);
+
+  // 10 Manufacturing Journey Stages
+  const stages = [
+    { num: '01', title: 'RAW MATERIAL VERIFICATION', metric: 'Certified coils + Optical Emission Spectrometer chemistry analysis', icon: <Microscope className="w-5 h-5 text-orange-400" /> },
+    { num: '02', title: 'INCOMING QUARANTINE', metric: 'Strict physical segregation into Accepted vs Rejected Quarantine Racks', icon: <ShieldCheck className="w-5 h-5 text-orange-400" /> },
+    { num: '03', title: 'IN-HOUSE TOOL FABRICATION', metric: 'Dedicated tooling department fabricating carbide dies and heading punches', icon: <Wrench className="w-5 h-5 text-orange-400" /> },
+    { num: '04', title: '5 & 6-DIE COLD FORGING', metric: 'Continuous metallurgical grain flow, high fatigue life, M4 to M24 capability', icon: <Factory className="w-5 h-5 text-orange-400" /> },
+    { num: '05', title: 'SECONDARY IN-HOUSE OPERATIONS', metric: 'Automatic tapping, slot milling, grinding, grooving, trimming, and CNC turning', icon: <Cog className="w-5 h-5 text-orange-400" /> },
+    { num: '06', title: 'SEMS WASHER THREAD ROLLING', metric: 'Single / double captive washer assembly rolling and precision thread rolling', icon: <Layers className="w-5 h-5 text-orange-400" /> },
+    { num: '07', title: 'SCADA HEAT TREATMENT', metric: 'Continuous mesh belt hardening & tempering with SCADA Poka-Yoke interlocks', icon: <Flame className="w-5 h-5 text-orange-400" /> },
+    { num: '08', title: 'AUTOMATIC PLC SURFACE COATING', metric: 'Trivalent Zinc, Zinc Flake (Geomet), Phosphating, Hot Dip, Loctite pre-applied', icon: <Zap className="w-5 h-5 text-orange-400" /> },
+    { num: '09', title: 'TECHNOFOUR EDDY CURRENT SORTING', metric: 'Non-destructive 100% sorting for surface seams, hardness discrepancies & cracks', icon: <Gauge className="w-5 h-5 text-orange-400" /> },
+    { num: '10', title: 'AUTOMATED PACKAGING & DISPATCH', metric: 'Customer minimum inventory safety buffer store + barcode batch traceability', icon: <Truck className="w-5 h-5 text-orange-400" /> },
+  ];
+
+  // Secondary Operations list
+  const secondaryOperations = [

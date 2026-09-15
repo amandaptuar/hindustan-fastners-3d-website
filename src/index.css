@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════════════════════════
-   HINDUSTAN FASTENERS — Light Industrial Luxury Design System
+   HINDUSTAN FASTENERS — Dark Navy Blue & Crisp White Industrial Theme
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Space Grotesk', var(--font-sans);
   --font-mono: 'JetBrains Mono', monospace;
+  --color-navy: #020617;
+  --color-blue: #2563EB;
+  --color-cyan: #38BDF8;
 }
 
 * {
@@ -32,18 +35,19 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   background-color: #FAFAF9;
+  color: #0F172A;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f8fafc; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-track { background: #0F172A; }
+::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2563EB; }
 
 /* Typography */
 h1, h2, h3, h4, .font-display {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   font-weight: 700;
 }
 
@@ -67,45 +71,82 @@ h1, h2, h3, h4, .font-display {
   }
 }
 
-/* Primary Button */
-.btn-primary {
+/* Blue & Cyan Gradient Text for Tech Precision */
+.text-blue-gradient {
+  background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 50%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-blue-gradient {
+  background: linear-gradient(135deg, #1E40AF 0%, #2563EB 50%, #0284C7 100%);
+}
+
+.border-blue-glow {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+/* Primary Electric Blue Button (Also acts as fallback for btn-gold) */
+.btn-primary, .btn-gold {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: #0F172A;
-  color: #fff;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFFFFF;
   padding: 14px 28px;
   font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-weight: 800;
+  letter-spacing: 0.03em;
   border-radius: 12px;
   text-decoration: none;
   border: none;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
 }
 
-.btn-primary:hover {
-  background: #0A4B94;
+.btn-primary:hover, .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(10, 75, 148, 0.25);
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.55);
+  filter: brightness(1.08);
 }
 
-/* Smooth Image Hover */
-img {
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* Secondary Dark/Navy Button */
+.btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0B1528;
+  color: #FFFFFF;
+  padding: 14px 28px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.3);
+}
+
+.btn-dark:hover {
+  background: #020617;
+  border-color: #38BDF8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
 }
 
 /* Selection styling */
 ::selection {
-  background: #0A4B94;
-  color: #ffffff;
+  background: #1D4ED8;
+  color: #FFFFFF;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   3D FLIP CARDS SYSTEM
+   3D PERSPECTIVE & COIN FLIP SYSTEM
    ═══════════════════════════════════════════════════════════════ */
 .perspective-1000 {
   perspective: 1000px;
@@ -129,8 +170,18 @@ img {
   transform: rotateY(180deg);
 }
 
+/* 3D Coin Metallic Bevel Effect */
+.coin-metallic-rim {
+  background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #CBD5E1 35%, #64748B 80%, #94A3B8 100%);
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.95),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.5),
+    0 12px 35px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(56, 189, 248, 0.35);
+}
+
 /* ═══════════════════════════════════════════════════════════════
-   INFINITE CLIENT MARQUEE ANIMATIONS
+   INFINITE MARQUEE ANIMATIONS
    ═══════════════════════════════════════════════════════════════ */
 @keyframes marquee-ltr {
   0% {
@@ -167,9 +218,199 @@ img {
   animation-play-state: paused;
 }
 
-/* Responsive Touch Flip Helper */
-@media (hover: hover) {
-  .group-hover-flip:hover .flip-inner {
-    transform: rotateY(180deg);
+/* Slower smooth marquee for product cards */
+.animate-marquee-products-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 52s linear infinite;
+}
+
+.animate-marquee-products-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 52s linear infinite;
+}
+
+.animate-marquee-products-ltr:hover,
+.animate-marquee-products-rtl:hover {
+  animation-play-state: paused;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STEP-BY-STEP SLIDER ENTRANCE ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes stageSlideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) scale(0.98);
   }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes stageSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-stage-right {
+  animation: stageSlideInRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-stage-left {
+  animation: stageSlideInLeft 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Glowing Step Dot */
+@keyframes stepPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  }
+}
+
+.step-active-pulse {
+  animation: stepPulse 2s infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FLOATING NUT SVG ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes floatNut1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(14deg);
+  }
+}
+
+@keyframes floatNut2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(18px) rotate(-16deg);
+  }
+}
+
+@keyframes floatNut3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-24px) rotate(22deg) scale(1.04);
+  }
+}
+
+.animate-float-1 {
+  animation: floatNut1 7s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: floatNut2 9s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: floatNut3 12s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS UTILITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hide scrollbar for mobile chip strips */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Safe area padding for notched devices */
+@supports (padding: max(0px)) {
+  .container-custom {
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+}
+
+/* Smooth touch scrolling */
+.scroll-smooth-touch {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Mobile tap highlight removal */
+@media (max-width: 640px) {
+  button, a, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Ensure buttons are thumb-friendly minimum 44px */
+  .btn-primary, .btn-gold, .btn-dark {
+    min-height: 44px;
+    padding: 12px 20px;
+  }
+}
+
+/* Fix text overflow on small screens */
+@media (max-width: 390px) {
+  .container-custom {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  
+  h1 { font-size: 1.625rem !important; }
+  h2 { font-size: 1.375rem !important; }
+}
+
+/* Prevent horizontal overflow globally */
+html, body {
+  max-width: 100vw;
+}
+
+/* Fix marquee cards from breaking on small screens */
+@media (max-width: 640px) {
+  .animate-marquee-ltr,
+  .animate-marquee-rtl,
+  .animate-marquee-products-ltr,
+  .animate-marquee-products-rtl {
+    gap: 12px;
+  }
+}
+
+/* Fade edges on marquee scrollers for cleaner mobile look */
+.marquee-fade-edges {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENQUIRY MODAL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
 }

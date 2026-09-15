@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Conveyor Slider Test</title>
+  <style>
+    body { background: #F8F9FA; font-family: system-ui, sans-serif; margin: 0; padding: 40px 0; overflow-x: hidden; }
+    .slider-wrapper { position: relative; width: 100%; overflow: hidden; padding: 20px 0; }
+    .slider-track { display: flex; gap: 24px; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); width: max-content; }
+    .card { width: min(840px, 85vw); flex-shrink: 0; background: white; border-radius: 24px; padding: 32px; box-sizing: border-box; transition: all 0.4s; }
+    .card.active { transform: scale(1); opacity: 1; border: 2px solid #D4AF37; box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2); }
+    .card.inactive { transform: scale(0.92); opacity: 0.5; border: 1px solid #e2e8f0; cursor: pointer; }
+    .card.inactive:hover { opacity: 0.8; }
+    .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 30; width: 50px; height: 50px; border-radius: 50%; background: white; border: 2px solid #D4AF37; box-shadow: 0 10px 25px rgba(0,0,0,0.15); cursor: pointer; font-size: 20px; font-weight: bold; }
+    .nav-btn.prev { left: 20px; }
+    .nav-btn.next { right: 20px; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align: center;">10-Stage Conveyor Slider Preview</h2>
+  <div class="slider-wrapper">
+    <button class="nav-btn prev" onclick="move(-1)">←</button>
+    <button class="nav-btn next" onclick="move(1)">→</button>
+    <div class="slider-track" id="track">
+      <!-- 10 cards generated via JS -->
+    </div>
+  </div>
+
+  <script>
+    const stages = [
+      { num: '01', code: '01RAW', title: 'RAW MATERIAL VERIFICATION' },
+      { num: '02', code: '02INCOMING', title: 'INCOMING QUARANTINE' },
+      { num: '03', code: '03IN-HOUSE', title: 'IN-HOUSE TOOL FABRICATION' },
+      { num: '04', code: '045', title: '5 & 6-DIE COLD FORGING' },
+      { num: '05', code: '05SECONDARY', title: 'SECONDARY IN-HOUSE OPERATIONS' },
+      { num: '06', code: '06SEMS', title: 'SEMS WASHER THREAD ROLLING' },
+      { num: '07', code: '07SCADA', title: 'SCADA HEAT TREATMENT' },
+      { num: '08', code: '08AUTOMATIC', title: 'AUTOMATIC PLC SURFACE COATING' },
+      { num: '09', code: '09TECHNOFOUR', title: 'TECHNOFOUR EDDY CURRENT SORTING' },
+      { num: '10', code: '10AUTOMATED', title: 'AUTOMATED PACKAGING & DISPATCH' }
+    ];
+
+    let current = 0;
+    const track = document.getElementById('track');
+
+    function render() {
+      track.innerHTML = stages.map((st, i) => `
+        <div class="card ${i === current ? 'active' : 'inactive'}" onclick="goTo(${i})">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <span style="background:${i === current ? '#D4AF37' : '#e2e8f0'}; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:12px;">STAGE ${st.num}</span>
+            <span style="font-family:monospace; color:#64748b; font-size:12px;">Button ID: ${st.code}</span>
+          </div>
+          <h3 style="margin:0 0 10px 0; font-size:24px;">${st.title}</h3>
+          <p style="color:#64748b; margin:0 0 20px 0;">Inspection details and quality gate verification for this manufacturing station.</p>
+          ${i !== current ? `<div style="color:#b48214; font-weight:bold; font-size:12px;">${i > current ? '👉 Next Step in Pipeline (Click to inspect)' : '✓ Quality Gate Passed'}</div>` : ''}
+        </div>
+      `).join('');
+      updatePosition();
+    }
+
+    function updatePosition() {
+      const cardWidth = window.innerWidth >= 840 ? 840 : window.innerWidth * 0.85;
+      const gap = 24;
+      track.style.transform = `translateX(calc(50% - ${(current + 0.5)} * min(840px, 85vw) - ${current} * ${gap}px))`;
+    }
+
+    function move(dir) {
+      current = Math.max(0, Math.min(stages.length - 1, current + dir));
+      render();
+    }
+
+    function goTo(idx) {
+      current = idx;
+      render();
+    }
+
+    window.addEventListener('resize', updatePosition);
+    render();
+  </script>
+</body>
+</html>
