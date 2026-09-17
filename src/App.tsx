@@ -35,6 +35,9 @@ import {
   MessageCircle,
   Send,
   User,
+  Volume2,
+  VolumeX,
+  Maximize2,
 } from 'lucide-react';
 import catalogData from './fasteners_catalog.json';
 
@@ -413,7 +416,7 @@ const QuoteModal: React.FC<{ isOpen: boolean; onClose: () => void; product?: str
           </div>
         ) : (
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-900 border border-blue-200 text-[11px] font-mono font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-900 border border-blue-200 text-[11px] font-mono font-bold tracking-wider mb-2">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" /> Fast &amp; Easy Price Quote
             </div>
             <h3 className="text-2xl font-bold font-display text-gray-900 mb-1">Get an Easy Fastener Quote</h3>
@@ -520,7 +523,7 @@ const ProductDetailModal: React.FC<{
 
         {/* Modal Header */}
         <div className="flex flex-wrap items-center gap-2 mb-4">
-          <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-wider">
+          <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider">
             {product.category}
           </span>
           <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-bold flex items-center gap-1">
@@ -554,7 +557,7 @@ const ProductDetailModal: React.FC<{
           <div className="md:col-span-6 space-y-4 text-sm text-gray-700">
             {/* Simple Words Explanation */}
             <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-200">
-              <span className="text-xs font-mono uppercase text-blue-900 font-extrabold block mb-1">
+              <span className="text-xs font-mono text-blue-900 font-extrabold block mb-1">
                 What This Fastener Is &amp; How It Works:
               </span>
               <p className="text-gray-800 leading-relaxed text-xs sm:text-sm">
@@ -564,7 +567,7 @@ const ProductDetailModal: React.FC<{
 
             {/* Standard Sizes & Specs */}
             <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200">
-              <span className="text-[11px] font-mono uppercase text-gray-500 font-bold block mb-1">
+              <span className="text-[11px] font-mono text-gray-500 font-bold block mb-1">
                 Available Dimensions &amp; Specs:
               </span>
               <p className="text-blue-900 font-mono font-bold text-xs sm:text-sm">
@@ -574,7 +577,7 @@ const ProductDetailModal: React.FC<{
 
             {/* Vehicle & Machinery Applications */}
             <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200">
-              <span className="text-[11px] font-mono uppercase text-gray-500 font-bold block mb-1">
+              <span className="text-[11px] font-mono text-gray-500 font-bold block mb-1">
                 Real-World Applications:
               </span>
               <p className="text-gray-900 font-medium text-xs sm:text-sm">
@@ -666,50 +669,49 @@ const CoinFlipBadge: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center my-6">
       <div className="perspective-1000 select-none group">
-        {/* The 3D Rotating Coin with metallic chrome rim */}
+        {/* The 3D Rotating Coin with metallic greyish steel rim */}
         <div
-          className={`relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full transform-style-preserve-3d transition-transform duration-700 ease-out shadow-2xl ${
+          className={`relative w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full transform-style-preserve-3d transition-transform duration-700 ease-out shadow-2xl ${
             isFlipped ? 'rotate-y-180' : ''
           }`}
         >
           {/* SIDE A: Hindustan Fasteners (1970) */}
-          <div className="absolute inset-0 backface-hidden rounded-full coin-metallic-rim p-2 flex items-center justify-center border-4 border-slate-600/80 shadow-[0_0_25px_rgba(56,189,248,0.35)]">
-            <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-2.5 sm:p-4 text-center shadow-inner relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-white/60 pointer-events-none" />
+          <div className="absolute inset-0 backface-hidden rounded-full coin-metallic-rim p-2 sm:p-2.5 flex items-center justify-center border-4 border-slate-500/80 shadow-[0_0_30px_rgba(148,163,184,0.45)]">
+            <div className="w-full h-full rounded-full coin-metallic-face flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-inner relative overflow-hidden border border-slate-400/50">
+              <div className="absolute inset-0 bg-gradient-to-tr from-slate-400/20 via-transparent to-white/70 pointer-events-none" />
               <img
                 src="/logo/HF LOGO (1).png"
                 alt="Hindustan Fasteners Logo"
-                className="max-h-10 sm:max-h-14 max-w-[82%] object-contain mb-0.5 sm:mb-1 drop-shadow-sm group-hover:scale-105 transition-transform"
+                className="max-h-16 sm:max-h-20 md:max-h-24 max-w-[88%] object-contain mb-1 drop-shadow-md group-hover:scale-105 transition-transform"
               />
-              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-tight text-gray-900 leading-tight">
+              <span className="text-[10px] sm:text-[11px] font-mono font-extrabold tracking-tight text-slate-900 leading-tight">
                 Hindustan Fasteners
               </span>
-              <span className="text-[8px] sm:text-[9px] font-mono font-bold text-blue-600 leading-tight">
-                ESTABLISHED 1970
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold text-blue-900 leading-tight">
+                Established 1970
               </span>
             </div>
           </div>
 
           {/* SIDE B: Precision Forging & Stamping (1982) */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-full coin-metallic-rim p-2 flex items-center justify-center border-4 border-slate-600/80 shadow-[0_0_25px_rgba(56,189,248,0.35)]">
-            <div className="w-full h-full rounded-full bg-white flex flex-col items-center justify-center p-2.5 sm:p-4 text-center shadow-inner relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-white/60 pointer-events-none" />
+          <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-full coin-metallic-rim p-2 sm:p-2.5 flex items-center justify-center border-4 border-slate-500/80 shadow-[0_0_30px_rgba(148,163,184,0.45)]">
+            <div className="w-full h-full rounded-full coin-metallic-face flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-inner relative overflow-hidden border border-slate-400/50">
+              <div className="absolute inset-0 bg-gradient-to-tr from-slate-400/20 via-transparent to-white/70 pointer-events-none" />
               <img
                 src="/logo/PFS logo.png"
                 alt="Precision Forging and Stamping Logo"
-                className="max-h-10 sm:max-h-14 max-w-[82%] object-contain mb-0.5 sm:mb-1 drop-shadow-sm group-hover:scale-105 transition-transform"
+                className="max-h-16 sm:max-h-20 md:max-h-24 max-w-[88%] object-contain mb-1 drop-shadow-md group-hover:scale-105 transition-transform"
               />
-              <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-tight text-gray-900 leading-tight">
+              <span className="text-[10px] sm:text-[11px] font-mono font-extrabold tracking-tight text-slate-900 leading-tight">
                 Precision Forging
               </span>
-              <span className="text-[8px] sm:text-[9px] font-mono font-bold text-blue-600 leading-tight">
-                EXPANDED 1982
+              <span className="text-[9px] sm:text-[10px] font-mono font-bold text-blue-900 leading-tight">
+                Expanded 1982
               </span>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };
@@ -812,7 +814,7 @@ const DedicatedCatalogPage: React.FC<{
       <section className="py-6 sm:py-8 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-xl sm:text-2xl font-black font-display uppercase tracking-tight text-gray-950">
+            <h1 className="text-xl sm:text-2xl font-black font-display tracking-tight text-gray-950">
               Fasteners Catalogue
             </h1>
             <p className="text-xs text-gray-500 mt-0.5 font-medium">
@@ -821,7 +823,7 @@ const DedicatedCatalogPage: React.FC<{
           </div>
           <button
             onClick={() => onOpenQuote()}
-            className="btn-primary text-xs px-5 py-2.5 font-bold flex-shrink-0"
+            className="btn-nav-quote text-xs px-5 py-2.5 font-extrabold flex-shrink-0"
           >
             Get Quote →
           </button>
@@ -903,7 +905,7 @@ const DedicatedCatalogPage: React.FC<{
                   </div>
 
                   {/* Little Info of Products */}
-                  <span className="text-[10px] font-mono uppercase text-blue-600 font-bold tracking-wider block mb-1">
+                  <span className="text-[10px] font-mono text-blue-600 font-bold tracking-wider block mb-1">
                     {item.category}
                   </span>
                   <h3 className="font-display font-bold text-base text-gray-950 group-hover:text-blue-600 transition-colors line-clamp-1 mb-2">
@@ -913,7 +915,7 @@ const DedicatedCatalogPage: React.FC<{
                     {item.desc}
                   </p>
                   <div className="p-2.5 rounded-lg bg-gray-50 border border-gray-100 text-[11px] font-mono text-gray-700 mb-2">
-                    <span className="text-gray-400 block text-[9px] uppercase">Standard Specs:</span>
+                    <span className="text-gray-400 block text-[9px] ">Standard Specs:</span>
                     <span className="line-clamp-1 font-semibold text-gray-900">{item.specs}</span>
                   </div>
                 </div>
@@ -967,6 +969,26 @@ const DedicatedCatalogPage: React.FC<{
       <footer className="bg-white border-t border-gray-200 py-6 px-4 text-center text-xs font-mono text-gray-500">
         <span>Hindustan Fasteners &amp; Precision Forging · Satpur MIDC, Nashik 422 007 · IATF 16949 Certified</span>
       </footer>
+    </div>
+  );
+};
+
+/* ─────────────────────────── HERO VIDEO SHOWCASE COMPONENT ─────────────────────────── */
+const HeroVideoPlayer: React.FC = () => {
+  return (
+    <div className="relative w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 border-2 border-blue-500/40 shadow-[0_0_50px_rgba(37,99,235,0.3)] ring-1 ring-white/15">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="w-full h-full object-cover"
+      >
+        <source src="/videos/hero-showcase.mp4" type="video/mp4" />
+        <source src="/videos/PixVerse_V6_Image_Text_540P_Create_a_60second_ (2).mp4" type="video/mp4" />
+        <source src="/VIDEOS/PixVerse_V6_Image_Text_540P_Create_a_60second_ (2).mp4" type="video/mp4" />
+      </video>
     </div>
   );
 };
@@ -1107,11 +1129,11 @@ export default function App() {
       num: '01',
       buttonCode: '01RAW',
       shortName: 'Raw Material',
-      stageTitle: 'RAW MATERIAL VERIFICATION',
-      metric: 'Optical Emission Spectrometer Chemistry Analysis',
-      simpleExpl: 'We laser-test incoming steel wire coils to verify exact carbon and alloy chemistry before forging.',
-      whyItMatters: 'Guarantees zero hidden raw material impurities or weak steel.',
-      icon: <Microscope className="w-6 h-6 text-blue-600" />,
+      stageTitle: 'RAW MATERIAL SPECTROMETRY',
+      metric: '100% OES Spectrometer Chemical Testing',
+      simpleExpl: 'Laser spectrometry testing of raw steel coils to verify exact carbon and alloy chemistry before forging.',
+      whyItMatters: 'Guarantees zero hidden impurities or weak steel.',
+      icon: <Microscope className="w-7 h-7 text-blue-600" />,
       tag: 'Chemical Verification Gate',
       equipment: 'Optical Emission Spectrometer (OES)',
     },
@@ -1123,7 +1145,7 @@ export default function App() {
       metric: 'Physical Segregation into Red / Green Racks',
       simpleExpl: 'Approved steel coils go to green racks; unverified bundles stay locked in red quarantine racks.',
       whyItMatters: 'Defective raw steel can never touch production machines.',
-      icon: <ShieldCheck className="w-6 h-6 text-blue-600" />,
+      icon: <ShieldCheck className="w-7 h-7 text-blue-600" />,
       tag: 'Quarantine Gate',
       equipment: 'Physical Segregation Racks & Audits',
     },
@@ -1135,7 +1157,7 @@ export default function App() {
       metric: 'Tungsten Carbide Die Grinding',
       simpleExpl: 'Our in-house master toolmakers carve tungsten carbide dies down to hair-thin precision.',
       whyItMatters: 'Instant tool replacements and sub-micron accuracy.',
-      icon: <Wrench className="w-6 h-6 text-blue-600" />,
+      icon: <Wrench className="w-7 h-7 text-blue-600" />,
       tag: 'Tooling Gate',
       equipment: 'Carbide Die Grinders & EDM Cutters',
     },
@@ -1147,7 +1169,7 @@ export default function App() {
       metric: 'Continuous Metallurgical Grain Flow (M4 to M24)',
       simpleExpl: 'High-speed 5 & 6-die formers hammer steel wire into bolts without cutting internal metal grains.',
       whyItMatters: 'Unbroken grain lines stop bolts from snapping under vibration.',
-      icon: <Factory className="w-6 h-6 text-blue-600" />,
+      icon: <Factory className="w-7 h-7 text-blue-600" />,
       tag: 'Cold Forging Gate',
       equipment: '5-Die & 6-Die Cold Formers',
     },
@@ -1159,7 +1181,7 @@ export default function App() {
       metric: 'Automatic Tapping, Slotting & CNC Turning',
       simpleExpl: 'Automatic slot milling, tapping, grooving, and CNC turning completed 100% under one roof.',
       whyItMatters: 'Faster turnaround and zero vendor dependency.',
-      icon: <Cog className="w-6 h-6 text-blue-600" />,
+      icon: <Cog className="w-7 h-7 text-blue-600" />,
       tag: 'Secondary Machining Gate',
       equipment: 'CNC Lathes & Centerless Grinders',
     },
@@ -1171,7 +1193,7 @@ export default function App() {
       metric: 'Captive Pre-Assembled Washer Rolling',
       simpleExpl: 'Washers are loaded onto bolt shanks before thread rolling so they spin freely but never fall off.',
       whyItMatters: 'Accelerates vehicle assembly and prevents missing washers.',
-      icon: <Layers className="w-6 h-6 text-blue-600" />,
+      icon: <Layers className="w-7 h-7 text-blue-600" />,
       tag: 'Captive SEMS Gate',
       equipment: 'Rotary Die Thread Rollers',
     },
@@ -1183,7 +1205,7 @@ export default function App() {
       metric: 'Continuous Mesh-Belt SCADA Hardening & Tempering',
       simpleExpl: 'Continuous mesh furnaces harden bolts 24/7 with computer temperature locks.',
       whyItMatters: 'Locks in high tensile strength while keeping core toughness.',
-      icon: <Flame className="w-6 h-6 text-blue-600" />,
+      icon: <Flame className="w-7 h-7 text-blue-600" />,
       tag: 'SCADA Thermal Gate',
       equipment: 'Mesh-Belt Furnaces + SCADA',
     },
@@ -1195,7 +1217,7 @@ export default function App() {
       metric: 'Zinc, Geomet Zinc Flake & Phosphating',
       simpleExpl: 'Robotic hoists apply protective coatings like trivalent zinc, Geomet, or phosphating.',
       whyItMatters: 'Protects fasteners against rust for up to 1,500+ salt-spray hours.',
-      icon: <Zap className="w-6 h-6 text-blue-600" />,
+      icon: <Zap className="w-7 h-7 text-blue-600" />,
       tag: 'PLC Plating Gate',
       equipment: 'Automated Barrel & Rack Lines',
     },
@@ -1207,7 +1229,7 @@ export default function App() {
       metric: '100% High-Speed NDT Electronic Scanning',
       simpleExpl: 'Every single bolt passes magnetic eddy-current scanners to detect surface cracks or hardness flaws.',
       whyItMatters: '100% non-destructive sorting ensures zero defective parts.',
-      icon: <Gauge className="w-6 h-6 text-blue-600" />,
+      icon: <Gauge className="w-7 h-7 text-blue-600" />,
       tag: '100% NDT Gate',
       equipment: 'Technofour Multifect-EC Systems',
     },
@@ -1219,7 +1241,7 @@ export default function App() {
       metric: 'Safety Stock Store & Barcode Traceability',
       simpleExpl: 'Fasteners are weighed, packed, QR-labeled, and stocked in customer buffer stores.',
       whyItMatters: 'Guarantees on-time delivery with complete coil traceability.',
-      icon: <Truck className="w-6 h-6 text-blue-600" />,
+      icon: <Truck className="w-7 h-7 text-blue-600" />,
       tag: 'Safety Stock Gate',
       equipment: 'Automated Packaging & Barcode Lines',
     },
@@ -1271,13 +1293,13 @@ export default function App() {
     {
       id: 1,
       category: 'plant',
-      areaTag: 'Satpur MIDC Nashik · 4 Plant Campus',
+      areaTag: 'Satpur MIDC, Nashik · 4 Plant Campus',
       title: '1,60,000 SQ.M. Manufacturing Footprint',
       metric: '4 Modern Production Plants',
       img: '/images/pptx/slide-media-54.jpeg',
       shortDesc: 'Aerial view of Hindustan Fasteners campus across 1,60,000 square meters in Satpur MIDC, Nashik, Maharashtra.',
       backTitle: 'Integrated Fastener Manufacturing Ecosystem',
-      backDepartment: 'Plant 1, 2, 3 & 4 · Satpur MIDC Nashik',
+      backDepartment: 'Plant 1, 2, 3 & 4 · Satpur MIDC, Nashik',
       equipment: 'Cold Forging Bay, Tooling Room, SCADA Furnaces, Plating Lines, Quality Labs',
       explanation: 'Spread across 1,60,000 square meters, our 4 fully integrated manufacturing plants in Satpur MIDC bring every critical fastener operation under one unified roof. This complete vertical integration guarantees end-to-end quality control and eliminates subcontractor dependencies.',
       qualityControl: 'Single management control across wire drawing, cold heading, heat treatment, surface finishing, and automated optical sorting.',
@@ -1605,7 +1627,7 @@ export default function App() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={() => openQuote()}
-              className="btn-primary text-xs px-4 py-2 font-bold"
+              className="btn-nav-quote text-xs px-4 py-2 font-extrabold shadow-md "
             >
               Get Quote →
             </button>
@@ -1636,7 +1658,7 @@ export default function App() {
             <a href="#overview" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">About Us</a>
             <a href="#customers" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">Clients</a>
             <div className="pt-2">
-              <button onClick={() => { setMenuOpen(false); openQuote(); }} className="w-full py-2.5 rounded-xl btn-primary text-xs font-bold">
+              <button onClick={() => { setMenuOpen(false); openQuote(); }} className="w-full py-2.5 rounded-xl btn-nav-quote text-xs font-extrabold ">
                 Get Quote →
               </button>
             </div>
@@ -1676,71 +1698,93 @@ export default function App() {
         </div>
 
         <div className="container-custom relative z-10 py-16 sm:py-24 text-white">
-          <Reveal delay={100}>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display uppercase tracking-tight leading-[1.05] mb-6 text-white">
-              STRONG FASTENERS.<br />
-              <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-sm">
-                MADE FOR REAL-WORLD MACHINES.
-              </span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-8 font-normal">
-              We make over <strong>1,00,000 varieties of high-strength bolts, nuts, screws, and custom forged parts</strong>. Across 4 modern plants in Satpur MIDC, Nashik, we produce 36,000 tonnes of certified, zero-defect fasteners every year for India’s top vehicle makers and global exports.
-            </p>
-          </Reveal>
-
-          <Reveal delay={300}>
-            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-10">
-              <button
-                onClick={openCatalogPage}
-                className="btn-primary text-sm font-bold px-8 py-4 shadow-xl w-full sm:w-auto text-center"
-              >
-                EXPLORE ALL BOLTS &amp; NUTS ({catalogData.length}) →
-              </button>
-              <a
-                href="#pipeline"
-                className="px-6 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto text-center"
-              >
-                SEE HOW WE MAKE THEM
-              </a>
-              <button
-                onClick={() => openQuote()}
-                className="px-6 py-4 rounded-xl bg-slate-900/90 text-white hover:bg-slate-800 text-sm font-bold border border-blue-500/30 shadow-md transition hover:-translate-y-0.5 w-full sm:w-auto text-center"
-              >
-                REQUEST A PRICE QUOTE
-              </button>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 lg:gap-y-0 lg:gap-x-12 items-center">
+            {/* 1. Headline: Desktop col 1-7, row 1; Mobile 1st */}
+            <div className="lg:col-span-7 lg:row-start-1">
+              <Reveal delay={100}>
+                <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-display tracking-tight leading-[1.05] mb-4 sm:mb-6 text-white">
+                  STRONG FASTENERS.<br />
+                  <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-sm">
+                    MADE FOR REAL-WORLD MACHINES.
+                  </span>
+                </h1>
+              </Reveal>
             </div>
-          </Reveal>
 
-          {/* Quick Key Facts in High-Contrast Technical Glassmorphism */}
-          <Reveal delay={400}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-white/15 max-w-4xl text-xs font-mono">
-              <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
-                <div className="text-xl sm:text-2xl font-black font-display text-cyan-300">
-                  <AnimatedCounter target={36000} suffix=" MT" />
-                </div>
-                <div className="text-[10px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">Annual Capacity</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
-                <div className="text-xl sm:text-2xl font-black font-display text-white">
-                  <AnimatedCounter target={160000} suffix=" m²" />
-                </div>
-                <div className="text-[10px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">4 Plants · Nashik MIDC</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
-                <div className="text-xl sm:text-2xl font-black font-display text-cyan-300">
-                  <AnimatedCounter target={100000} suffix="+" />
-                </div>
-                <div className="text-[10px] text-slate-300 font-bold uppercase tracking-wider mt-0.5">Fastener Types</div>
-              </div>
-              <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
-                <div className="text-xl sm:text-2xl font-black font-display text-white">IATF 16949</div>
-                <div className="text-[10px] text-blue-400 uppercase tracking-wider mt-0.5 font-bold">BSI UK Certified</div>
-              </div>
+            {/* 2. Video Showcase:
+                Mobile: Appears immediately after headline, BEFORE the paragraph!
+                Desktop: Placed at the right side (col 8-12, row 1-3) */}
+            <div className="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 my-2 lg:my-0 self-center">
+              <Reveal delay={150}>
+                <HeroVideoPlayer />
+              </Reveal>
             </div>
-          </Reveal>
+
+            {/* 3. Paragraph: Desktop col 1-7, row 2; Mobile 3rd (after video) */}
+            <div className="lg:col-span-7 lg:row-start-2">
+              <Reveal delay={200}>
+                <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-6 sm:mb-8 font-normal">
+                  We make over <strong>1,00,000 varieties of high-strength bolts, nuts, screws, and custom forged parts</strong>. Across 4 modern plants in Satpur MIDC, Nashik, we produce 36,000 tonnes of certified, zero-defect fasteners every year for India’s top vehicle makers and global exports.
+                </p>
+              </Reveal>
+            </div>
+
+            {/* 4. Action Buttons: Desktop col 1-7, row 3; Mobile 4th */}
+            <div className="lg:col-span-7 lg:row-start-3">
+              <Reveal delay={300}>
+                <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-8 lg:mb-10">
+                  <button
+                    onClick={openCatalogPage}
+                    className="btn-primary text-sm font-bold px-8 py-4 shadow-xl w-full sm:w-auto text-center"
+                  >
+                    EXPLORE ALL BOLTS &amp; NUTS ({catalogData.length}) →
+                  </button>
+                  <a
+                    href="#pipeline"
+                    className="px-6 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto text-center"
+                  >
+                    See How We Make Them
+                  </a>
+                  <button
+                    onClick={() => openQuote()}
+                    className="px-6 py-4 rounded-xl bg-slate-900/90 text-white hover:bg-slate-800 text-sm font-bold border border-blue-500/30 shadow-md transition hover:-translate-y-0.5 w-full sm:w-auto text-center"
+                  >
+                    Request a Price Quote
+                  </button>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* 5. Quick Key Facts in High-Contrast Technical Glassmorphism */}
+            <div className="lg:col-span-12 lg:row-start-4 pt-6 sm:pt-8 border-t border-white/15 mt-2 lg:mt-6">
+              <Reveal delay={400}>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-5xl text-xs font-mono">
+                  <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
+                    <div className="text-xl sm:text-2xl font-black font-display text-cyan-300">
+                      <AnimatedCounter target={36000} suffix=" MT" />
+                    </div>
+                    <div className="text-[10px] text-slate-300 font-bold tracking-wider mt-0.5">Annual Capacity</div>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
+                    <div className="text-xl sm:text-2xl font-black font-display text-white">
+                      <AnimatedCounter target={160000} suffix=" m²" />
+                    </div>
+                    <div className="text-[10px] text-slate-300 font-bold tracking-wider mt-0.5">4 Plants · Nashik MIDC</div>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
+                    <div className="text-xl sm:text-2xl font-black font-display text-cyan-300">
+                      <AnimatedCounter target={100000} suffix="+" />
+                    </div>
+                    <div className="text-[10px] text-slate-300 font-bold tracking-wider mt-0.5">Fastener Types</div>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md hover:border-blue-500/50 hover:bg-white/10 transition-all">
+                    <div className="text-xl sm:text-2xl font-black font-display text-white">IATF 16949</div>
+                    <div className="text-[10px] text-blue-400 tracking-wider mt-0.5 font-bold">BSI UK Certified</div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1760,18 +1804,18 @@ export default function App() {
         </div>
 
         <div className="container-custom mb-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950 border border-blue-800 text-blue-300 text-xs font-mono font-bold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-950 border border-blue-800 text-blue-300 text-xs font-mono font-bold tracking-widest mb-3">
             <Award className="w-3.5 h-3.5 text-blue-400" /> ESTEEMED CUSTOMER NETWORK
           </div>
 
           {/* 3D COIN FLIP BADGE */}
           <CoinFlipBadge />
 
-          <h2 className="text-2xl sm:text-4xl font-extrabold font-display uppercase tracking-tight text-white mt-4">
+          <h2 className="text-2xl sm:text-4xl font-extrabold font-display tracking-tight text-white mt-4">
             TRUSTED BY INDIA'S &amp; GLOBAL LEADING OEMS
           </h2>
           <p className="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto mt-2 font-medium">
-            Direct Tier-1 supplier to major automotive, tractor, defense, engine, and industrial manufacturers.
+            Direct Tier-1 Supplier to Major Automotive, Tractor, Defense, Engine, and Industrial Manufacturers.
           </p>
         </div>
 
@@ -1788,7 +1832,7 @@ export default function App() {
                   <div className="font-display font-black text-sm tracking-wide text-white group-hover:text-cyan-300 transition-colors">
                     {client.name}
                   </div>
-                  <div className="text-[10px] font-mono text-gray-400 uppercase">
+                  <div className="text-[10px] font-mono text-gray-400 ">
                     {client.tier}
                   </div>
                 </div>
@@ -1810,7 +1854,7 @@ export default function App() {
                   <div className="font-display font-black text-sm tracking-wide text-white group-hover:text-cyan-300 transition-colors">
                     {client.name}
                   </div>
-                  <div className="text-[10px] font-mono text-gray-400 uppercase">
+                  <div className="text-[10px] font-mono text-gray-400 ">
                     {client.tier}
                   </div>
                 </div>
@@ -1820,7 +1864,7 @@ export default function App() {
         </div>
 
         <div className="text-center mt-6">
-          <span className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">
+          <span className="text-[11px] font-mono text-gray-500 tracking-widest">
             AUTOMATIC CONTINUOUS SCROLLER · HOVER OVER ANY CLIENT CARD TO INSPECT
           </span>
         </div>
@@ -1835,13 +1879,13 @@ export default function App() {
         <div className="container-custom relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-wider mb-2 sm:mb-3 shadow-xs">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-2 sm:mb-3 shadow-xs">
                 <Cog className="w-3.5 h-3.5 text-blue-600 animate-spin" style={{ animationDuration: '10s' }} />
                 100% In-House Continuous Process
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-gray-950 mb-2 sm:mb-3">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-gray-950 mb-2 sm:mb-3">
                 10-STAGE MANUFACTURING PIPELINE
               </h2>
             </Reveal>
@@ -1869,7 +1913,7 @@ export default function App() {
                       : 'bg-white text-gray-700 hover:bg-blue-50 border-gray-200 hover:border-blue-300'
                   }`}
                 >
-                  <span className={`text-[10px] font-bold block uppercase ${isActive ? 'text-blue-100' : isPassed ? 'text-emerald-700' : 'text-gray-400'}`}>
+                  <span className={`text-[10px] font-bold block ${isActive ? 'text-blue-100' : isPassed ? 'text-emerald-700' : 'text-gray-400'}`}>
                     Stage {st.num}
                   </span>
                   <span className="text-[11px] font-bold font-display line-clamp-1 my-0.5">
@@ -1911,8 +1955,103 @@ export default function App() {
           </div>
         </div>
 
-        {/* ─── SLIDING STAGE CARDS TRACK ─── */}
-        <div className="relative w-full overflow-hidden">
+        {/* ─── MOBILE DEDICATED ACTIVE STAGE CARD (EXCLUSIVELY FOR MOBILE VIEW — NO CLIPPING, ZERO OVERFLOW) ─── */}
+        <div className="block sm:hidden container-custom">
+          {(() => {
+            const st = presentationStages[presentationStage];
+            return (
+              <div className="rounded-2xl bg-white border-2 border-blue-600 shadow-xl p-3.5 relative overflow-hidden flex flex-col justify-between min-h-[300px]">
+                <div>
+                  {/* Top Header Badge Row */}
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-mono font-black shadow-xs">
+                        Stage {st.num} of 10
+                      </span>
+                      <span className="text-[10px] font-mono font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
+                        {st.tag}
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-gray-500">
+                      ID: <strong className="text-gray-900">{st.buttonCode}</strong>
+                    </span>
+                  </div>
+
+                  {/* Stage Title */}
+                  <h3 className="text-base font-black font-display tracking-tight text-gray-950 mb-2">
+                    {st.stageTitle}
+                  </h3>
+
+                  {/* Metric Banner */}
+                  <div className="p-2 rounded-lg bg-blue-50/80 border border-blue-200 text-xs font-semibold text-blue-950 font-mono mb-2 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
+                    <span className="leading-snug">{st.metric}</span>
+                  </div>
+
+                  {/* Main Section: Concise Explanation + Quality Gate */}
+                  <div className="space-y-2 mb-3">
+                    {/* Process Explanation */}
+                    <div className="p-2.5 rounded-xl bg-[#FAFAF9] border border-gray-200 text-xs text-gray-800 leading-snug">
+                      <span className="text-[10px] font-mono text-blue-900 font-bold block mb-0.5">
+                        Process Explanation:
+                      </span>
+                      <p className="text-gray-700 font-normal text-xs">{st.simpleExpl}</p>
+                    </div>
+
+                    {/* Quality Gate */}
+                    <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 font-medium flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                      <span><strong className="text-emerald-900">Quality Gate:</strong> {st.whyItMatters}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Bottom Controls Ribbon */}
+                <div className="pt-2 border-t border-gray-200 flex flex-col gap-2">
+                  {/* 10-Dot Progress Indicator */}
+                  <div className="flex items-center justify-center gap-1.5 py-0.5">
+                    {presentationStages.map((_, dotIdx) => (
+                      <button
+                        key={`mob-active-dot-${dotIdx}`}
+                        onClick={() => goToStage(dotIdx)}
+                        className={`transition-all duration-300 rounded-full ${
+                          dotIdx === presentationStage
+                            ? 'w-6 h-2 bg-blue-600'
+                            : dotIdx < presentationStage
+                            ? 'w-2 h-2 bg-emerald-500'
+                            : 'w-2 h-2 bg-gray-300'
+                        }`}
+                        aria-label={`Go to stage ${dotIdx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 w-full">
+                    <button
+                      onClick={prevStage}
+                      className="flex-1 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-mono font-bold transition flex items-center justify-center gap-1 cursor-pointer active:scale-95"
+                    >
+                      <ChevronLeft className="w-4 h-4" /> Previous
+                    </button>
+                    <button
+                      onClick={nextStage}
+                      className="flex-1 btn-primary py-2 text-xs font-bold font-mono cursor-pointer flex items-center justify-center gap-1 active:scale-95 shadow-sm"
+                    >
+                      Next Stage →
+                    </button>
+                  </div>
+
+                  <div className="text-[10px] font-mono text-gray-500 text-center">
+                    Stage <strong>{st.num} of 10</strong> · Satpur MIDC, Nashik
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* ─── DESKTOP & TABLET SLIDING STAGE CARDS TRACK (EXCLUSIVELY FOR SM/MD/LG SCREENS) ─── */}
+        <div className="hidden sm:block relative w-full overflow-hidden">
           <div className="container-custom relative">
             {/* Desktop Prev / Next Navigation Arrows */}
             <button
@@ -1962,16 +2101,16 @@ export default function App() {
                         isNext ? 'bg-blue-50 text-blue-900 border border-blue-200' : 'bg-emerald-50 text-emerald-900 border border-emerald-200'
                       }`}>
                         <span className="truncate">{isNext ? `👉 UPCOMING: ${st.buttonCode}` : `✓ GATE PASSED (STAGE ${st.num})`}</span>
-                        <span className="text-[10px] uppercase underline flex-shrink-0 ml-2">Inspect →</span>
+                        <span className="text-[10px] underline flex-shrink-0 ml-2">Inspect →</span>
                       </div>
                     )}
 
                     {/* Active Card Content */}
                     <div>
                       {/* Top Header Badge Row */}
-                      <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[11px] sm:text-xs font-mono font-black shadow-xs">
+                      <div className="flex items-center justify-between gap-2 mb-1 sm:mb-3">
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-[10px] sm:text-xs font-mono font-black shadow-xs">
                             Stage {st.num}
                           </span>
                           <span className="text-[10px] sm:text-xs font-mono font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
@@ -1984,43 +2123,43 @@ export default function App() {
                       </div>
 
                       {/* Stage Title */}
-                      <h3 className="text-base sm:text-2xl font-black font-display uppercase tracking-tight text-gray-950 mb-1.5 sm:mb-3">
+                      <h3 className="text-sm sm:text-2xl font-black font-display tracking-tight text-gray-950 mb-1 sm:mb-3">
                         {st.stageTitle}
                       </h3>
 
                       {/* Metric Banner */}
-                      <div className="p-2 sm:p-3 rounded-xl bg-blue-50/80 border border-blue-200 text-xs sm:text-sm font-semibold text-blue-950 font-mono mb-2.5 sm:mb-4 flex items-center gap-2">
+                      <div className="p-1.5 sm:p-3 rounded-lg sm:rounded-xl bg-blue-50/80 border border-blue-200 text-[11px] sm:text-sm font-semibold text-blue-950 font-mono mb-1.5 sm:mb-4 flex items-center gap-1.5 sm:gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                        <span className="leading-snug">{st.metric}</span>
+                        <span className="leading-tight sm:leading-snug">{st.metric}</span>
                       </div>
 
                       {/* Main Section: Concise Explanation + Quality Gate */}
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-2.5 sm:gap-6 items-stretch mb-2.5 sm:mb-4">
-                        <div className="lg:col-span-8 space-y-2 sm:space-y-3">
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-1.5 sm:gap-6 items-stretch mb-1.5 sm:mb-4">
+                        <div className="lg:col-span-8 space-y-1.5 sm:space-y-3">
                           {/* Plain English Explanation */}
-                          <div className="p-2.5 sm:p-4 rounded-xl bg-[#FAFAF9] border border-gray-200 text-xs sm:text-sm text-gray-800 leading-relaxed">
-                            <span className="text-[10px] sm:text-xs font-mono text-blue-900 font-bold uppercase tracking-wider block mb-0.5">
+                          <div className="p-2 sm:p-4 rounded-lg sm:rounded-xl bg-[#FAFAF9] border border-gray-200 text-xs sm:text-sm text-gray-800 leading-snug sm:leading-relaxed">
+                            <span className="text-[10px] sm:text-xs font-mono text-blue-900 font-bold tracking-wider block mb-0.5">
                               Process Explanation:
                             </span>
                             <p className="text-gray-700 font-normal text-xs sm:text-sm">{st.simpleExpl}</p>
                           </div>
 
                           {/* Quality Gate */}
-                          <div className="p-2 sm:p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 font-medium flex items-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <div className="p-1.5 sm:p-3 rounded-lg sm:rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] sm:text-xs text-emerald-950 font-medium flex items-center gap-1.5 sm:gap-2">
+                            <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 flex-shrink-0" />
                             <span><strong className="text-emerald-900">Quality Gate:</strong> {st.whyItMatters}</span>
                           </div>
                         </div>
 
-                        {/* Station Graphic — Desktop Only */}
-                        <div className="hidden lg:flex lg:col-span-4 flex-col items-center justify-center p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 text-center shadow-sm">
-                          <div className="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-2 shadow-md relative">
+                        {/* Station Graphic Badge */}
+                        <div className="hidden lg:flex lg:col-span-4 flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-gradient-to-br from-blue-50/80 via-white to-blue-50/40 border-2 border-blue-200 text-center shadow-sm">
+                          <div className="w-14 h-14 rounded-2xl bg-white border-2 border-blue-300 text-blue-600 flex items-center justify-center mb-2 shadow-md relative">
                             {st.icon}
-                            <div className="absolute -top-1.5 -right-1.5 bg-gray-950 text-white font-mono text-[9px] font-black px-1.5 py-0.5 rounded-full border border-blue-400">
+                            <div className="absolute -top-1.5 -right-1.5 bg-blue-900 text-white font-mono text-[9px] font-black px-1.5 py-0.5 rounded-full border border-blue-400">
                               #{st.num}
                             </div>
                           </div>
-                          <div className="text-[10px] font-mono text-blue-900 font-bold uppercase">
+                          <div className="text-[10px] font-mono text-blue-900 font-bold">
                             Station #{st.num} · {st.buttonCode}
                           </div>
                           <div className="text-xs font-bold text-gray-900 mt-0.5">
@@ -2032,24 +2171,6 @@ export default function App() {
 
                     {/* Bottom Controls Ribbon */}
                     <div className="pt-2 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      {/* Mobile 10-Dot Progress Indicator */}
-                      <div className="flex items-center justify-center gap-1.5 py-0.5 sm:hidden">
-                        {presentationStages.map((_, dotIdx) => (
-                          <button
-                            key={`stage-dot-${dotIdx}`}
-                            onClick={(e) => { e.stopPropagation(); goToStage(dotIdx); }}
-                            className={`transition-all duration-300 rounded-full ${
-                              dotIdx === presentationStage
-                                ? 'w-6 h-2 bg-blue-600'
-                                : dotIdx < presentationStage
-                                ? 'w-2 h-2 bg-emerald-500'
-                                : 'w-2 h-2 bg-gray-300'
-                            }`}
-                            aria-label={`Go to stage ${dotIdx + 1}`}
-                          />
-                        ))}
-                      </div>
-
                       <div className="flex items-center gap-2 w-full sm:w-auto">
                         <button
                           onClick={(e) => { e.stopPropagation(); prevStage(); }}
@@ -2066,7 +2187,7 @@ export default function App() {
                       </div>
 
                       <div className="text-[11px] font-mono text-gray-500 text-center sm:text-right">
-                        Stage <strong>{st.num} of 10</strong> · Satpur MIDC Nashik
+                        Stage <strong>{st.num} of 10</strong> · Satpur MIDC, Nashik
                       </div>
                     </div>
                   </div>
@@ -2078,33 +2199,33 @@ export default function App() {
       </section>
 
       {/* ════════════ 3D FLIP CARD GALLERY SCROLLER — "OUR AREA AND GALLERY" ════════════ */}
-      <section id="gallery" className="py-14 sm:py-24 bg-[#060C1B] text-white relative overflow-hidden border-t border-slate-800">
+      <section id="gallery" className="py-8 sm:py-16 bg-[#060C1B] text-white relative overflow-hidden border-t border-slate-800">
         {/* Ambient background glow orbs */}
         <div className="absolute top-10 left-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container-custom relative z-10">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
+          <div className="text-center max-w-3xl mx-auto mb-3 sm:mb-8">
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-950/90 border border-cyan-500/40 text-cyan-300 text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider mb-2.5 sm:mb-3.5 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-blue-950/90 border border-cyan-500/40 text-cyan-300 text-[11px] sm:text-xs font-mono font-bold tracking-wider mb-2 sm:mb-3 shadow-sm">
                 <RotateCcw className="w-3.5 h-3.5 text-cyan-300" /> Interactive Plant Tour · 3D Cards
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-white mb-2 sm:mb-3">
-                OUR AREA &amp; PLANT GALLERY
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-white mb-1.5 sm:mb-3">
+                Our Area &amp; Plant Gallery
               </h2>
             </Reveal>
             <Reveal delay={200}>
               <p className="text-xs sm:text-sm text-gray-300 px-2 sm:px-4">
-                Explore our Satpur MIDC plant campus. Tap any photo to <strong className="text-cyan-300">flip in 3D</strong> for technical specs.
+                Explore Our Satpur MIDC, India Campus. Tap Any Photo To <strong className="text-cyan-300">Flip In 3D</strong> For Technical Specs.
               </p>
             </Reveal>
           </div>
 
           {/* Horizontal Scrollable Category Filter Pills (Mobile Friendly) */}
-          <div className="w-full mb-5 sm:mb-8">
+          <div className="w-full mb-3 sm:mb-6">
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 sm:justify-center w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
               {[
                 { id: 'all', label: 'All Areas (12)' },
@@ -2117,7 +2238,7 @@ export default function App() {
                 <button
                   key={cat.id}
                   onClick={() => setGalleryCategory(cat.id)}
-                  className={`flex-shrink-0 whitespace-nowrap px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer active:scale-95 ${
+                  className={`flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer active:scale-95 ${
                     galleryCategory === cat.id
                       ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/40 ring-2 ring-cyan-400/50'
                       : 'bg-slate-800/90 text-gray-300 hover:bg-slate-700 hover:text-white border border-slate-700'
@@ -2129,14 +2250,14 @@ export default function App() {
             </div>
           </div>
 
-          {/* Scroller Control Ribbon (Desktop & Mobile Unified) */}
-          <div className="flex items-center justify-between gap-2 sm:gap-3 mb-4 sm:mb-6 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-slate-800/70 border border-slate-700/80 backdrop-blur-md">
+          {/* Scroller Control Ribbon (Desktop & Tablet Only — Hidden on Mobile) */}
+          <div className="hidden sm:flex items-center justify-between gap-2 sm:gap-3 mb-3 sm:mb-6 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-slate-800/70 border border-slate-700/80 backdrop-blur-md">
             {/* Left: Active Area Count */}
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-1 rounded-lg bg-cyan-950 border border-cyan-700/70 text-cyan-300 font-mono font-bold text-xs shadow-xs">
-                AREA {String(activeGalleryIndex + 1).padStart(2, '0')} / {String(filteredGalleryCards.length).padStart(2, '0')}
+              <span className="px-2.5 py-1 rounded-lg bg-cyan-950 border border-cyan-700/70 text-cyan-300 font-mono font-bold text-xs shadow-xs ">
+                Area {String(activeGalleryIndex + 1).padStart(2, '0')} / {String(filteredGalleryCards.length).padStart(2, '0')}
               </span>
-              <span className="text-xs font-display font-bold text-white hidden md:inline truncate max-w-xs">
+              <span className="text-xs font-display font-bold text-white hidden md:inline truncate max-w-xs ">
                 {filteredGalleryCards[activeGalleryIndex]?.title || ''}
               </span>
             </div>
@@ -2184,7 +2305,7 @@ export default function App() {
           <div
             ref={galleryScrollRef}
             onScroll={handleGalleryScroll}
-            className="flex gap-3 sm:gap-6 overflow-x-auto snap-x snap-mandatory py-2 sm:py-4 px-4 sm:px-12 md:px-20 no-scrollbar scroll-smooth"
+            className="flex gap-3 sm:gap-6 overflow-x-auto snap-x snap-mandatory py-1 sm:py-3 px-4 sm:px-12 md:px-20 no-scrollbar scroll-smooth"
             style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}
           >
             {filteredGalleryCards.map((card, idx) => {
@@ -2194,7 +2315,7 @@ export default function App() {
               return (
                 <div
                   key={card.id}
-                  className={`gallery-card-item perspective-1000 w-[86vw] max-w-[340px] sm:w-[380px] md:w-[420px] h-[470px] sm:h-[510px] flex-shrink-0 snap-center cursor-pointer select-none group transition-all duration-300 ${
+                  className={`gallery-card-item perspective-1000 w-[84vw] max-w-[320px] sm:w-[360px] md:w-[390px] h-[370px] sm:h-[440px] flex-shrink-0 snap-center cursor-pointer select-none group transition-all duration-300 ${
                     isActive ? 'scale-100 ring-2 ring-cyan-500/60 rounded-2xl shadow-cyan-900/20' : 'scale-[0.98] opacity-90 hover:opacity-100'
                   }`}
                   onClick={() => toggleCardFlip(card.id)}
@@ -2207,48 +2328,48 @@ export default function App() {
                     {/* ── CARD FRONT ── */}
                     <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden bg-slate-800/95 border border-slate-700/80 flex flex-col justify-between shadow-2xl">
                       {/* Photo Header */}
-                      <div className="relative h-48 sm:h-60 w-full overflow-hidden bg-slate-950 flex-shrink-0">
+                      <div className="relative h-40 sm:h-52 w-full overflow-hidden bg-slate-950 flex-shrink-0">
                         <img
                           src={card.img}
                           alt={card.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           loading="lazy"
                         />
-                        <div className="absolute top-2.5 left-2.5 bg-black/80 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-mono text-cyan-300 font-bold border border-white/10 uppercase tracking-wider shadow">
+                        <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-cyan-300 font-bold border border-white/10 tracking-wider shadow">
                           {card.areaTag}
                         </div>
-                        <div className="absolute top-2.5 right-2.5 bg-blue-900/90 backdrop-blur-md px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[10px] font-mono text-white font-bold border border-blue-400/40 shadow">
+                        <div className="absolute top-2 right-2 bg-blue-900/90 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-white font-bold border border-blue-400/40 shadow">
                           {card.metric}
                         </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                      <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between">
                         <div>
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-800/60">
+                            <span className="text-xs font-mono font-bold text-cyan-400 tracking-wider bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-800/60">
                               Area #{String(card.id).padStart(2, '0')}
                             </span>
-                            <span className="text-[10px] font-mono text-gray-400">
-                              Satpur MIDC Plant
+                            <span className="text-xs font-mono text-gray-400">
+                              Satpur MIDC, India
                             </span>
                           </div>
-                          <h3 className="text-sm sm:text-lg font-bold font-display text-white mb-1 group-hover:text-cyan-300 transition-colors line-clamp-2">
+                          <h3 className="text-sm sm:text-base font-bold font-display text-white mb-1 group-hover:text-cyan-300 transition-colors line-clamp-1 sm:line-clamp-2">
                             {card.title}
                           </h3>
-                          <p className="text-[11px] sm:text-xs text-gray-300 line-clamp-3 leading-relaxed">
+                          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
                             {card.shortDesc}
                           </p>
                         </div>
 
                         {/* Front Bottom Bar — High contrast action callout */}
-                        <div className="pt-2.5 sm:pt-3 border-t border-slate-700/70 flex items-center justify-between mt-1">
-                          <span className="text-[10px] sm:text-[11px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-800/50">
+                        <div className="pt-2 border-t border-slate-700/70 flex items-center justify-between mt-1">
+                          <span className="text-xs font-mono font-bold text-cyan-300 flex items-center gap-1.5 bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-800/50">
                             <RotateCcw className="w-3.5 h-3.5 text-cyan-300 group-hover:rotate-180 transition-transform duration-500" />
-                            Tap Card to 3D Flip ↻
+                            Tap Card To 3D Flip ↻
                           </span>
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 bg-slate-700/70 px-2 py-0.5 rounded">
+                          <span className="text-xs font-mono tracking-wider text-gray-400 bg-slate-700/70 px-2 py-0.5 rounded">
                             Spec Backside
                           </span>
                         </div>
@@ -2256,45 +2377,45 @@ export default function App() {
                     </div>
 
                     {/* ── CARD BACK (180deg) ── */}
-                    <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl overflow-y-auto bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 border-2 border-cyan-500/60 p-3.5 sm:p-5 flex flex-col justify-between shadow-2xl">
+                    <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-2xl overflow-y-auto bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 border-2 border-cyan-500/60 p-3 sm:p-4 flex flex-col justify-between shadow-2xl">
                       <div>
-                        <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-300 bg-cyan-950/90 px-2.5 py-0.5 rounded border border-cyan-700 shadow-sm">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-mono font-bold tracking-wider text-cyan-300 bg-cyan-950/90 px-2.5 py-1 rounded border border-cyan-700 shadow-sm">
                             {card.backDepartment}
                           </span>
-                          <span className="text-[10px] font-mono text-gray-400">Area #{card.id} Spec</span>
+                          <span className="text-xs font-mono text-gray-400">Area #{card.id} Spec</span>
                         </div>
 
-                        <h3 className="text-sm sm:text-base font-bold font-display text-white mb-2 leading-snug">
+                        <h3 className="text-sm sm:text-base font-bold font-display text-white mb-1.5 leading-tight">
                           {card.backTitle}
                         </h3>
 
-                        <div className="space-y-1.5 sm:space-y-2 text-xs text-gray-200 mb-2">
-                          <div className="p-2 rounded-xl bg-slate-900/80 border border-cyan-900/60">
-                            <span className="text-[10px] font-mono text-cyan-400 font-bold uppercase block mb-0.5">Machinery &amp; Tech:</span>
-                            <p className="text-gray-300 text-[11px] leading-snug line-clamp-2">{card.equipment}</p>
+                        <div className="space-y-1.5 text-xs text-gray-200 mb-1">
+                          <div className="p-1.5 sm:p-2 rounded-lg bg-slate-900/80 border border-cyan-900/60">
+                            <span className="text-xs font-mono text-cyan-400 font-bold block mb-0.5">Machinery &amp; Tech:</span>
+                            <p className="text-gray-300 text-xs leading-relaxed">{card.equipment}</p>
                           </div>
-                          <div className="p-2 rounded-xl bg-slate-900/80 border border-slate-800">
-                            <span className="text-[10px] font-mono text-cyan-400 font-bold uppercase block mb-0.5">What Is In This Picture:</span>
-                            <p className="text-gray-300 text-[11px] leading-snug line-clamp-3">{card.explanation}</p>
+                          <div className="p-1.5 sm:p-2 rounded-lg bg-slate-900/80 border border-slate-800">
+                            <span className="text-xs font-mono text-cyan-400 font-bold block mb-0.5">What Is In This Picture:</span>
+                            <p className="text-gray-300 text-xs leading-relaxed">{card.explanation}</p>
                           </div>
-                          <div className="p-2 rounded-xl bg-emerald-950/40 border border-emerald-800/60">
-                            <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase block mb-0.5">Engineering Quality Gate:</span>
-                            <p className="text-emerald-200 text-[11px] leading-snug line-clamp-2">{card.qualityControl}</p>
+                          <div className="p-1.5 sm:p-2 rounded-lg bg-emerald-950/40 border border-emerald-800/60">
+                            <span className="text-xs font-mono text-emerald-400 font-bold block mb-0.5">Engineering Quality Gate:</span>
+                            <p className="text-emerald-200 text-xs leading-relaxed">{card.qualityControl}</p>
                           </div>
                         </div>
                       </div>
 
                       {/* Back Bottom Bar */}
-                      <div className="pt-2 sm:pt-2.5 border-t border-white/15 flex items-center justify-between mt-auto">
-                        <span className="text-[10px] font-mono text-cyan-300/80 font-semibold truncate max-w-[170px]">
+                      <div className="pt-2 border-t border-white/15 flex items-center justify-between mt-auto">
+                        <span className="text-xs font-mono text-cyan-300/80 font-semibold truncate max-w-[150px] sm:max-w-[180px]">
                           {card.capacity}
                         </span>
                         <button
                           onClick={(e) => { e.stopPropagation(); toggleCardFlip(card.id); }}
-                          className="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-[10px] sm:text-[11px] font-mono font-bold transition flex items-center gap-1 border border-cyan-500/40 cursor-pointer"
+                          className="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-mono font-bold transition flex items-center gap-1 border border-cyan-500/40 cursor-pointer"
                         >
-                          <RotateCcw className="w-3 h-3" /> Flip Back
+                          <RotateCcw className="w-3.5 h-3.5" /> Flip Back
                         </button>
                       </div>
                     </div>
@@ -2305,10 +2426,10 @@ export default function App() {
           </div>
         </div>
 
-        {/* ─── BOTTOM CONTROLS, PROGRESS BAR & THUMB BUTTONS (MOBILE FIRST) ─── */}
-        <div className="container-custom mt-4 sm:mt-8 relative z-10">
+        {/* ─── BOTTOM CONTROLS & PROGRESS BAR ─── */}
+        <div className="container-custom mt-3 sm:mt-6 relative z-10">
           {/* Glowing Continuous Progress Bar */}
-          <div className="max-w-md mx-auto w-full h-1.5 bg-slate-800/90 rounded-full overflow-hidden mb-3 border border-slate-700/60">
+          <div className="max-w-xs sm:max-w-md mx-auto w-full h-1 sm:h-1.5 bg-slate-800/90 rounded-full overflow-hidden mb-2.5 border border-slate-700/60">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full transition-all duration-300"
               style={{
@@ -2318,39 +2439,23 @@ export default function App() {
           </div>
 
           {/* Indicator Dots */}
-          <div className="flex items-center justify-center gap-1.5 flex-wrap px-2 mb-4">
+          <div className="flex items-center justify-center gap-1.5 flex-wrap px-2 mb-2 sm:mb-3">
             {filteredGalleryCards.map((_, dotIdx) => (
               <button
                 key={`dot-${dotIdx}`}
                 onClick={() => scrollToGalleryIndex(dotIdx)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   activeGalleryIndex === dotIdx
-                    ? 'w-7 bg-cyan-400 shadow-[0_0_10px_rgba(56,189,248,0.7)]'
-                    : 'w-2 bg-slate-700 hover:bg-slate-500'
+                    ? 'w-5 sm:w-7 bg-cyan-400 shadow-[0_0_10px_rgba(56,189,248,0.7)]'
+                    : 'w-1.5 sm:w-2 bg-slate-700 hover:bg-slate-500'
                 }`}
                 aria-label={`Jump to area ${dotIdx + 1}`}
               />
             ))}
           </div>
 
-          {/* Mobile Bottom Quick Thumb Navigation Buttons */}
-          <div className="flex sm:hidden items-center justify-center gap-2.5">
-            <button
-              onClick={() => scrollGallery('left')}
-              className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-700 text-gray-200 text-xs font-mono font-bold flex items-center justify-center gap-1.5 active:scale-95 shadow-sm cursor-pointer"
-            >
-              <ChevronLeft className="w-4 h-4" /> Prev Area
-            </button>
-            <button
-              onClick={() => scrollGallery('right')}
-              className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-mono font-bold flex items-center justify-center gap-1.5 active:scale-95 shadow-md shadow-blue-600/30 cursor-pointer"
-            >
-              Next Area <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="mt-3.5 text-center text-[10px] sm:text-[11px] font-mono text-gray-400">
-            Tip: Swipe cards horizontally on mobile · Tap any photo card to 3D flip between plant view and engineering specifications.
+          <div className="text-center text-[10px] sm:text-[11px] font-mono text-gray-400">
+            Tip: Swipe cards horizontally on mobile. Tap any photo card to flip in 3D for engineering specifications.
           </div>
         </div>
       </section>
@@ -2367,10 +2472,10 @@ export default function App() {
         </div>
 
         <div className="container-custom mb-10 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-3">
             <Cog className="w-3.5 h-3.5 text-blue-600" /> 100% In-House Managed Control
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-gray-950">
+          <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-gray-950">
             IN-HOUSE SECONDARY OPERATIONS
           </h2>
           <p className="text-xs sm:text-sm text-gray-600 max-w-xl mx-auto mt-1.5">
@@ -2405,15 +2510,15 @@ export default function App() {
 
                 <div className="mt-5 pt-3 border-t border-gray-200 flex items-center justify-between text-[10px] font-mono text-gray-500">
                   <span>Zero Sub-Contractors</span>
-                  <span className="text-blue-600 font-bold">Strict Quality</span>
+                  <span className="text-blue-600 font-bold">Strict Quality Control</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-center mt-6 text-xs font-mono text-gray-500">
-          Continuous Automatic Slider · Hover any card to pause and read details
+        <div className="hidden sm:block text-center mt-6 text-xs font-mono text-gray-500">
+          Continuous automatic slider. Hover over any card to pause and read details.
         </div>
       </section>
 
@@ -2432,10 +2537,10 @@ export default function App() {
         <div className="container-custom relative z-10 mb-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-center md:text-left">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-3">
                 <Sparkles className="w-3.5 h-3.5 text-blue-600" /> Interactive Product Slider · Click Any Card
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-gray-950">
+              <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-gray-950">
                 OUR FASTENERS &amp; BOLTS SHOWCASE
               </h2>
               <p className="text-xs sm:text-sm text-gray-600 mt-1 max-w-xl">
@@ -2476,7 +2581,7 @@ export default function App() {
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase text-blue-600 font-bold tracking-wider block mb-1">
+                  <span className="text-[10px] font-mono text-blue-600 font-bold tracking-wider block mb-1">
                     {item.category}
                   </span>
                   <h4 className="font-display font-bold text-base text-gray-950 group-hover:text-blue-600 transition-colors line-clamp-1">
@@ -2519,7 +2624,7 @@ export default function App() {
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase text-blue-600 font-bold tracking-wider block mb-1">
+                  <span className="text-[10px] font-mono text-blue-600 font-bold tracking-wider block mb-1">
                     {item.category}
                   </span>
                   <h4 className="font-display font-bold text-base text-gray-950 group-hover:text-blue-600 transition-colors line-clamp-1">
@@ -2542,13 +2647,13 @@ export default function App() {
         </div>
 
         {/* Bottom Banner Linking to Dedicated Page */}
-        <div className="container-custom mt-10 relative z-10">
-          <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-white border-2 border-blue-200 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+        <div className="container-custom mt-6 sm:mt-8 relative z-10">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white border-2 border-blue-200 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="text-center sm:text-left">
-              <span className="text-xs font-mono uppercase text-blue-900 font-bold tracking-wider block mb-1">
+              <span className="text-xs font-mono text-blue-900 font-bold tracking-wider block mb-1">
                 Looking for specific fasteners or want to search by size?
               </span>
-              <h3 className="text-xl sm:text-2xl font-black font-display text-gray-950">
+              <h3 className="text-lg sm:text-2xl font-black font-display text-gray-950">
                 Browse Our Complete Fasteners Grid Catalogue
               </h3>
               <p className="text-xs text-gray-600 mt-1 max-w-xl">
@@ -2557,7 +2662,7 @@ export default function App() {
             </div>
             <button
               onClick={openCatalogPage}
-              className="btn-primary px-7 py-3.5 text-xs font-bold whitespace-nowrap shadow-md flex-shrink-0"
+              className="btn-primary px-6 py-3 text-xs font-bold whitespace-nowrap shadow-md flex-shrink-0"
             >
               OPEN FULL CATALOGUE PAGE →
             </button>
@@ -2566,7 +2671,7 @@ export default function App() {
       </section>
 
       {/* ════════════ COMPANY PROFILE & 50-YEAR LEGACY (LIGHT THEME) ════════════ */}
-      <section id="overview" className="py-24 sm:py-32 bg-white border-t border-gray-200 relative overflow-hidden">
+      <section id="overview" className="py-10 sm:py-14 bg-white border-t border-gray-200 relative overflow-hidden">
         {/* Floating Bolt & Nut SVG Watermarks & Animations */}
         <WatermarkNut className="-left-28 top-1/4" size={520} />
         <div className="absolute top-16 right-16 pointer-events-none animate-float-2 hidden sm:block z-0">
@@ -2577,55 +2682,55 @@ export default function App() {
         </div>
 
         <div className="container-custom relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center mb-8 sm:mb-10">
             <div className="lg:col-span-7">
               <Reveal>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-widest mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-widest mb-2">
                   <Building2 className="w-3.5 h-3.5 text-blue-600" /> Company Profile &amp; Legacy
                 </div>
               </Reveal>
               <Reveal delay={100}>
-                <h2 className="text-3xl sm:text-5xl font-black font-display uppercase tracking-tight text-gray-950 mb-6 leading-tight">
+                <h2 className="text-2xl sm:text-4xl font-black font-display tracking-tight text-gray-950 mb-3 sm:mb-4 leading-tight">
                   50+ YEARS OF PRECISION FORGING &amp; FASTENING EXCELLENCE
                 </h2>
               </Reveal>
               <Reveal delay={200}>
-                <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-4">
                   Founded in <strong className="text-blue-900">1970</strong> and expanded in <strong className="text-blue-900">1982</strong>, we operate 4 modern plants across 1,60,000 m² in Satpur MIDC, Nashik. Producing 36,000 MT annually with ₹120+ Cr turnover, we serve India’s top vehicle OEMs and global exports.
                 </p>
               </Reveal>
 
               <Reveal delay={300}>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 font-mono text-xs">
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
-                    <div className="text-gray-500 uppercase text-[10px] font-semibold">Established</div>
-                    <div className="text-base font-bold text-gray-950 mt-0.5">1970 &amp; 1982</div>
-                    <div className="text-[10px] text-blue-900 font-bold mt-1">5+ Decades Experience</div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 font-mono text-xs">
+                  <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <div className="text-gray-500 text-[10px] font-semibold">Established</div>
+                    <div className="text-sm font-bold text-gray-950 mt-0.5">1970 &amp; 1982</div>
+                    <div className="text-[10px] text-blue-900 font-bold mt-0.5">5+ Decades Experience</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
-                    <div className="text-gray-500 uppercase text-[10px] font-semibold">Turnover (FY 19-20)</div>
-                    <div className="text-base font-bold text-blue-900 mt-0.5">₹120+ Crore</div>
-                    <div className="text-[10px] text-emerald-700 font-bold mt-1">Consistent Growth</div>
+                  <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <div className="text-gray-500 text-[10px] font-semibold">Turnover (FY 19-20)</div>
+                    <div className="text-sm font-bold text-blue-900 mt-0.5">₹120+ Crore</div>
+                    <div className="text-[10px] text-emerald-700 font-bold mt-0.5">Consistent Growth</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
-                    <div className="text-gray-500 uppercase text-[10px] font-semibold">Quality Standard</div>
-                    <div className="text-base font-bold text-gray-950 mt-0.5">IATF 16949</div>
-                    <div className="text-[10px] text-blue-900 font-bold mt-1">BSI Certified</div>
+                  <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <div className="text-gray-500 text-[10px] font-semibold">Quality Standard</div>
+                    <div className="text-sm font-bold text-gray-950 mt-0.5">IATF 16949</div>
+                    <div className="text-[10px] text-blue-900 font-bold mt-0.5">BSI Certified</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
-                    <div className="text-gray-500 uppercase text-[10px] font-semibold">Workforce</div>
-                    <div className="text-base font-bold text-gray-950 mt-0.5">500+ Specialists</div>
-                    <div className="text-[10px] text-gray-500 mt-1">Metallurgy &amp; Tooling</div>
+                  <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <div className="text-gray-500 text-[10px] font-semibold">Workforce</div>
+                    <div className="text-sm font-bold text-gray-950 mt-0.5">500+ Specialists</div>
+                    <div className="text-[10px] text-gray-500 mt-0.5">Metallurgy &amp; Tooling</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
-                    <div className="text-gray-500 uppercase text-[10px] font-semibold">Production Space</div>
-                    <div className="text-base font-bold text-gray-950 mt-0.5">1,60,000 m²</div>
-                    <div className="text-[10px] text-gray-500 mt-1">Satpur MIDC Nashik</div>
+                  <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <div className="text-gray-500 text-[10px] font-semibold">Production Space</div>
+                    <div className="text-sm font-bold text-gray-950 mt-0.5">1,60,000 m²</div>
+                    <div className="text-[10px] text-gray-500 mt-0.5">Satpur MIDC, Nashik</div>
                   </div>
-                  <div className="p-4 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
-                    <div className="text-gray-500 uppercase text-[10px] font-semibold">Global Reach</div>
-                    <div className="text-base font-bold text-blue-900 mt-0.5">United States</div>
-                    <div className="text-[10px] text-blue-600 font-bold mt-1">Worldwide Exports</div>
+                  <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <div className="text-gray-500 text-[10px] font-semibold">Global Reach</div>
+                    <div className="text-sm font-bold text-blue-900 mt-0.5">United States</div>
+                    <div className="text-[10px] text-blue-600 font-bold mt-0.5">Worldwide Exports</div>
                   </div>
                 </div>
               </Reveal>
@@ -2636,14 +2741,14 @@ export default function App() {
                 <div className="rounded-2xl overflow-hidden border-2 border-gray-200 shadow-xl bg-gray-100 relative group">
                   <img
                     src="/images/pptx/slide-media-5.jpeg"
-                    alt="Hindustan Fasteners Corporate Facility in Satpur MIDC Nashik"
-                    className="w-full h-56 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+                    alt="Hindustan Fasteners Corporate Facility in Satpur MIDC, Nashik"
+                    className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 text-white">
-                    <div className="text-xs font-mono text-cyan-300 font-bold uppercase tracking-wider mb-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-4 text-white">
+                    <div className="text-[11px] font-mono text-cyan-300 font-bold tracking-wider mb-0.5">
                       Corporate Facility · Satpur MIDC, Nashik
                     </div>
-                    <div className="text-lg font-bold font-display">
+                    <div className="text-base font-bold font-display">
                       Hindustan Fasteners Pvt Ltd &amp; Precision Forging &amp; Stamping
                     </div>
                   </div>
@@ -2653,56 +2758,56 @@ export default function App() {
           </div>
 
           {/* Strategic Vision, Mission & Zero Defect in Light Theme */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-gray-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5 pt-4 sm:pt-6 border-t border-gray-200">
             <Reveal delay={100}>
-              <div className="p-7 rounded-2xl bg-[#FAFAF9] border border-blue-200 text-gray-900 shadow-md h-full flex flex-col justify-between">
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAF9] border border-blue-200 text-gray-900 shadow-md h-full flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-900 flex items-center justify-center mb-4">
-                    <Target className="w-5 h-5" />
+                  <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-900 flex items-center justify-center mb-2 sm:mb-3">
+                    <Target className="w-4 h-4" />
                   </div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-blue-900 font-bold mb-2">Strategic Vision</div>
-                  <h3 className="text-xl font-bold font-display uppercase tracking-tight mb-3 text-gray-950">Our Vision</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    To be the leading fasteners manufacturer both domestically and globally by providing <strong className="text-blue-900">complete fastening solutions under one roof</strong>.
+                  <div className="text-[11px] font-mono tracking-widest text-blue-900 font-bold mb-1">Strategic Vision</div>
+                  <h3 className="text-base sm:text-lg font-bold font-display tracking-tight mb-2 text-gray-950">Our Vision</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    To be the leading fasteners manufacturer both domestically and globally by providing <strong className="text-blue-900">Complete fastening solutions under one roof</strong>.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-gray-200 text-[11px] font-mono text-blue-900 font-bold">
+                <div className="mt-4 pt-3 border-t border-gray-200 text-[10px] sm:text-[11px] font-mono text-blue-900 font-bold">
                   Domestic &amp; Global Leadership
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="p-7 rounded-2xl bg-[#FAFAF9] border border-gray-200 text-gray-900 shadow-md h-full flex flex-col justify-between">
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAF9] border border-gray-200 text-gray-900 shadow-md h-full flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-gray-200 text-gray-800 flex items-center justify-center mb-4">
-                    <Cog className="w-5 h-5" />
+                  <div className="w-8 h-8 rounded-xl bg-gray-200 text-gray-800 flex items-center justify-center mb-2 sm:mb-3">
+                    <Cog className="w-4 h-4" />
                   </div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-gray-500 font-bold mb-2">Operational Mission</div>
-                  <h3 className="text-xl font-bold font-display uppercase tracking-tight mb-3 text-gray-950">Our Mission</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    We strive to be a <strong className="text-gray-950">customer-centric and quality-driven</strong> fastener manufacturer that provides complete fastening solutions tailored to individual customer needs.
+                  <div className="text-[11px] font-mono tracking-widest text-gray-500 font-bold mb-1">Operational Mission</div>
+                  <h3 className="text-base sm:text-lg font-bold font-display tracking-tight mb-2 text-gray-950">Our Mission</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    We strive to be a <strong className="text-gray-950">Customer-centric and quality-driven</strong> Fastener manufacturer that provides complete fastening solutions tailored to individual customer needs.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-gray-200 text-[11px] font-mono text-gray-600 font-bold">
+                <div className="mt-4 pt-3 border-t border-gray-200 text-[10px] sm:text-[11px] font-mono text-gray-600 font-bold">
                   Tailored OEM Solutions
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={300}>
-              <div className="p-7 rounded-2xl bg-[#FAFAF9] border border-emerald-300 text-gray-900 shadow-md h-full flex flex-col justify-between">
+              <div className="p-4 sm:p-5 rounded-2xl bg-[#FAFAF9] border border-emerald-300 text-gray-900 shadow-md h-full flex flex-col justify-between">
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
-                    <ShieldCheck className="w-5 h-5" />
+                  <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-2 sm:mb-3">
+                    <ShieldCheck className="w-4 h-4" />
                   </div>
-                  <div className="text-xs font-mono uppercase tracking-widest text-emerald-800 font-bold mb-2">Quality Value</div>
-                  <h3 className="text-xl font-bold font-display uppercase tracking-tight mb-3 text-gray-950">Zero Defect Value</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    We are committed to <strong className="text-emerald-800">ZERO DEFECT</strong> by removing quality hindrances at occurrence stage, not at inspection. One-stop solution, on-time delivery every time.
+                  <div className="text-[11px] font-mono tracking-widest text-emerald-800 font-bold mb-1">Quality Value</div>
+                  <h3 className="text-base sm:text-lg font-bold font-display tracking-tight mb-2 text-gray-950">Zero Defect Value</h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                    We are committed to <strong className="text-emerald-800">Zero Defect</strong> by removing quality hindrances at occurrence stage, not at inspection. One-stop solution, on-time delivery every time.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-gray-200 text-[11px] font-mono text-emerald-800 font-bold">
+                <div className="mt-4 pt-3 border-t border-gray-200 text-[10px] sm:text-[11px] font-mono text-emerald-800 font-bold">
                   Zero Defect Occurrence Control
                 </div>
               </div>
@@ -2712,7 +2817,7 @@ export default function App() {
       </section>
 
       {/* ════════════ CALL TO ACTION / RFQ (LIGHT LUXURY) ════════════ */}
-      <section className="py-24 sm:py-32 bg-gradient-to-b from-gray-50 to-gray-100 text-gray-950 text-center relative overflow-hidden border-t border-gray-200">
+      <section className="py-10 sm:py-14 bg-gradient-to-b from-gray-50 to-gray-100 text-gray-950 text-center relative overflow-hidden border-t border-gray-200">
         {/* Floating Bolt & Nut SVG Watermarks & Animations */}
         <WatermarkBolt className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" size={480} rotation={-20} />
         <div className="absolute top-12 left-12 pointer-events-none animate-float-1 hidden sm:block z-0">
@@ -2724,12 +2829,12 @@ export default function App() {
 
         <div className="container-custom max-w-3xl relative z-10">
           <Reveal>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-widest mb-4">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" /> OEM &amp; Industrial Inquiries
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display uppercase tracking-tight mb-6 leading-tight text-gray-950">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight mb-6 leading-tight text-gray-950">
               HAVE A DRAWING, SAMPLE OR BULK ORDER?
             </h2>
           </Reveal>
@@ -2758,47 +2863,51 @@ export default function App() {
       </section>
 
       {/* ════════════ FOOTER ════════════ */}
-      <footer className="bg-white text-gray-800 pt-16 pb-12 border-t border-gray-200 shadow-inner">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 mb-10 sm:mb-14">
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-10 px-3 bg-white rounded-lg flex items-center justify-center border border-gray-200 shadow-sm">
-                  <img
-                    src="/logo/HF LOGO (1).png"
-                    alt="Hindustan Fasteners Logo"
-                    className="h-8 w-auto object-contain"
-                  />
-                </div>
-                <div className="h-10 px-3 bg-white rounded-lg flex items-center justify-center border border-gray-200 shadow-sm">
-                  <img
-                    src="/logo/PFS logo.png"
-                    alt="Precision Forging and Stamping Logo"
-                    className="h-8 w-auto object-contain"
-                  />
-                </div>
+      <footer className="bg-white text-gray-800 pt-12 sm:pt-16 pb-10 sm:pb-12 border-t border-gray-200 shadow-inner text-center">
+        <div className="container-custom max-w-5xl mx-auto flex flex-col items-center">
+          {/* Logos & Company Bio — Centered */}
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="h-10 px-3.5 bg-white rounded-xl flex items-center justify-center border border-gray-200 shadow-sm">
+                <img
+                  src="/logo/HF LOGO (1).png"
+                  alt="Hindustan Fasteners Logo"
+                  className="h-8 w-auto object-contain"
+                />
               </div>
-              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-sm mb-4">
-                Hindustan Fasteners (1970) &amp; Precision Forging (1982). 4 interconnected manufacturing plants across 1,60,000 m² in Satpur MIDC, Nashik. Supplying India’s top vehicle OEMs and exporting to the United States.
-              </p>
-              <div className="text-xs font-mono text-blue-900 font-bold">
-                IATF 16949:2016 Certified · BSI Certificate 705083
+              <div className="h-10 px-3.5 bg-white rounded-xl flex items-center justify-center border border-gray-200 shadow-sm">
+                <img
+                  src="/logo/PFS logo.png"
+                  alt="Precision Forging and Stamping Logo"
+                  className="h-8 w-auto object-contain"
+                />
               </div>
             </div>
+            <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto mb-3">
+              Hindustan Fasteners (1970) &amp; Precision Forging (1982). 4 interconnected manufacturing plants across 1,60,000 m² in Satpur MIDC, Nashik. Supplying India’s top vehicle OEMs and exporting to the United States.
+            </p>
+            <div className="text-xs font-mono text-blue-900 font-bold bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200 inline-block">
+              IATF 16949:2016 Certified · BSI Certificate 705083
+            </div>
+          </div>
 
-            <div>
-              <div className="text-gray-950 font-bold uppercase tracking-wider text-xs mb-3 font-mono">Plant Locations</div>
+          {/* Centered Columns Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 w-full mb-8 sm:mb-12 text-center">
+            {/* Col 1: Plant Locations */}
+            <div className="flex flex-col items-center text-center">
+              <div className="text-gray-950 font-bold tracking-wider text-xs mb-3 font-mono">Plant Locations</div>
               <p className="text-gray-600 text-xs leading-relaxed">
                 4 Plants in Satpur MIDC,<br />
                 Nashik 422 007,<br />
                 Maharashtra, India
               </p>
-              <p className="mt-3 text-[11px] text-gray-500 font-mono font-medium">Total Land Area: 1,60,000 m²</p>
+              <p className="mt-2 text-[11px] text-gray-500 font-mono font-medium">Total Land Area: 1,60,000 m²</p>
             </div>
 
-            <div>
-              <div className="text-gray-950 font-bold uppercase tracking-wider text-xs mb-3 font-mono">Quick Navigation</div>
-              <ul className="space-y-2 text-xs text-gray-600 font-medium">
+            {/* Col 2: Quick Navigation */}
+            <div className="flex flex-col items-center text-center">
+              <div className="text-gray-950 font-bold tracking-wider text-xs mb-3 font-mono">Quick Navigation</div>
+              <ul className="space-y-2 text-xs text-gray-600 font-medium flex flex-col items-center">
                 <li><a href="#pipeline" className="hover:text-blue-600 transition">10-Stage Process</a></li>
                 <li><a href="#secondary" className="hover:text-blue-600 transition">In-House Operations</a></li>
                 <li><a href="#catalog" className="hover:text-blue-600 transition">Fastener Catalogue ({catalogData.length})</a></li>
@@ -2807,30 +2916,30 @@ export default function App() {
               </ul>
             </div>
 
-            <div>
-              <div className="text-gray-950 font-bold uppercase tracking-wider text-xs mb-3 font-mono">Plant Contact</div>
-              <p className="text-gray-700 text-xs mb-2 flex items-center gap-1.5">
+            {/* Col 3: Plant Contact */}
+            <div className="flex flex-col items-center text-center">
+              <div className="text-gray-950 font-bold tracking-wider text-xs mb-3 font-mono">Plant Contact</div>
+              <p className="text-gray-700 text-xs mb-1.5 flex items-center justify-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-blue-600" />
                 <a href="tel:+912532350890" className="hover:text-blue-600 transition">+91 (253) 235 0890</a>
               </p>
-              <p className="text-gray-700 text-xs mb-4 flex items-center gap-1.5">
+              <p className="text-gray-700 text-xs mb-3 flex items-center justify-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-blue-600" />
-                <a href="mailto:engineering@hindustanfasteners.com" className="hover:text-blue-600 transition">
-                  engineering@hindustanfasteners.com
-                </a>
+                <a href="mailto:engineering@hindustanfasteners.com" className="hover:text-blue-600 transition">Engineering@hindustanfasteners.com</a>
               </p>
               <button
                 onClick={() => openQuote()}
-                className="px-3.5 py-2 rounded-lg btn-primary text-[11px] font-bold font-mono"
+                className="px-4 py-2 rounded-lg btn-nav-quote text-[11px] font-bold font-mono shadow-sm "
               >
-                REQUEST PRICE QUOTE →
+                Request Price Quote →
               </button>
             </div>
           </div>
 
-          <div className="pt-6 sm:pt-8 border-t border-gray-200 flex flex-col items-center gap-2 sm:gap-4 text-gray-500 text-[10px] sm:text-[11px] font-mono text-center">
+          {/* Bottom Copyright & Specs — Centered */}
+          <div className="pt-6 sm:pt-8 border-t border-gray-200 flex flex-col items-center justify-center gap-2 text-gray-500 text-[10px] sm:text-[11px] font-mono text-center w-full">
             <span>© 2026 Hindustan Fasteners Private Limited &amp; Precision Forging &amp; Stamping.</span>
-            <span>IATF 16949:2016 · BSI Registered · 36,000 MT Annual Output · Satpur MIDC Nashik</span>
+            <span>IATF 16949:2016 · BSI Registered · 36,000 MT Annual Output · Satpur MIDC, Nashik</span>
           </div>
         </div>
       </footer>
@@ -2851,7 +2960,7 @@ export default function App() {
         style={{ boxShadow: '0 8px 32px rgba(37, 99, 235, 0.45), 0 0 0 4px rgba(37, 99, 235, 0.12)' }}
       >
         <MessageCircle className="w-6 h-6 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform" />
-        <span className="hidden sm:inline font-mono font-bold text-xs uppercase tracking-wide">Send Enquiry</span>
+        <span className="hidden sm:inline font-mono font-bold text-xs tracking-wide">Send Enquiry</span>
       </button>
 
       {/* ════════════ ENQUIRY / CONTACT FORM DIALOGUE BOX ════════════ */}
@@ -2866,7 +2975,7 @@ export default function App() {
             <div className="sticky top-0 bg-white/95 backdrop-blur-md z-10 px-5 sm:px-7 pt-5 sm:pt-6 pb-3 border-b border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-[10px] font-mono font-bold uppercase tracking-wider mb-1.5">
+                  <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-[10px] font-mono font-bold tracking-wider mb-1.5">
                     <MessageCircle className="w-3 h-3 text-blue-600" /> Quick Enquiry Form
                   </div>
                   <h3 className="text-lg sm:text-xl font-black font-display text-gray-950">Send Us Your Enquiry</h3>

@@ -45,7 +45,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
 
 /* Typography */
-h1, h2, h3, h4, .font-display {
+h1, h2, h3, h4, h5, h6, p, span, a, button, label, li, td, th, div, input, select, textarea, .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   font-weight: 700;
@@ -87,8 +87,8 @@ h1, h2, h3, h4, .font-display {
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
 }
 
-/* Primary Electric Blue Button (Also acts as fallback for btn-gold) */
-.btn-primary, .btn-gold {
+/* Primary Electric Blue Button */
+.btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -107,10 +107,38 @@ h1, h2, h3, h4, .font-display {
   box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
 }
 
-.btn-primary:hover, .btn-gold:hover {
+.btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(37, 99, 235, 0.55);
   filter: brightness(1.08);
+}
+
+/* Premium Warm Gold / Amber Button — Highest Contrast & Complementary Pair with Blue */
+.btn-gold, .btn-nav-quote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 60%, #B45309 100%);
+  color: #0F172A;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid rgba(253, 230, 138, 0.7);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.4);
+}
+
+.btn-gold:hover, .btn-nav-quote:hover {
+  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 60%, #D97706 100%);
+  color: #020617;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.55);
+  filter: brightness(1.05);
 }
 
 /* Secondary Dark/Navy Button */
@@ -170,14 +198,19 @@ h1, h2, h3, h4, .font-display {
   transform: rotateY(180deg);
 }
 
-/* 3D Coin Metallic Bevel Effect */
+/* 3D Coin Metallic Greyish Bevel & Surface Texture Effect */
 .coin-metallic-rim {
-  background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #CBD5E1 35%, #64748B 80%, #94A3B8 100%);
+  background: radial-gradient(circle at 30% 30%, #F1F5F9 0%, #CBD5E1 35%, #64748B 75%, #334155 100%);
   box-shadow: 
-    inset 0 2px 4px rgba(255, 255, 255, 0.95),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.5),
-    0 12px 35px rgba(0, 0, 0, 0.35),
-    0 0 25px rgba(56, 189, 248, 0.35);
+    inset 0 2px 5px rgba(255, 255, 255, 0.95),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.6),
+    0 14px 38px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(148, 163, 184, 0.4);
+}
+
+.coin-metallic-face {
+  background: radial-gradient(circle at 35% 35%, #F8FAFC 0%, #E2E8F0 40%, #CBD5E1 75%, #94A3B8 100%);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.95), inset 0 -3px 6px rgba(15, 23, 42, 0.35);
 }
 
 /* ═══════════════════════════════════════════════════════════════
