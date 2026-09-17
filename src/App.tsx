@@ -40,6 +40,8 @@ import {
   Maximize2,
 } from 'lucide-react';
 import catalogData from './fasteners_catalog.json';
+import { InteractiveUnboltScroll } from './components/InteractiveUnboltScroll';
+
 
 /* ─────────────────────────── AUTHENTIC 3D NUT & BOLT SVGS & WATERMARKS ─────────────────────────── */
 const NutSvg: React.FC<{
@@ -1789,6 +1791,7 @@ export default function App() {
       </section>
 
       {/* ════════════ 3D COIN FLIP & CLIENT NETWORK (DARK NAVY BLUE THEME EXACTLY AS REQUESTED) ════════════ */}
+
       <section id="customers" className="py-14 sm:py-20 bg-slate-950 text-white overflow-hidden relative border-y border-slate-800">
         {/* Subtle Ambient Lighting Mesh */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(37,99,235,0.12),transparent_70%)] pointer-events-none" />
@@ -2523,7 +2526,7 @@ export default function App() {
       </section>
 
       {/* ════════════ FASTENERS & BOLTS SHOWCASE SCROLLER (CONTINUOUS SLIDER) ════════════ */}
-      <section id="catalog" className="py-20 sm:py-28 bg-[#F8F9FA] border-t border-gray-200 relative overflow-hidden">
+      <section id="catalog" className="pt-16 sm:pt-20 pb-4 sm:pb-6 bg-[#F8F9FA] border-t border-gray-200 relative overflow-hidden">
         {/* Floating Bolt & Nut SVG Watermarks & Animations */}
         <WatermarkBolt className="right-[-60px] top-16" size={480} rotation={-15} />
         <WatermarkNut className="left-[-100px] bottom-32" size={460} />
@@ -2670,8 +2673,11 @@ export default function App() {
         </div>
       </section>
 
+      {/* ════════════ 3D NUT & BOLT DISASSEMBLY SHOWCASE ════════════ */}
+      <InteractiveUnboltScroll />
+
       {/* ════════════ COMPANY PROFILE & 50-YEAR LEGACY (LIGHT THEME) ════════════ */}
-      <section id="overview" className="py-10 sm:py-14 bg-white border-t border-gray-200 relative overflow-hidden">
+      <section id="overview" className="pt-2 sm:pt-4 pb-10 sm:pb-14 bg-white relative overflow-hidden">
         {/* Floating Bolt & Nut SVG Watermarks & Animations */}
         <WatermarkNut className="-left-28 top-1/4" size={520} />
         <div className="absolute top-16 right-16 pointer-events-none animate-float-2 hidden sm:block z-0">
