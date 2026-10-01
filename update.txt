@@ -1,0 +1,63 @@
+================================================================================
+HINDUSTAN FASTENERS & PRECISION FORGING & STAMPING - UPDATE CHECKLIST
+================================================================================
+
+[x] 1. DATA UPDATES ACROSS ENTIRE WEBSITE:
+    [x] 1.1 Variety count updated to 3,00,000+ / 3 Lakh+ Varieties (Replaced all old 1 Lakh+ / 1,00,000 references).
+    [x] 1.2 Manufacturing Plants count & locations updated:
+        - 3 Modern Manufacturing Plants in Satpur MIDC, Nashik, Maharashtra
+        - 2 Modern Manufacturing Plants in Pantnagar, Uttarakhand
+        - 1 Mega Plant Upcoming in Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
+        (Replaced all "4 Plants" old references across Hero, Gallery, Overview, Footer & Contact).
+    [x] 1.3 Production Capacity updated to 54,000 Metric Tons (54,000 MT / 54 MT per annum) across the site.
+    [x] 1.4 Total Area updated to 2,20,000 sq. mtr. (2,20,000 m² formatted as clean numbers).
+    [x] 1.5 Experience updated to 50+ Years of Precision Fastening & Forging Experience.
+    [x] 1.6 Turnover updated to ₹250+ Crore Turnover (Replaced old ₹120+ Cr).
+    [x] 1.7 Global Reach updated: United States, Delhi NCR & Worldwide Exports.
+    [x] 1.8 Primary Email updated to marketing@hfpfs.com across the entire website.
+
+[x] 2. NAVBAR & HEADER:
+    [x] 2.1 Logo / Header Tagline added: "Indian at heart with world class part"
+    [x] 2.2 Brand Typography: "Hindustan Fasteners" on top, and "Precision Forging & Stamping" underneath.
+    [x] 2.3 Navbar Sequence: Removed "Clients", Order: About -> Process -> Quality / Photos -> Catalogue -> Contact Us & 3D Map.
+    [x] 2.4 "Contact Us" navigates to the dedicated Contact Us page & 3D Map view.
+
+[x] 3. HERO SECTION:
+    [x] 3.1 Badges & Key Facts Boxes:
+        - Added ISO 45001 Certified (Occupational Health & Safety) box.
+        - Added BIS Certified (Bureau of Indian Standards) box.
+        - 54,000 MT Annual Capacity box.
+        - 2,20,000 sq. mtr. Manufacturing Footprint box.
+        - 3,00,000+ Fastener Varieties box.
+        - IATF 16949 / BSI UK Certified box.
+    [x] 3.2 Removed "Satpur MIDC" from the bottom of the hero heading.
+    [x] 3.3 Removed floating Nut 3D animation / Nut floating UI from Hero Section.
+    [x] 3.4 Hero Video Enhancement:
+        - Increased video display size and prominence (50% grid width on desktop).
+        - Optimized written copy size for balanced visual hierarchy.
+        - Removed square / harsh box border from the video (smooth rounded-3xl with ambient shadow).
+
+[x] 4. ABOUT & SHOWCASE SECTIONS:
+    [x] 4.1 In About & Showcase section, added Washers and Precision Stamped Components.
+    [x] 4.2 In Showcase Header: Changed "OUR FASTENERS & BOLTS SHOWCASE" to "OUR NUTS, BOLTS, WASHERS & COMPONENTS SHOWCASE".
+    [x] 4.3 Added Washers (Belleville, plain, spring lock, SEMS captive) and Precision Stamped Components to the product catalog & categories.
+
+[x] 5. FLOATING SCROLL TO TOP BUTTON:
+    [x] 5.1 Added interactive floating button at the bottom-right corner that smoothly scrolls back to the top of the page.
+
+[x] 6. DEDICATED CONTACT US PAGE WITH 3D MAP & INTERACTIVE PLANT EXPLORER:
+    [x] 6.1 Dedicated Contact Us page view with seamless two-way navigation (Home <-> Catalog <-> Contact).
+    [x] 6.2 Interactive 3D Map / Plant Visualizer with state/location selector:
+        - Maharashtra (Nashik - Satpur MIDC): 3 Modern Manufacturing Plants with 3D models/isometric representations & specs.
+        - Uttarakhand (Pantnagar): 2 Modern Manufacturing Plants with specs & details.
+        - Chhatrapati Sambhajinagar: Upcoming Mega Plant preview.
+        - Interactive Three.js 3D canvas with orbital rotation, glowing pins, and dynamic lighting.
+    [x] 6.3 Complete Contact Enquiry Form with direct submission and email marketing@hfpfs.com.
+    [x] 6.4 Direct plant contact details, phone numbers, addresses, and maps.
+
+[x] 7. VERIFICATION & CONSISTENCY CHECK:
+    [x] 7.1 Cross-checked all changes against prompt requirements.
+    [x] 7.2 TypeScript typecheck and Vite production build verified with 0 errors.
+================================================================================
+ALL REQUESTED UPDATES COMPLETED SUCCESSFULLY!
+================================================================================

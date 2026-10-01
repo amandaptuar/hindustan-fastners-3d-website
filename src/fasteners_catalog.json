@@ -214,5 +214,41 @@
     "img": "/extracted_bolts/image61.png",
     "specs": "Spring Steel | Multi-Panel Thickness Fit",
     "use": "Car bumpers, headlights, door trims & dashboard consoles"
+  },
+  {
+    "id": "belleville-washer",
+    "name": "Belleville Conical Spring Washers",
+    "category": "Washers & Components",
+    "desc": "High-tension conical disc spring washers that maintain constant bolt tension and prevent loosening under thermal expansion and dynamic vibration.",
+    "img": "/extracted_bolts/image62.png",
+    "specs": "DIN 6796 / DIN 2093 | Spring Steel 50CrV4 / High Tensile",
+    "use": "Engine cylinder heads, heavy machinery flanges, busbar joints & suspension linkages"
+  },
+  {
+    "id": "flat-spring-lock-washer",
+    "name": "Plain & Helical Spring Lock Washers",
+    "category": "Washers & Components",
+    "desc": "Precision punched flat washers for load distribution and split spring lock washers with hardened sharp edges that dig into surfaces to resist backing out.",
+    "img": "/extracted_bolts/image46.png",
+    "specs": "DIN 125, DIN 127B, ISO 7089 | Sizes: M3 to M36 | Hardened Steel & SS",
+    "use": "Automotive chassis, general assembly, transmission brackets & industrial mounts"
+  },
+  {
+    "id": "sems-washer-assembly",
+    "name": "Captive SEMS Washers & Assemblies",
+    "category": "Washers & Components",
+    "desc": "Pre-assembled screw and captive washer units (flat, spring, internal/external tooth) where washers are rolled onto the screw blank before thread forming.",
+    "img": "/extracted_bolts/image50.png",
+    "specs": "DIN 6900 SEMS Combinations | Thread Rolling Captive Retention",
+    "use": "High-speed automated automotive assembly lines, electronics & sensor mounting"
+  },
+  {
+    "id": "stamped-brackets-components",
+    "name": "Precision Stamped Brackets & Components",
+    "category": "Washers & Components",
+    "desc": "Custom progressive die stamped steel brackets, mounting plates, and reinforcement clips engineered with high dimensional repeatability.",
+    "img": "/extracted_bolts/image63.png",
+    "specs": "Thickness: 0.8 mm to 8.0 mm | Deep Draw & Progressive Stamping",
+    "use": "Vehicle body-in-white (BIW), battery pack enclosures & steering column brackets"
   }
 ]
