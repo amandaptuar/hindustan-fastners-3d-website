@@ -3,21 +3,16 @@ import {
   Phone,
   Mail,
   MapPin,
-  Clock,
-  ShieldCheck,
   Send,
   UploadCloud,
   CheckCircle2,
   Building2,
   Factory,
   ArrowLeft,
+  ExternalLink,
+  ShieldCheck,
   Sparkles,
-  Globe2,
-  Award,
-  Layers,
-  FileText,
-  User,
-  ExternalLink
+  User
 } from 'lucide-react';
 import { Interactive3DPlantMap, plantLocationsData, PlantLocationInfo } from './Interactive3DPlantMap';
 
@@ -33,10 +28,9 @@ export const ContactUsPage: React.FC<{
     company: '',
     email: '',
     phone: '',
-    inquiryType: 'Price Quote for Bolts & Nuts',
-    plantLocation: 'Nashik Manufacturing Plants (Maharashtra)',
-    partCategory: 'High-Tensile Bolts & Screws',
-    specifications: '',
+    plantLocation: 'Satpur MIDC, Nashik (Maharashtra)',
+    partCategory: 'Bolts, Nuts & Screws',
+    message: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -45,486 +39,319 @@ export const ContactUsPage: React.FC<{
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAF9] text-gray-900 selection:bg-blue-600 selection:text-white">
-      {/* ════════════ HEADER / NAVIGATION BAR ════════════ */}
-      <header className="sticky top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md py-3.5 border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logos + Tagline */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onBackToHome}
-              className="flex items-center gap-2 group text-left cursor-pointer"
-            >
-              <div className="h-10 px-2.5 py-1 bg-white rounded-lg flex items-center gap-2 shadow-sm border border-gray-200">
-                <img
-                  src="/logo/HF LOGO (1).png"
-                  alt="Hindustan Fasteners Logo"
-                  className="h-6 w-auto object-contain"
-                />
-                <div className="h-4 w-[1px] bg-gray-300" />
-                <img
-                  src="/logo/PFS logo.png"
-                  alt="Precision Forging & Stamping Logo"
-                  className="h-6 w-auto object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display font-black text-xs sm:text-sm tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight uppercase">
-                  Hindustan Fasteners
-                </span>
-                <span className="text-[10px] font-mono font-bold text-blue-900 leading-tight uppercase tracking-wider">
-                  Precision Forging &amp; Stamping
-                </span>
-                <span className="text-[9px] font-sans text-gray-500 italic leading-tight hidden sm:block">
-                  "Indian at heart with world class part"
-                </span>
-              </div>
-            </button>
-          </div>
+    <div className="min-h-screen bg-[#F8F9FA] text-gray-900 font-sans selection:bg-blue-600 selection:text-white">
+      {/* ── TOP NAV STRIP ── */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm py-2.5 px-3 sm:px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <button
+            onClick={onBackToHome}
+            className="flex items-center gap-2 group text-left cursor-pointer min-w-0"
+          >
+            <div className="h-9 sm:h-11 px-2 sm:px-2.5 bg-white rounded-xl flex items-center gap-1.5 sm:gap-2 shadow-sm border border-gray-200 flex-shrink-0">
+              <img src="/logo/HF LOGO (1).png" alt="HF" className="h-5 sm:h-7 w-auto object-contain" />
+              <div className="h-4 sm:h-5 w-[1px] bg-gray-300" />
+              <img src="/logo/PFS logo.png" alt="PFS" className="h-5 sm:h-7 w-auto object-contain" />
+            </div>
+            <div className="flex flex-col min-w-0 hidden sm:flex">
+              <span className="font-display font-black text-xs sm:text-sm tracking-wide text-gray-950 uppercase leading-tight group-hover:text-blue-600 transition">
+                Hindustan Fasteners
+              </span>
+              <span className="text-[9px] sm:text-[11px] font-mono font-bold text-blue-900 uppercase leading-tight">
+                Precision Forging &amp; Stamping
+              </span>
+              <span className="text-[8.5px] sm:text-[10px] font-sans text-gray-500 italic leading-tight">
+                Indian at heart with world class part
+              </span>
+            </div>
+          </button>
 
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6 text-[13px] font-semibold text-gray-600 font-mono">
-            <button
-              onClick={onBackToHome}
-              className="hover:text-blue-600 transition-colors flex items-center gap-1.5"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back to Home
-            </button>
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <button
               onClick={onOpenCatalog}
-              className="hover:text-blue-600 transition-colors text-gray-800 font-bold"
+              className="hidden sm:inline-block text-xs font-mono font-bold text-gray-700 hover:text-blue-600 transition"
             >
-              Product Catalogue
+              Product Catalogue →
             </button>
-            <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-900 font-bold border border-blue-200">
-              Contact Us &amp; 3D Map
-            </span>
-          </nav>
-
-          {/* Action CTA */}
-          <div className="flex items-center gap-3">
-            <a
-              href="mailto:marketing@hfpfs.com"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-bold text-blue-900 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-xl border border-blue-200 transition"
-            >
-              <Mail className="w-3.5 h-3.5 text-blue-600" /> marketing@hfpfs.com
-            </a>
             <button
               onClick={onBackToHome}
-              className="px-4 py-2 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-blue-600 transition shadow-sm"
+              className="px-3 py-1.5 rounded-xl bg-gray-900 text-white text-[11px] sm:text-xs font-bold font-mono hover:bg-blue-600 transition shadow-sm"
             >
-              ← Return Home
+              ← Home
             </button>
           </div>
         </div>
       </header>
 
-      {/* ════════════ HERO BANNER ════════════ */}
-      <section className="bg-gradient-to-b from-slate-950 via-[#0a1226] to-slate-950 text-white py-12 sm:py-16 relative overflow-hidden border-b border-slate-800">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(37,99,235,0.18),transparent_65%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-cyan-300 text-xs font-mono font-bold tracking-wider mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Direct Plant Communication Desk
-            </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white mb-4 leading-tight">
-              CONNECT DIRECTLY WITH OUR PRODUCTION PLANTS
+      {/* ── CONTACT HEADER & 3 QUICK CARDS ── */}
+      <section className="bg-white border-b border-gray-200 py-6 sm:py-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6">
+            <h1 className="text-xl sm:text-4xl font-black font-display text-gray-950 tracking-tight">
+              Contact Us
             </h1>
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-              Operating <strong>3 manufacturing plants in Satpur MIDC Nashik</strong>, <strong>2 manufacturing plants in Pantnagar (Uttarakhand)</strong>, and an <strong>upcoming Mega Plant in Chhatrapati Sambhajinagar</strong>. Inquire directly for OEM high-tensile fasteners, nuts, bolts, washers, stamped parts, and sample-based development.
+            <p className="text-[11px] sm:text-sm text-gray-600 mt-1">
+              Connect directly with our marketing and plant engineering desks.
             </p>
           </div>
 
-          {/* Key Facts Pills */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 pt-6 border-t border-slate-800 text-xs font-mono">
-            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="text-cyan-300 text-base sm:text-xl font-black font-display block">54,000 MT</span>
-              <span className="text-slate-400 text-[10px]">Annual Production Capacity</span>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="text-white text-base sm:text-xl font-black font-display block">2,20,000 sq. mtr.</span>
-              <span className="text-slate-400 text-[10px]">Total Production Space</span>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="text-cyan-300 text-base sm:text-xl font-black font-display block">3,00,000+</span>
-              <span className="text-slate-400 text-[10px]">Variety of Fastener Parts</span>
-            </div>
-            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="text-white text-base sm:text-xl font-black font-display block">₹250+ Crore</span>
-              <span className="text-slate-400 text-[10px]">Turnover · 50+ Yrs Exp.</span>
-            </div>
-          </div>
-        </div>
-      </section>
+          {/* 3 Quick Cards — stack on mobile */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5 max-w-4xl mx-auto text-xs font-mono">
+            {/* Email */}
+            <a href="mailto:marketing@hfpfs.com" className="p-3 sm:p-3.5 rounded-2xl bg-blue-50 border border-blue-200 flex items-center gap-3 shadow-sm active:scale-[0.98] transition">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Email</span>
+                <span className="font-bold text-blue-900 text-sm block truncate">marketing@hfpfs.com</span>
+              </div>
+            </a>
 
-      {/* ════════════ 3D INTERACTIVE PLANT MAP SECTION ════════════ */}
-      <section className="py-12 sm:py-16 bg-[#0B132B] text-white border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/30 text-cyan-300 text-xs font-mono font-bold tracking-wider mb-2">
-              <Globe2 className="w-3.5 h-3.5 text-cyan-400" /> Geographic Footprint &amp; Facility Explorer
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-black font-display text-white">
-              3D INTERACTIVE MANUFACTURING PLANT MAP
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl font-mono">
-              Click and rotate the 3D model below to inspect our manufacturing units in Maharashtra (Nashik), Uttarakhand (Pantnagar), and Chhatrapati Sambhajinagar.
-            </p>
-          </div>
-
-          {/* Interactive 3D Canvas + Plant Card */}
-          <Interactive3DPlantMap
-            selectedRegion={selectedRegion}
-            onSelectRegion={(reg) => {
-              setSelectedRegion(reg);
-              const matching = reg === 'all' ? plantLocationsData[0] : plantLocationsData.find(p => p.region === reg);
-              if (matching) setSelectedPlantId(matching.id);
-            }}
-            selectedPlantId={selectedPlantId}
-            onSelectPlant={(plant) => setSelectedPlantId(plant.id)}
-          />
-        </div>
-      </section>
-
-      {/* ════════════ CONTACT ENQUIRY FORM & DIRECT CONTACT CARDS ════════════ */}
-      <section className="py-14 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Left Column: Direct Plant Directory & Global Coordinates */}
-            <div className="lg:col-span-5 space-y-6">
+            {/* Phone */}
+            <a href="tel:+912532350890" className="p-3 sm:p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3 shadow-sm active:scale-[0.98] transition">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center flex-shrink-0">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
               <div>
-                <span className="text-xs font-mono text-blue-900 font-bold tracking-wider uppercase block mb-1">
-                  Plant &amp; Export Directory
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black font-display text-gray-950">
-                  Direct Plant Coordinates
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                  Reach out directly to our central marketing and plant engineering desks.
-                </p>
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Call Us</span>
+                <span className="font-bold text-emerald-900 text-sm block">+91 (253) 235 0890</span>
               </div>
+            </a>
 
-              {/* Primary Email Banner */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-900 to-slate-900 text-white shadow-lg">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-9 h-9 rounded-xl bg-blue-600/30 flex items-center justify-center border border-blue-400/40">
-                    <Mail className="w-4 h-4 text-cyan-300" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-mono text-cyan-300 uppercase tracking-wider block">
-                      Official Central Marketing Email
-                    </span>
-                    <a
-                      href="mailto:marketing@hfpfs.com"
-                      className="text-base sm:text-lg font-bold font-mono text-white hover:text-cyan-300 transition"
-                    >
-                      marketing@hfpfs.com
-                    </a>
-                  </div>
-                </div>
-                <p className="text-xs text-slate-300 pl-12">
-                  Direct RFQ intake for drawings, price lists, automotive OEM audits, and bulk purchase orders.
-                </p>
+            {/* HQ Location */}
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-amber-50 border border-amber-200 flex items-center gap-3 shadow-sm">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-
-              {/* Plant Cards */}
-              <div className="space-y-4 text-xs">
-                {/* Nashik Hub Card */}
-                <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold font-display text-sm text-gray-950 flex items-center gap-1.5">
-                      <Factory className="w-4 h-4 text-blue-600" /> Satpur MIDC, Nashik (3 Plants)
-                    </span>
-                    <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-900 font-mono text-[10px] font-bold">
-                      Corporate HQ
-                    </span>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-2">
-                    Plot No. 42, 43, 58 &amp; 112, Satpur MIDC Industrial Area, Nashik - 422 007, Maharashtra, India.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-4 text-gray-700 font-mono pt-2 border-t border-gray-200">
-                    <span className="flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-blue-600" /> +91 (253) 235 0890
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Mail className="w-3.5 h-3.5 text-blue-600" /> marketing@hfpfs.com
-                    </span>
-                  </div>
-                </div>
-
-                {/* Pantnagar Hub Card */}
-                <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold font-display text-sm text-gray-950 flex items-center gap-1.5">
-                      <Factory className="w-4 h-4 text-emerald-600" /> Pantnagar Hub (2 Plants)
-                    </span>
-                    <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-mono text-[10px] font-bold">
-                      North India Hub
-                    </span>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-2">
-                    Plot No. 14 &amp; 18, Sector 7, Integrated Industrial Estate (IIE) Pantnagar, Udham Singh Nagar - 263 153, Uttarakhand.
-                  </p>
-                  <div className="flex flex-wrap items-center gap-4 text-gray-700 font-mono pt-2 border-t border-gray-200">
-                    <span className="flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-emerald-600" /> +91 (5944) 250 120
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Mail className="w-3.5 h-3.5 text-emerald-600" /> marketing@hfpfs.com
-                    </span>
-                  </div>
-                </div>
-
-                {/* Upcoming Mega Plant Card */}
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 shadow-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold font-display text-sm text-amber-950 flex items-center gap-1.5">
-                      <Building2 className="w-4 h-4 text-amber-600" /> Chhatrapati Sambhajinagar
-                    </span>
-                    <span className="px-2 py-0.5 rounded bg-amber-200 text-amber-900 font-mono text-[10px] font-bold">
-                      Upcoming Mega Plant
-                    </span>
-                  </div>
-                  <p className="text-amber-900 leading-relaxed">
-                    Shendra AURIC DMIC Industrial Corridor, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra.
-                  </p>
-                </div>
-
-                {/* Delhi & Global Export Card */}
-                <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-200 shadow-sm">
-                  <span className="font-bold font-display text-sm text-gray-950 flex items-center gap-1.5 mb-1">
-                    <Globe2 className="w-4 h-4 text-blue-600" /> Global Exports &amp; Delhi NCR Coordination
-                  </span>
-                  <p className="text-gray-600 leading-relaxed">
-                    Active regular container export shipments to the <strong>United States</strong> and dedicated automotive distribution network across <strong>Delhi NCR</strong> &amp; pan-India OEM clusters.
-                  </p>
-                </div>
+              <div>
+                <span className="text-[10px] text-gray-500 font-semibold block uppercase">Corporate HQ</span>
+                <span className="font-bold text-gray-900 text-xs block">Satpur MIDC, Nashik, MH</span>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right Column: In-Depth RFQ / Enquiry Form */}
-            <div className="lg:col-span-7 bg-white rounded-3xl border-2 border-gray-200 p-6 sm:p-8 shadow-xl">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-1.5">
-                    <Send className="w-3 h-3 text-blue-600" /> Instant Technical Quotation
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black font-display text-gray-950">
-                    Request Price Quote &amp; Technical Consultation
-                  </h3>
-                </div>
+      {/* ── MAP + RFQ FORM ── */}
+      <section className="py-6 sm:py-12">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6">
+          {/* On mobile: map first, then form stacked below */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start">
+
+            {/* Map */}
+            <div className="lg:col-span-7">
+              <h2 className="text-base sm:text-xl font-black font-display text-gray-950 flex items-center gap-2 mb-2 sm:mb-3">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#EA4335]" /> Plant Location
+              </h2>
+              <Interactive3DPlantMap
+                selectedRegion={selectedRegion}
+                onSelectRegion={(reg) => {
+                  setSelectedRegion(reg);
+                  const matching = reg === 'all' ? plantLocationsData[0] : plantLocationsData.find(p => p.region === reg);
+                  if (matching) setSelectedPlantId(matching.id);
+                }}
+                selectedPlantId={selectedPlantId}
+                onSelectPlant={(plant) => setSelectedPlantId(plant.id)}
+              />
+            </div>
+
+            {/* RFQ Form */}
+            <div className="lg:col-span-5 bg-white rounded-2xl sm:rounded-3xl border border-gray-200 p-4 sm:p-7 shadow-lg">
+              <div className="mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-gray-100">
+                <h3 className="text-base sm:text-xl font-black font-display text-gray-950">
+                  Request a Quote
+                </h3>
+                <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">
+                  Send enquiry to <strong className="text-blue-900">marketing@hfpfs.com</strong>
+                </p>
               </div>
 
               {formSubmitted ? (
-                /* Success Message */
-                <div className="text-center py-12 px-4 space-y-4">
-                  <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto border-2 border-emerald-300">
-                    <CheckCircle2 className="w-10 h-10" />
+                <div className="text-center py-6 sm:py-8 space-y-3">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-300">
+                    <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
-                  <h4 className="text-2xl font-black font-display text-gray-950">
-                    Enquiry Submitted Successfully!
-                  </h4>
-                  <p className="text-sm font-mono text-blue-900 font-bold">
-                    Assigned Reference: #RFQ-{Math.floor(Math.random() * 90000 + 10000)}
+                  <h4 className="text-base sm:text-lg font-bold font-display text-gray-900">Enquiry Received!</h4>
+                  <p className="text-[11px] sm:text-xs text-gray-600 max-w-xs mx-auto">
+                    Your request has been forwarded to <strong>marketing@hfpfs.com</strong>. We will reply within 24 hours.
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
-                    Thank you! Your requirements have been forwarded directly to our engineering desk at <strong>marketing@hfpfs.com</strong>. Our senior metallurgist and sales engineer will reply within 24 business hours.
-                  </p>
-                  <div className="pt-4 flex flex-wrap justify-center gap-3">
-                    <button
-                      onClick={() => setFormSubmitted(false)}
-                      className="px-6 py-2.5 rounded-xl bg-gray-100 text-gray-800 text-xs font-bold font-mono hover:bg-gray-200 transition"
-                    >
-                      Send Another Inquiry
-                    </button>
-                    <button
-                      onClick={onBackToHome}
-                      className="px-6 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold font-mono hover:bg-blue-700 transition"
-                    >
-                      Return to Website
-                    </button>
-                  </div>
+                  <button
+                    onClick={() => setFormSubmitted(false)}
+                    className="mt-2 px-5 py-2 rounded-xl bg-gray-100 text-gray-800 text-xs font-mono font-bold hover:bg-gray-200 transition"
+                  >
+                    Send Another Inquiry
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Name & Company */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-3 text-xs">
+                  {/* Name & Company — single column on mobile */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     <div>
-                      <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5 font-mono">
-                        <User className="w-3.5 h-3.5 text-gray-400" /> Full Name *
-                      </label>
+                      <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Your Name *</label>
                       <input
                         required
                         type="text"
+                        placeholder="e.g. Ramesh Patel"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Rajesh Sharma"
-                        className="w-full px-4 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                        className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none focus:border-blue-500 transition"
                       />
                     </div>
                     <div>
-                      <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5 font-mono">
-                        <Building2 className="w-3.5 h-3.5 text-gray-400" /> Company / Organization *
-                      </label>
+                      <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Company Name *</label>
                       <input
                         required
                         type="text"
+                        placeholder="e.g. Auto Components Ltd"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        placeholder="e.g. Bharat Auto Dynamics Pvt Ltd"
-                        className="w-full px-4 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                        className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none focus:border-blue-500 transition"
                       />
                     </div>
                   </div>
 
                   {/* Email & Phone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     <div>
-                      <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5 font-mono">
-                        <Mail className="w-3.5 h-3.5 text-gray-400" /> Business Email *
-                      </label>
+                      <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Email Address *</label>
                       <input
                         required
                         type="email"
+                        placeholder="name@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="purchasing@company.com"
-                        className="w-full px-4 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                        className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none focus:border-blue-500 transition"
                       />
                     </div>
                     <div>
-                      <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 mb-1.5 font-mono">
-                        <Phone className="w-3.5 h-3.5 text-gray-400" /> Phone / WhatsApp *
-                      </label>
+                      <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Phone / WhatsApp *</label>
                       <input
                         required
                         type="tel"
+                        placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 98765 43210"
-                        className="w-full px-4 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                        className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none focus:border-blue-500 transition"
                       />
                     </div>
                   </div>
 
-                  {/* Preferred Plant & Product Category */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Plant & Category */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     <div>
-                      <label className="text-xs font-semibold text-gray-700 mb-1.5 block font-mono">
-                        Preferred Manufacturing Hub
-                      </label>
+                      <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Plant Destination</label>
                       <select
                         value={formData.plantLocation}
                         onChange={(e) => setFormData({ ...formData, plantLocation: e.target.value })}
-                        className="w-full px-3.5 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 font-medium focus:border-blue-500 focus:outline-none transition"
+                        className="w-full px-2.5 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none font-medium"
                       >
-                        <option>Nashik Manufacturing Plants (Maharashtra)</option>
-                        <option>Pantnagar Manufacturing Plants (Uttarakhand)</option>
+                        <option>Satpur MIDC, Nashik (Maharashtra)</option>
+                        <option>IIE Pantnagar (Uttarakhand)</option>
                         <option>Chhatrapati Sambhajinagar (Mega Plant)</option>
-                        <option>Global Export Division (USA &amp; International)</option>
+                        <option>Global Export Division (USA &amp; Export)</option>
                       </select>
                     </div>
                     <div>
-                      <label className="text-xs font-semibold text-gray-700 mb-1.5 block font-mono">
-                        Product Category
-                      </label>
+                      <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Product Category</label>
                       <select
                         value={formData.partCategory}
                         onChange={(e) => setFormData({ ...formData, partCategory: e.target.value })}
-                        className="w-full px-3.5 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 font-medium focus:border-blue-500 focus:outline-none transition"
+                        className="w-full px-2.5 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none font-medium"
                       >
-                        <option>High-Tensile Hex &amp; Flange Bolts</option>
-                        <option>Engine Cylinder &amp; Chassis Bolts</option>
-                        <option>Heavy Vehicle Wheel Bolts &amp; Nuts</option>
-                        <option>Specialty Lock Nuts (Nylock / Weld / U-Nuts)</option>
-                        <option>Washers (Belleville / Spring / Plain / SEMS)</option>
-                        <option>Precision Stamped Brackets &amp; Components</option>
-                        <option>Custom Forging / Drawing Based Parts</option>
+                        <option>Hex Bolts &amp; Banjo Screws</option>
+                        <option>Wheel Studs &amp; Cylinder Bolts</option>
+                        <option>Lock Nuts &amp; Flange Nuts</option>
+                        <option>Washers (Belleville / SEMS / Spring)</option>
+                        <option>Specialty &amp; Custom Fasteners</option>
+                        <option>Custom Forging From Drawing</option>
                       </select>
                     </div>
                   </div>
 
-                  {/* Requirements & Specs */}
+                  {/* Message */}
                   <div>
-                    <label className="text-xs font-semibold text-gray-700 mb-1.5 block font-mono">
-                      Part Dimensions, Grade &amp; Quantity Requirements *
-                    </label>
+                    <label className="text-[11px] font-semibold text-gray-700 mb-1 block">Part Details / Quantity *</label>
                     <textarea
                       required
-                      rows={3}
-                      value={formData.specifications}
-                      onChange={(e) => setFormData({ ...formData, specifications: e.target.value })}
-                      placeholder="Please specify thread size (e.g., M10x1.25, M16x120), strength grade (8.8, 10.9, 12.9), coating (Zinc Flake, Geomet, Phosphate), monthly/annual quantity, and target application..."
-                      className="w-full px-4 py-3 text-sm rounded-xl bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none"
+                      rows={2}
+                      placeholder="e.g. M10x50 Grade 10.9 Hex Bolt, Zinc Flake, 50,000 pcs/month..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-3 py-2.5 sm:py-2 text-sm sm:text-xs rounded-xl bg-gray-50 border border-gray-300 focus:outline-none focus:border-blue-500 transition resize-none"
                     />
                   </div>
 
-                  {/* File Upload / Drawing */}
+                  {/* File Upload */}
                   <div>
-                    <label className="text-xs font-semibold text-gray-700 mb-1.5 block font-mono">
-                      Upload Engineering 2D/3D Drawing or Sample Photo (Optional)
-                    </label>
-                    <div className="relative border-2 border-dashed border-gray-300 hover:border-blue-500 rounded-2xl p-4 text-center transition bg-gray-50 cursor-pointer">
-                      <input
-                        type="file"
-                        accept=".pdf,.dwg,.step,.stp,.png,.jpg,.jpeg,.zip"
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                      />
-                      <UploadCloud className="w-6 h-6 text-blue-600 mx-auto mb-1" />
-                      <span className="text-xs font-medium text-gray-700 block">
-                        Drop 2D PDF drawing, 3D STEP file, or CAD model here
-                      </span>
-                      <span className="text-[10px] text-gray-400 font-mono mt-0.5 block">
-                        Supports PDF, DWG, STEP, STP, PNG, JPG (Up to 25 MB)
-                      </span>
+                    <div className="relative border border-dashed border-gray-300 hover:border-blue-500 rounded-xl p-3 sm:p-2.5 text-center transition bg-gray-50 cursor-pointer">
+                      <input type="file" accept=".pdf,.dwg,.step,.stp,.png,.jpg,.jpeg" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                      <div className="flex items-center justify-center gap-2 text-[11px] text-gray-600">
+                        <UploadCloud className="w-4 h-4 text-blue-600" />
+                        <span>Upload Drawing or Photo (Optional)</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit */}
                   <button
                     type="submit"
-                    className="btn-primary w-full py-4 text-sm font-bold tracking-wider flex items-center justify-center gap-2 shadow-lg"
+                    className="btn-primary w-full py-3.5 sm:py-3 text-[11px] sm:text-xs font-bold font-mono tracking-wide flex items-center justify-center gap-2 shadow-md rounded-xl"
                   >
-                    <Send className="w-4 h-4" />
-                    SUBMIT RFQ TO MARKETING@HFPFS.COM
+                    <Send className="w-3.5 h-3.5" />
+                    SEND ENQUIRY
                   </button>
-
-                  {/* Trust Footer */}
-                  <div className="flex flex-wrap items-center justify-center gap-4 pt-2 text-[11px] font-mono text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> IATF 16949 / ISO 45001 / BIS Certified
-                    </span>
-                    <span>·</span>
-                    <span>24-Hour Engineering Turnaround</span>
-                    <span>·</span>
-                    <span>Confidential NDA Protected</span>
-                  </div>
                 </form>
               )}
+            </div>
+          </div>
+
+          {/* ── 3 PLANT ADDRESS CARDS ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-200 text-xs">
+            {/* Nashik */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200 shadow-sm">
+              <span className="font-bold font-display text-gray-950 flex items-center gap-1.5 mb-1 text-[13px] sm:text-sm">
+                <Factory className="w-4 h-4 text-red-600" /> Nashik (3 Plants)
+              </span>
+              <p className="text-gray-600 leading-relaxed mb-2 text-[11px] sm:text-xs">
+                Plot 42, 43, 58 &amp; 112, Satpur MIDC, Nashik - 422 007, Maharashtra
+              </p>
+              <a href="tel:+912532350890" className="text-gray-700 font-mono text-[11px] pt-2 border-t border-gray-100 flex items-center gap-1">
+                <Phone className="w-3 h-3 text-blue-600" /> +91 (253) 235 0890
+              </a>
+            </div>
+
+            {/* Pantnagar */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-gray-200 shadow-sm">
+              <span className="font-bold font-display text-gray-950 flex items-center gap-1.5 mb-1 text-[13px] sm:text-sm">
+                <Factory className="w-4 h-4 text-red-600" /> Pantnagar (2 Plants)
+              </span>
+              <p className="text-gray-600 leading-relaxed mb-2 text-[11px] sm:text-xs">
+                Plot 14 &amp; 18, Sector 7, IIE Pantnagar - 263 153, Uttarakhand
+              </p>
+              <a href="tel:+915944250120" className="text-gray-700 font-mono text-[11px] pt-2 border-t border-gray-100 flex items-center gap-1">
+                <Phone className="w-3 h-3 text-emerald-600" /> +91 (5944) 250 120
+              </a>
+            </div>
+
+            {/* Sambhajinagar */}
+            <div className="p-3.5 sm:p-4 rounded-2xl bg-white border border-amber-200 bg-amber-50/40 shadow-sm">
+              <span className="font-bold font-display text-amber-950 flex items-center gap-1.5 mb-1 text-[13px] sm:text-sm">
+                <Building2 className="w-4 h-4 text-amber-600" /> Sambhajinagar
+              </span>
+              <p className="text-gray-600 leading-relaxed mb-2 text-[11px] sm:text-xs">
+                AURIC / Shendra DMIC, Chhatrapati Sambhajinagar, Maharashtra
+              </p>
+              <div className="text-amber-800 font-mono text-[11px] pt-2 border-t border-amber-200/60 font-bold">
+                Upcoming Mega Plant
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════ FOOTER ════════════ */}
-      <footer className="bg-white text-gray-800 pt-12 pb-10 border-t border-gray-200 text-center">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col items-center mb-6">
-            <div className="flex items-center gap-3 mb-3">
-              <img src="/logo/HF LOGO (1).png" alt="Hindustan Fasteners" className="h-7 w-auto object-contain" />
-              <div className="h-4 w-[1px] bg-gray-300" />
-              <img src="/logo/PFS logo.png" alt="Precision Forging & Stamping" className="h-7 w-auto object-contain" />
-            </div>
-            <p className="text-xs text-gray-600 max-w-xl">
-              Hindustan Fasteners &amp; Precision Forging &amp; Stamping. 5 Modern Manufacturing Plants (3 in Satpur MIDC Nashik, 2 in Pantnagar) + Upcoming Mega Plant in Chhatrapati Sambhajinagar. Over 2,20,000 m² footprint with 54,000 MT annual production capacity.
-            </p>
-          </div>
-          <div className="text-[11px] font-mono text-gray-500 border-t border-gray-200 pt-6">
-            © 2026 Hindustan Fasteners &amp; Precision Forging &amp; Stamping · Email: marketing@hfpfs.com · IATF 16949 · ISO 45001 · BIS Certified
-          </div>
-        </div>
+      {/* ── FOOTER ── */}
+      <footer className="bg-white border-t border-gray-200 py-4 sm:py-6 text-center text-[11px] sm:text-xs font-mono text-gray-500 px-3">
+        © 2026 Hindustan Fasteners &amp; Precision Forging &amp; Stamping · marketing@hfpfs.com
       </footer>
     </div>
   );

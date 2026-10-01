@@ -40,8 +40,12 @@ import {
   Maximize2,
 } from 'lucide-react';
 import catalogData from './fasteners_catalog.json';
-import { InteractiveUnboltScroll } from './components/InteractiveUnboltScroll';
-import { ContactUsPage } from './components/ContactUsPage';
+const InteractiveUnboltScroll = React.lazy(() =>
+  import('./components/InteractiveUnboltScroll').then((m) => ({ default: m.InteractiveUnboltScroll }))
+);
+const ContactUsPage = React.lazy(() =>
+  import('./components/ContactUsPage').then((m) => ({ default: m.ContactUsPage }))
+);
 
 
 /* ─────────────────────────── AUTHENTIC 3D NUT & BOLT SVGS & WATERMARKS ─────────────────────────── */
@@ -545,7 +549,7 @@ const ProductDetailModal: React.FC<{
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start mb-6">
           {/* Left Column: Big Studio Image */}
           <div className="md:col-span-6 bg-[#FAFAF9] rounded-2xl overflow-hidden p-6 flex flex-col items-center justify-center border-2 border-gray-200 shadow-inner relative group min-h-[300px]">
-            <img
+            <img loading="lazy" decoding="async"
               src={product.img}
               alt={product.name}
               className="max-h-64 sm:max-h-72 w-auto object-contain group-hover:scale-110 transition-transform duration-500"
@@ -682,7 +686,7 @@ const CoinFlipBadge: React.FC = () => {
           <div className="absolute inset-0 backface-hidden rounded-full coin-metallic-rim p-2 sm:p-2.5 flex items-center justify-center border-4 border-slate-500/80 shadow-[0_0_30px_rgba(148,163,184,0.45)]">
             <div className="w-full h-full rounded-full coin-metallic-face flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-inner relative overflow-hidden border border-slate-400/50">
               <div className="absolute inset-0 bg-gradient-to-tr from-slate-400/20 via-transparent to-white/70 pointer-events-none" />
-              <img
+              <img decoding="async"
                 src="/logo/HF LOGO (1).png"
                 alt="Hindustan Fasteners Logo"
                 className="max-h-16 sm:max-h-20 md:max-h-24 max-w-[88%] object-contain mb-1 drop-shadow-md group-hover:scale-105 transition-transform"
@@ -700,7 +704,7 @@ const CoinFlipBadge: React.FC = () => {
           <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-full coin-metallic-rim p-2 sm:p-2.5 flex items-center justify-center border-4 border-slate-500/80 shadow-[0_0_30px_rgba(148,163,184,0.45)]">
             <div className="w-full h-full rounded-full coin-metallic-face flex flex-col items-center justify-center p-3 sm:p-4 text-center shadow-inner relative overflow-hidden border border-slate-400/50">
               <div className="absolute inset-0 bg-gradient-to-tr from-slate-400/20 via-transparent to-white/70 pointer-events-none" />
-              <img
+              <img decoding="async"
                 src="/logo/PFS logo.png"
                 alt="Precision Forging and Stamping Logo"
                 className="max-h-16 sm:max-h-20 md:max-h-24 max-w-[88%] object-contain mb-1 drop-shadow-md group-hover:scale-105 transition-transform"
@@ -798,10 +802,10 @@ const DedicatedCatalogPage: React.FC<{
 
           <div className="flex items-center gap-3">
             <div className="h-9 px-2.5 bg-white rounded-lg flex items-center justify-center border border-gray-200 shadow-sm">
-              <img src="/logo/HF LOGO (1).png" alt="Hindustan Fasteners" className="h-6 w-auto object-contain" />
+              <img decoding="async" src="/logo/HF LOGO (1).png" alt="Hindustan Fasteners" className="h-6 w-auto object-contain" />
             </div>
             <div className="h-9 px-2.5 bg-white rounded-lg flex items-center justify-center border border-gray-200 shadow-sm">
-              <img src="/logo/PFS logo.png" alt="Precision Forging" className="h-6 w-auto object-contain" />
+              <img decoding="async" src="/logo/PFS logo.png" alt="Precision Forging" className="h-6 w-auto object-contain" />
             </div>
           </div>
 
@@ -846,6 +850,7 @@ const DedicatedCatalogPage: React.FC<{
               { id: 'screws', label: 'Specialized Screws' },
               { id: 'advanced', label: 'Advanced Drive Systems' },
               { id: 'nuts', label: 'Lock Nuts & Clips' },
+              { id: 'washers', label: 'Washers & Components' },
               { id: 'pins', label: 'Pins & Studs' },
             ].map((cat) => (
               <button
@@ -898,7 +903,7 @@ const DedicatedCatalogPage: React.FC<{
                 <div>
                   {/* Clean Studio Photo */}
                   <div className="w-full h-48 rounded-xl bg-[#FAFAF9] p-3 flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-blue-300 shadow-inner relative mb-4">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
                       className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
@@ -977,7 +982,7 @@ const DedicatedCatalogPage: React.FC<{
   );
 };
 
-/* ─────────────────────────── HERO VIDEO SHOWCASE COMPONENT ─────────────────────────── */
+/* ─────────────────────────── HERO VIDEO SHOWCASE COMPONENT (OPTIMIZED FAST STREAMING) ─────────────────────────── */
 const HeroVideoPlayer: React.FC = () => {
   return (
     <div className="relative w-full aspect-video rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(37,99,235,0.3)] transition-all duration-500 hover:shadow-[0_25px_65px_rgba(37,99,235,0.4)]">
@@ -986,7 +991,8 @@ const HeroVideoPlayer: React.FC = () => {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/images/hero-nuts.jpg"
         className="w-full h-full object-cover"
       >
         <source src="/videos/hero-showcase.mp4" type="video/mp4" />
@@ -1013,8 +1019,8 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
 
   // Split catalog into 2 tracks for smooth continuous horizontal scrollers
-  const catalogTrack1 = catalogData.slice(0, 12);
-  const catalogTrack2 = catalogData.slice(12);
+  const catalogTrack1 = catalogData.slice(0, Math.ceil(catalogData.length / 2));
+  const catalogTrack2 = catalogData.slice(Math.ceil(catalogData.length / 2));
 
   // 10-Stage Pipeline Presentation State
   const [presentationStage, setPresentationStage] = useState(0);
@@ -1560,6 +1566,7 @@ export default function App() {
       (activeCategory === 'screws' && item.category === 'Specialized Screws') ||
       (activeCategory === 'advanced' && item.category === 'Advanced Drive Systems') ||
       (activeCategory === 'nuts' && item.category === 'Nuts & Lock Nuts') ||
+      (activeCategory === 'washers' && item.category === 'Washers & Components') ||
       (activeCategory === 'pins' && (item.category === 'Pins & Special Bolts' || item.category === 'Studs & Rods'));
 
     const matchesSearch =
@@ -1574,10 +1581,12 @@ export default function App() {
   if (currentView === 'contact') {
     return (
       <div className="min-h-screen bg-[#FAFAF9] text-gray-900 font-sans">
-        <ContactUsPage
-          onBackToHome={openHomePage}
-          onOpenCatalog={openCatalogPage}
-        />
+        <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-slate-950 text-white font-mono text-sm">Loading 3D Map &amp; Contact Desk...</div>}>
+          <ContactUsPage
+            onBackToHome={openHomePage}
+            onOpenCatalog={openCatalogPage}
+          />
+        </React.Suspense>
         <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} product={quoteProduct} />
         <ProductDetailModal
           product={selectedCatalogItem}
@@ -1616,29 +1625,29 @@ export default function App() {
       }`}>
         <div className="container-custom flex items-center justify-between">
           {/* Both Logos: Hindustan Fasteners & Precision Forging */}
-          <a href="#" onClick={(e) => { e.preventDefault(); openHomePage(); }} className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0">
-            <div className="h-9 sm:h-10 px-2 py-0.5 bg-white rounded-lg flex items-center gap-1.5 sm:gap-2 shadow-sm border border-gray-200">
-              <img
+          <a href="#" onClick={(e) => { e.preventDefault(); openHomePage(); }} className="flex items-center gap-2.5 sm:gap-3 group flex-shrink-0">
+            <div className="h-10 sm:h-12 px-2.5 sm:px-3 py-1 bg-white rounded-xl flex items-center gap-2 sm:gap-2.5 shadow-sm border border-gray-200">
+              <img decoding="async"
                 src="/logo/HF LOGO (1).png"
                 alt="Hindustan Fasteners"
-                className="h-5 sm:h-6 w-auto object-contain"
+                className="h-6 sm:h-8 w-auto object-contain"
               />
-              <div className="h-4 w-[1px] bg-gray-300" />
-              <img
+              <div className="h-5 sm:h-6 w-[1.5px] bg-gray-300" />
+              <img decoding="async"
                 src="/logo/PFS logo.png"
                 alt="Precision Forging & Stamping"
-                className="h-5 sm:h-6 w-auto object-contain"
+                className="h-6 sm:h-8 w-auto object-contain"
               />
             </div>
-            <div className="hidden lg:flex flex-col">
-              <span className="font-display font-black text-[12px] tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight uppercase">
+            <div className="hidden sm:flex flex-col">
+              <span className="font-display font-black text-[13px] sm:text-[15px] lg:text-[16px] tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight uppercase">
                 Hindustan Fasteners
               </span>
-              <span className="text-[10px] font-mono font-bold text-blue-900 leading-tight uppercase tracking-wider">
+              <span className="text-[10px] sm:text-[11.5px] lg:text-[12px] font-mono font-bold text-blue-900 leading-tight uppercase tracking-wider">
                 Precision Forging &amp; Stamping
               </span>
-              <span className="text-[9px] font-sans text-gray-500 italic leading-tight">
-                "Indian at heart with world class part"
+              <span className="text-[9.5px] sm:text-[11px] lg:text-[11.5px] font-sans text-gray-500 font-medium italic leading-tight">
+                Indian at heart with world class part
               </span>
             </div>
           </a>
@@ -1717,18 +1726,11 @@ export default function App() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(56,189,248,0.12),transparent_55%)] pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none opacity-60" />
 
-        {/* Floating 3D Bolt SVGs & Subtle Watermarks (Floating Nut animation removed per prompt) */}
-        <WatermarkBolt className="-left-20 top-20 text-white/5" size={480} rotation={22} variant="silver" />
-        <div className="absolute bottom-20 left-10 pointer-events-none animate-float-2 hidden sm:block z-10">
-          <BoltSvg size={115} opacity={0.9} rotation={-14} variant="silver" />
-        </div>
-        <div className="absolute top-1/2 right-1/4 pointer-events-none animate-float-3 hidden md:block z-10">
-          <BoltSvg size={80} opacity={0.85} rotation={18} variant="silver" />
-        </div>
+        {/* Floating decorations removed per user request */}
 
         {/* High-Resolution Automotive Exploded Precision Fasteners Photography Background */}
         <div className="absolute inset-0">
-          <img
+          <img decoding="async"
             src="/images/hero-car-exploded.jpg"
             alt="Automotive exploded view showing precision fasteners and chassis connections"
             className="w-full h-full object-cover object-center opacity-40"
@@ -1738,9 +1740,9 @@ export default function App() {
         </div>
 
         <div className="container-custom relative z-10 py-14 sm:py-20 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-y-0 lg:gap-x-10 items-center">
-            {/* 1. Left Side: Headline, Paragraph, Actions (Col 1-6) */}
-            <div className="lg:col-span-6 flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-y-0 lg:gap-x-8 items-center">
+            {/* 1. Left Side: Headline, Paragraph, Actions (Col 1-5) */}
+            <div className="lg:col-span-5 flex flex-col justify-center">
               <Reveal delay={50}>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/40 text-cyan-300 text-xs font-mono font-bold tracking-wider mb-4 w-fit">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-300" /> Indian at heart with world class part
@@ -1748,7 +1750,7 @@ export default function App() {
               </Reveal>
 
               <Reveal delay={100}>
-                <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight leading-[1.08] mb-4 text-white">
+                <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-black font-display tracking-tight leading-[1.15] mb-3 text-white">
                   STRONG FASTENERS.<br />
                   <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-sm">
                     MADE FOR REAL-WORLD MACHINES.
@@ -1757,28 +1759,28 @@ export default function App() {
               </Reveal>
 
               <Reveal delay={180}>
-                <p className="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed mb-6 font-normal">
+                <p className="text-xs sm:text-sm text-slate-300 max-w-lg leading-relaxed mb-5 font-normal">
                   Manufacturing over <strong>3,00,000+ varieties of high-strength bolts, nuts, screws, washers, and custom forged parts</strong>. Across 5 modern manufacturing plants (3 in Satpur MIDC Nashik, 2 in Pantnagar Uttarakhand) plus our upcoming Mega Plant in Chhatrapati Sambhajinagar, we produce 54,000 tonnes of zero-defect fasteners every year for India’s top vehicle OEMs and global exports.
                 </p>
               </Reveal>
 
               <Reveal delay={250}>
-                <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 mb-4">
+                <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 mb-4">
                   <button
                     onClick={openCatalogPage}
-                    className="btn-primary text-xs font-bold px-7 py-3.5 shadow-xl w-full sm:w-auto text-center"
+                    className="btn-primary text-xs font-bold px-6 py-3 shadow-xl w-full sm:w-auto text-center"
                   >
                     EXPLORE ALL BOLTS &amp; NUTS ({catalogData.length}) →
                   </button>
                   <button
                     onClick={openContactPage}
-                    className="px-6 py-3.5 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 text-white text-xs font-bold border border-blue-400/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto text-center"
+                    className="px-5 py-3 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 text-white text-xs font-bold border border-blue-400/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto text-center"
                   >
                     3D Plant Map &amp; Contact
                   </button>
                   <button
                     onClick={() => openQuote()}
-                    className="px-6 py-3.5 rounded-xl bg-slate-900/90 text-white hover:bg-slate-800 text-xs font-bold border border-white/20 shadow-md transition hover:-translate-y-0.5 w-full sm:w-auto text-center"
+                    className="px-5 py-3 rounded-xl bg-slate-900/90 text-white hover:bg-slate-800 text-xs font-bold border border-white/20 shadow-md transition hover:-translate-y-0.5 w-full sm:w-auto text-center"
                   >
                     Request Price Quote
                   </button>
@@ -1787,9 +1789,9 @@ export default function App() {
             </div>
 
             {/* 2. Right Side: Large Prominent Video Showcase (Col 7-12) */}
-            <div className="lg:col-span-6 my-2 lg:my-0 self-center">
+            <div className="lg:col-span-7 my-2 lg:my-0 self-center">
               <Reveal delay={150}>
-                <div className="w-full max-w-2xl mx-auto">
+                <div className="w-full max-w-3xl mx-auto">
                   <HeroVideoPlayer />
                 </div>
               </Reveal>
@@ -2631,7 +2633,7 @@ export default function App() {
               >
                 <div>
                   <div className="w-full h-44 rounded-xl bg-[#FAFAF9] p-3 flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-blue-300 relative mb-3">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
                       className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2674,7 +2676,7 @@ export default function App() {
               >
                 <div>
                   <div className="w-full h-44 rounded-xl bg-[#FAFAF9] p-3 flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-blue-300 relative mb-3">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
                       className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
@@ -2731,7 +2733,9 @@ export default function App() {
       </section>
 
       {/* ════════════ 3D NUT & BOLT DISASSEMBLY SHOWCASE ════════════ */}
-      <InteractiveUnboltScroll />
+      <React.Suspense fallback={<div className="h-64 flex items-center justify-center bg-gray-50 text-xs font-mono text-gray-400">Loading 3D interactive viewer...</div>}>
+        <InteractiveUnboltScroll />
+      </React.Suspense>
 
       {/* ════════════ COMPANY PROFILE & 50-YEAR LEGACY (LIGHT THEME) ════════════ */}
       <section id="overview" className="pt-2 sm:pt-4 pb-10 sm:pb-14 bg-white relative overflow-hidden">
@@ -2754,12 +2758,12 @@ export default function App() {
               </Reveal>
               <Reveal delay={100}>
                 <h2 className="text-2xl sm:text-4xl font-black font-display tracking-tight text-gray-950 mb-3 sm:mb-4 leading-tight">
-                  50+ YEARS OF PRECISION FORGING, FASTENING &amp; STAMPING EXCELLENCE
+                  50+ YEARS OF FASTENING EXCELLENCE
                 </h2>
               </Reveal>
               <Reveal delay={200}>
                 <p className="text-xs sm:text-sm text-gray-700 leading-relaxed mb-4">
-                  Founded in <strong className="text-blue-900">1970</strong> and expanded in <strong className="text-blue-900">1982</strong>, we operate 5 modern manufacturing plants across 2,20,000 sq. mtr. in Satpur MIDC Nashik and Pantnagar Uttarakhand, with an upcoming Mega Plant in Chhatrapati Sambhajinagar. Producing 54,000 MT annually with ₹250+ Crore turnover, we serve India’s top vehicle OEMs, Delhi NCR distribution clusters, and global exports to the United States.
+                  Founded in <strong className="text-blue-900">1970</strong> and expanded in <strong className="text-blue-900">1982</strong>, we operate 5 modern manufacturing plants across 2,20,000 sq. mtr. in Satpur MIDC Nashik and Pantnagar Uttarakhand, with an upcoming Mega Plant in Chhatrapati Sambhajinagar. Producing 54,000 MT annually with ₹250+ Crore turnover, we serve India’s top vehicle OEMs, and global exports to the United States and Italy.
                 </p>
               </Reveal>
 
@@ -2792,7 +2796,7 @@ export default function App() {
                   </div>
                   <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm">
                     <div className="text-gray-500 text-[10px] font-semibold">Global Reach</div>
-                    <div className="text-sm font-bold text-blue-900 mt-0.5">United States &amp; Delhi NCR</div>
+                    <div className="text-sm font-bold text-blue-900 mt-0.5">United States &amp; Italy</div>
                     <div className="text-[10px] text-blue-600 font-bold mt-0.5">Worldwide Exports</div>
                   </div>
                 </div>
@@ -2802,7 +2806,7 @@ export default function App() {
             <div className="lg:col-span-5">
               <Reveal delay={200}>
                 <div className="rounded-2xl overflow-hidden border-2 border-gray-200 shadow-xl bg-gray-100 relative group">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src="/images/pptx/slide-media-5.jpeg"
                     alt="Hindustan Fasteners Corporate Facility in Satpur MIDC, Nashik"
                     className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
@@ -2812,7 +2816,7 @@ export default function App() {
                       Corporate Facility · Satpur MIDC, Nashik
                     </div>
                     <div className="text-base font-bold font-display">
-                      Hindustan Fasteners Pvt Ltd &amp; Precision Forging &amp; Stamping
+                      Hindustan Fasteners Pvt Ltd
                     </div>
                   </div>
                 </div>
@@ -2932,14 +2936,14 @@ export default function App() {
           <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-8 sm:mb-12">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-10 px-3.5 bg-white rounded-xl flex items-center justify-center border border-gray-200 shadow-sm">
-                <img
+                <img decoding="async"
                   src="/logo/HF LOGO (1).png"
                   alt="Hindustan Fasteners Logo"
                   className="h-8 w-auto object-contain"
                 />
               </div>
               <div className="h-10 px-3.5 bg-white rounded-xl flex items-center justify-center border border-gray-200 shadow-sm">
-                <img
+                <img decoding="async"
                   src="/logo/PFS logo.png"
                   alt="Precision Forging and Stamping Logo"
                   className="h-8 w-auto object-contain"
@@ -2947,7 +2951,7 @@ export default function App() {
               </div>
             </div>
             <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto mb-3">
-              Hindustan Fasteners (1970) &amp; Precision Forging &amp; Stamping (1982). Operating 5 modern manufacturing plants across 2,20,000 sq. mtr. in Satpur MIDC Nashik and Pantnagar Uttarakhand, with upcoming Mega Plant in Chhatrapati Sambhajinagar. Supplying India’s top vehicle OEMs, Delhi NCR networks, and exporting to the United States.
+              Hindustan Fasteners (1970) &amp; Precision Forging &amp; Stamping (1982). Operating 5 modern manufacturing plants across 2,20,000 sq. mtr. in Satpur MIDC Nashik and Pantnagar Uttarakhand, with upcoming Mega Plant in Chhatrapati Sambhajinagar. Supplying India’s top vehicle OEMs, and exporting to the United States &amp; Italy.
             </p>
             <div className="text-xs font-mono text-blue-900 font-bold bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200 inline-block">
               IATF 16949:2016 · ISO 45001 · BIS Certified · BSI Registered

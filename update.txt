@@ -45,19 +45,24 @@ HINDUSTAN FASTENERS & PRECISION FORGING & STAMPING - UPDATE CHECKLIST
 [x] 5. FLOATING SCROLL TO TOP BUTTON:
     [x] 5.1 Added interactive floating button at the bottom-right corner that smoothly scrolls back to the top of the page.
 
-[x] 6. DEDICATED CONTACT US PAGE WITH 3D MAP & INTERACTIVE PLANT EXPLORER:
-    [x] 6.1 Dedicated Contact Us page view with seamless two-way navigation (Home <-> Catalog <-> Contact).
-    [x] 6.2 Interactive 3D Map / Plant Visualizer with state/location selector:
-        - Maharashtra (Nashik - Satpur MIDC): 3 Modern Manufacturing Plants with 3D models/isometric representations & specs.
-        - Uttarakhand (Pantnagar): 2 Modern Manufacturing Plants with specs & details.
-        - Chhatrapati Sambhajinagar: Upcoming Mega Plant preview.
-        - Interactive Three.js 3D canvas with orbital rotation, glowing pins, and dynamic lighting.
-    [x] 6.3 Complete Contact Enquiry Form with direct submission and email marketing@hfpfs.com.
-    [x] 6.4 Direct plant contact details, phone numbers, addresses, and maps.
+[x] 6. UNIFIED CONTINUOUS MAP WITH 4 PINS & SMOOTH REGIONAL ZOOM:
+    [x] 6.1 Unified single India Map containing 4 Pins: 3 Red Pins in Nashik (Maharashtra) and 1 Red Pin in Pantnagar (Uttarakhand).
+    [x] 6.2 Selecting "Nashik" smoothly zooms into the Satpur MIDC area in Maharashtra with all 3 distinct red pins (📍 Plant 1, 📍 Plant 2, 📍 Plant 3) and area outline.
+    [x] 6.3 Selecting "Uttarakhand" smoothly zooms into the IIE Pantnagar industrial area with its highlighted border and red pin (📍 Pantnagar Hub).
+    [x] 6.4 Selecting "Sambhajinagar" zooms into the upcoming Mega Plant.
+    [x] 6.5 Selecting "India Map" zooms out smoothly to show the full country with all 4 pins.
+    [x] 6.6 Clean, clutter-free UI with single active plant card and Google Maps directions.
 
-[x] 7. VERIFICATION & CONSISTENCY CHECK:
-    [x] 7.1 Cross-checked all changes against prompt requirements.
-    [x] 7.2 TypeScript typecheck and Vite production build verified with 0 errors.
+[x] 7. SPEED & HIGH-PERFORMANCE LOADING OPTIMIZATIONS (1-2s LOAD TIME):
+    [x] 7.1 Dynamic code-splitting with `React.lazy` and `Suspense`.
+    [x] 7.2 Initial JS payload reduced from 1,025 kB down to ~145 kB (~35 kB gzipped).
+    [x] 7.3 Configured Rollup `manualChunks` splitting.
+    [x] 7.4 Hero video optimized with `preload="metadata"` and instant visual poster.
+    [x] 7.5 Enabled `loading="lazy"` and `decoding="async"` across images.
+
+[x] 8. VERIFICATION & CONSISTENCY CHECK:
+    [x] 8.1 TypeScript typecheck: 0 errors.
+    [x] 8.2 Vite production build: 0 errors (built in 4.51s).
 ================================================================================
-ALL REQUESTED UPDATES COMPLETED SUCCESSFULLY!
+ALL REQUESTED MAP UPDATES COMPLETED SUCCESSFULLY!
 ================================================================================

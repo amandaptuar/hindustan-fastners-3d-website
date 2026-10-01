@@ -1,39 +1,75 @@
 [
   {
-    "id": "hex-banjo",
-    "name": "Hex & Banjo Bolts",
+    "id": "hex-bolt",
+    "name": "Hex Head & Flange Bolts",
     "category": "Bolts & Screws",
-    "desc": "Everyday super-strong hex head bolts for holding heavy machinery together, plus hollow banjo bolts that allow fuel, brake, and hydraulic oil to flow through without leaking.",
-    "img": "/extracted_bolts/gen_hex_banjo.jpg",
+    "desc": "Everyday high-strength hexagonal head and hex flange bolts engineered for automotive engines, structural chassis, and heavy industrial machinery.",
+    "img": "/extracted_bolts/gen_hex_bolt.png",
     "specs": "Sizes: M4 to M24 | Length: 10 mm to 300 mm | High-Strength Grade 8.8, 10.9 & 12.9",
-    "use": "Car engines, brake oil lines, fuel lines & industrial pumps"
+    "use": "Engine assemblies, automotive chassis, gearboxes & industrial framework"
   },
   {
-    "id": "pivot-ubolt",
-    "name": "Pivot & U-Bolts",
+    "id": "banjo-bolt",
+    "name": "Banjo Fluid Port Bolts",
     "category": "Bolts & Screws",
-    "desc": "Heavy-duty curved U-shaped bolts and solid pivot pins built to clamp truck leaf springs and wheel axles securely even on bumpy roads.",
-    "img": "/extracted_bolts/gen_pivot_ubolt.jpg",
-    "specs": "Sizes: M6 to M24 | Custom Bends & Heavy Lock Nuts",
-    "use": "Truck suspension, tractor axles & heavy trailer leaf springs"
+    "desc": "Precision hollow-drilled banjo bolts engineered to allow high-pressure fuel, brake fluid, and hydraulic oil to flow cleanly without leakage under extreme pressure.",
+    "img": "/extracted_bolts/gen_banjo_bolt.png",
+    "specs": "Sizes: M8 to M18 | Precision Cross-Drilled Ports | Pressure-Tight Sealing",
+    "use": "Automotive brake lines, fuel injection systems, turbo oil lines & hydraulic systems"
   },
   {
-    "id": "carriage-position",
-    "name": "Carriage & Position Screws",
+    "id": "u-bolt",
+    "name": "Heavy Duty U-Bolts",
     "category": "Bolts & Screws",
-    "desc": "Smooth rounded dome-head bolts with a square neck underneath that locks into wood or metal holes so the bolt cannot spin when you tighten the nut.",
-    "img": "/extracted_bolts/gen_carriage_screw.jpg",
-    "specs": "Sizes: M5 to M16 | Smooth Anti-Tamper Head",
-    "use": "Vehicle frames, metal fixtures, gates & safety enclosures"
+    "desc": "Curved high-tensile U-bolts forged for clamping heavy vehicle leaf springs, trailer axles, and exhaust systems firmly in place.",
+    "img": "/extracted_bolts/gen_u_bolt.png",
+    "specs": "Sizes: M8 to M24 | Custom Leg Lengths & Thread Radii | High Tensile Steel",
+    "use": "Truck suspension, leaf spring clamps, tractor axles & trailer undercarriages"
   },
   {
-    "id": "eye-dhead",
-    "name": "Eye & D-Head Bolts",
+    "id": "pivot-bolt",
+    "name": "Pivot Pins & Hinge Bolts",
+    "category": "Bolts & Screws",
+    "desc": "Machined precision pivot pins and shoulder bolts with smooth ground shanks designed to act as rotating axles and articulation pivots in mechanical linkages.",
+    "img": "/extracted_bolts/gen_pivot_bolt.png",
+    "specs": "Ground Shank Tolerance | Surface Hardened Core | Lubrication Channels",
+    "use": "Brake linkages, clutch pedals, automotive suspension arms & industrial hinges"
+  },
+  {
+    "id": "carriage-bolt",
+    "name": "Carriage Dome Head Bolts",
+    "category": "Bolts & Screws",
+    "desc": "Smooth rounded dome-head bolts with a square locking neck underneath that seats into metal or timber holes to prevent rotation during tightening.",
+    "img": "/extracted_bolts/gen_carriage_bolt.png",
+    "specs": "Sizes: M5 to M16 | Smooth Anti-Tamper Head | Square Neck Locking",
+    "use": "Vehicle structural frames, cargo barriers, security enclosures & fixtures"
+  },
+  {
+    "id": "position-screw",
+    "name": "Precision Positioning Screws",
+    "category": "Bolts & Screws",
+    "desc": "Machined dog-point and pilot alignment screws designed for precise part location, jig alignment, and positive mechanical stop positions.",
+    "img": "/extracted_bolts/gen_position_screw.png",
+    "specs": "Precision Pilot Tip | High Hardness Alloy | Fine Metric Pitch",
+    "use": "CNC fixtures, automotive tooling, engine timing components & alignment jigs"
+  },
+  {
+    "id": "eye-bolt",
+    "name": "Drop-Forged Eye Bolts",
     "category": "Specialty Fasteners",
-    "desc": "Bolts with a circular loop ring on top for lifting heavy engine blocks and cranes, plus flat-sided D-head bolts made for tight recessed tracks.",
-    "img": "/extracted_bolts/gen_eye_dhead.jpg",
-    "specs": "Drop-Forged Solid Steel | High Lifting Capacity",
-    "use": "Lifting hooks, crane ropes, engine rigging & channel locking"
+    "desc": "Heavy-duty drop-forged steel eye bolts with circular lifting loops rated for overhead lifting, engine hoisting, and heavy equipment rigging.",
+    "img": "/extracted_bolts/gen_eye_bolt.png",
+    "specs": "Drop-Forged Alloy Steel | Certified Safe Working Load (SWL)",
+    "use": "Engine block lifting, crane rigging, hoist attachments & marine anchor points"
+  },
+  {
+    "id": "dhead-bolt",
+    "name": "D-Head Track & Channel Bolts",
+    "category": "Specialty Fasteners",
+    "desc": "Specialized flat-sided D-head bolts made to slide and lock into recessed channels, slot tracks, and extruded structural rails without spinning.",
+    "img": "/extracted_bolts/gen_dhead_bolt.png",
+    "specs": "Precision Flat-Side Profile | Grade 8.8 / 10.9 Tensile Steel",
+    "use": "Extruded aluminum channels, machine guide rails & automotive assembly jigs"
   },
   {
     "id": "wheel-bolt",
@@ -145,7 +181,7 @@
   },
   {
     "id": "drilled-pin",
-    "name": "Cross-Drilled Locking Pin & Bolt",
+    "name": "Cross-Drilled Locking Fasteners",
     "category": "Pins & Special Bolts",
     "desc": "Solid steel pin or bolt with tiny precision holes drilled across the tip, so a safety wire or cotter pin can be inserted to prevent loosening.",
     "img": "/extracted_bolts/image53.png",
@@ -171,13 +207,22 @@
     "use": "Automotive batteries, inverters, solar packs & commercial trucks"
   },
   {
-    "id": "hex-nut",
-    "name": "Standard & Flange Hex Nuts",
+    "id": "standard-hex-nut",
+    "name": "Standard Finished Hex Nuts",
     "category": "Nuts & Lock Nuts",
-    "desc": "Classic 6-sided nuts and wide-flange nuts that spread the clamping pressure evenly across surfaces without requiring a separate loose washer.",
-    "img": "/extracted_bolts/image57.png",
-    "specs": "Class 8, 10 & 12 | Threads: M4 to M24",
-    "use": "Universal structural joints, automotive chassis & machinery"
+    "desc": "Precision cold-forged 6-sided hex nuts engineered to ISO/DIN standards for universal bolted structural and automotive fastening.",
+    "img": "/extracted_bolts/gen_standard_hex_nut.png",
+    "specs": "ISO 4032 / DIN 934 | Property Class 8, 10 & 12 | M4 to M24",
+    "use": "Universal mechanical assemblies, structural machinery & automotive frames"
+  },
+  {
+    "id": "flange-hex-nut",
+    "name": "Serrated Flange Hex Nuts",
+    "category": "Nuts & Lock Nuts",
+    "desc": "One-piece hex nuts with a wide integrated flange base that distributes clamping load evenly and bites into mating surfaces to resist vibration.",
+    "img": "/extracted_bolts/gen_flange_hex_nut.png",
+    "specs": "DIN 6923 | Serrated & Non-Serrated Base | Zinc Plated / Phosphate",
+    "use": "Automotive engine mounts, suspension brackets & exhaust heat shields"
   },
   {
     "id": "wheel-nut",
@@ -190,12 +235,21 @@
   },
   {
     "id": "round-weld-nut",
-    "name": "Round & Tab Weld Nuts",
+    "name": "Round Projection Weld Nuts",
     "category": "Nuts & Lock Nuts",
-    "desc": "Nuts with small welding tips that are permanently welded directly onto stamped car body panels to provide a strong pre-fixed screw hole.",
-    "img": "/extracted_bolts/image59.png",
-    "specs": "3 or 4 Welding Pips | Clean Weldable Surface Finish",
-    "use": "Car body frames, chassis members & sheet metal cabinets"
+    "desc": "Circular weld nuts with precision projection pips on the flange base, designed for automated resistance welding onto automotive stamped body panels.",
+    "img": "/extracted_bolts/gen_round_weld_nut.png",
+    "specs": "3 & 4 Welding Pips | Clean Uncoated Weldable Finish | Precision Threads",
+    "use": "Automotive body-in-white (BIW), chassis assemblies & metal enclosure fabrication"
+  },
+  {
+    "id": "tab-weld-nut",
+    "name": "Tab & Slab Weld Nuts",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Rectangular and tab weld nuts with pilot locating bosses engineered for easy robotic placement and spot-welding in narrow sheet metal flanges.",
+    "img": "/extracted_bolts/gen_tab_weld_nut.png",
+    "specs": "Single / Double Tab Profile | Precision Pilot Boss | Low-Carbon Weld Steel",
+    "use": "Vehicle seat frames, door panels, fuel tank straps & appliance enclosures"
   },
   {
     "id": "nylock-nut",
@@ -207,13 +261,22 @@
     "use": "Motorbike frames, engine mounts, go-karts & suspension"
   },
   {
-    "id": "u-nut-lock-nut",
-    "name": "U-Nut & Speed Clip Nut",
+    "id": "u-nut",
+    "name": "Spring Steel U-Nut Fasteners",
     "category": "Nuts & Lock Nuts",
-    "desc": "Spring-steel U-shaped clips that slide easily over the edge of metal or plastic panels, giving an instant threaded hole for super fast screw mounting.",
-    "img": "/extracted_bolts/image61.png",
-    "specs": "Spring Steel | Multi-Panel Thickness Fit",
-    "use": "Car bumpers, headlights, door trims & dashboard consoles"
+    "desc": "Resilient U-shaped spring steel clips that push over sheet metal and composite panel edges to provide strong captive internal machine threads.",
+    "img": "/extracted_bolts/gen_u_nut.png",
+    "specs": "Heat-Treated Spring Steel | Corrosion-Resistant Phosphate / Geomet",
+    "use": "Car bumpers, wheel arch liners, dashboard consoles & radiator surrounds"
+  },
+  {
+    "id": "speed-clip-nut",
+    "name": "Speed Clip & Captive Sheet Nuts",
+    "category": "Nuts & Lock Nuts",
+    "desc": "Rapid-assembly spring steel captive speed clips designed for fast self-tapping and machine screw fastening across multi-panel assemblies.",
+    "img": "/extracted_bolts/speed_clip_nut.png",
+    "specs": "High-Retention Spring Claws | Multi-Gauge Panel Grip Range",
+    "use": "Automotive interior trims, electronic housings & HVAC ducting"
   },
   {
     "id": "belleville-washer",
@@ -225,13 +288,13 @@
     "use": "Engine cylinder heads, heavy machinery flanges, busbar joints & suspension linkages"
   },
   {
-    "id": "flat-spring-lock-washer",
-    "name": "Plain & Helical Spring Lock Washers",
+    "id": "spring-lock-washer",
+    "name": "Helical Split Spring Lock Washers",
     "category": "Washers & Components",
-    "desc": "Precision punched flat washers for load distribution and split spring lock washers with hardened sharp edges that dig into surfaces to resist backing out.",
-    "img": "/extracted_bolts/image46.png",
-    "specs": "DIN 125, DIN 127B, ISO 7089 | Sizes: M3 to M36 | Hardened Steel & SS",
-    "use": "Automotive chassis, general assembly, transmission brackets & industrial mounts"
+    "desc": "Split helical spring steel washers that exert continuous spring tension against bolt heads to resist loosening from severe dynamic vibration.",
+    "img": "/extracted_bolts/helical_spring_washer.png",
+    "specs": "DIN 127B / ASME B18.21.1 | Spring Steel 65Mn / High Fatigue Life",
+    "use": "Automotive suspension, transmission linkages, vibrating pumps & motors"
   },
   {
     "id": "sems-washer-assembly",
@@ -241,14 +304,5 @@
     "img": "/extracted_bolts/image50.png",
     "specs": "DIN 6900 SEMS Combinations | Thread Rolling Captive Retention",
     "use": "High-speed automated automotive assembly lines, electronics & sensor mounting"
-  },
-  {
-    "id": "stamped-brackets-components",
-    "name": "Precision Stamped Brackets & Components",
-    "category": "Washers & Components",
-    "desc": "Custom progressive die stamped steel brackets, mounting plates, and reinforcement clips engineered with high dimensional repeatability.",
-    "img": "/extracted_bolts/image63.png",
-    "specs": "Thickness: 0.8 mm to 8.0 mm | Deep Draw & Progressive Stamping",
-    "use": "Vehicle body-in-white (BIW), battery pack enclosures & steering column brackets"
   }
 ]
