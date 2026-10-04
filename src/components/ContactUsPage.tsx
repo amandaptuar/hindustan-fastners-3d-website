@@ -53,13 +53,13 @@ export const ContactUsPage: React.FC<{
               <img src="/logo/PFS logo.png" alt="PFS" className="h-5 sm:h-7 w-auto object-contain" />
             </div>
             <div className="flex flex-col min-w-0 hidden sm:flex">
-              <span className="font-display font-black text-xs sm:text-sm tracking-wide text-gray-950 uppercase leading-tight group-hover:text-blue-600 transition">
+              <span className="font-display font-black text-xs sm:text-sm lg:text-[15px] tracking-wide text-gray-950 uppercase leading-tight group-hover:text-blue-600 transition">
                 Hindustan Fasteners
               </span>
-              <span className="text-[9px] sm:text-[11px] font-mono font-bold text-blue-900 uppercase leading-tight">
+              <span className="font-display font-black text-xs sm:text-sm lg:text-[15px] tracking-wide text-gray-950 uppercase leading-tight group-hover:text-blue-600 transition">
                 Precision Forging &amp; Stamping
               </span>
-              <span className="text-[8.5px] sm:text-[10px] font-sans text-gray-500 italic leading-tight">
+              <span className="text-[8.5px] sm:text-[10px] font-sans text-gray-500 italic leading-tight mt-0.5">
                 Indian at heart with world class part
               </span>
             </div>

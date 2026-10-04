@@ -548,15 +548,15 @@ const ProductDetailModal: React.FC<{
         {/* Two-Column Responsive Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start mb-6">
           {/* Left Column: Big Studio Image */}
-          <div className="md:col-span-6 bg-[#FAFAF9] rounded-2xl overflow-hidden p-6 flex flex-col items-center justify-center border-2 border-gray-200 shadow-inner relative group min-h-[300px]">
+          <div className="md:col-span-6 bg-gradient-to-b from-slate-50/90 via-white to-slate-100/80 rounded-2xl overflow-hidden p-4 sm:p-6 flex flex-col items-center justify-center border border-slate-200 shadow-sm relative group min-h-[320px]">
             <img loading="lazy" decoding="async"
               src={product.img}
               alt={product.name}
-              className="max-h-64 sm:max-h-72 w-auto object-contain group-hover:scale-110 transition-transform duration-500"
+              className="max-h-72 sm:max-h-80 w-full object-contain filter drop-shadow-2xl scale-110 group-hover:scale-120 transition-transform duration-500 relative z-10"
             />
-            <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-[11px] font-mono text-gray-600 shadow-sm">
+            <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200 text-[11px] font-mono text-slate-700 shadow-sm relative z-10">
               <Sparkles className="w-3 h-3 text-blue-600" />
-              <span>Clean Studio Photography</span>
+              <span>3D Precision Engineered Studio Showcase</span>
             </div>
           </div>
 
@@ -619,6 +619,119 @@ const ProductDetailModal: React.FC<{
             className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gray-100 hover:bg-gray-200 border border-gray-300 text-xs sm:text-sm font-bold text-gray-800 transition"
           >
             Close Dialogue
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ─────────────────────────── 25 PROCESS DETAIL MODAL ─────────────────────────── */
+const ProcessDetailModal: React.FC<{
+  process: any | null;
+  onClose: () => void;
+  onOpenQuote: (processName: string) => void;
+}> = ({ process, onClose, onOpenQuote }) => {
+  if (!process) return null;
+
+  const isNationalBenchmark = process.id === 2;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 bg-black/70 backdrop-blur-md animate-fadeIn" onClick={onClose}>
+      <div
+        className="bg-white border-2 border-gray-200 rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 sm:p-8 relative text-gray-900"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 w-10 h-10 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-600 flex items-center justify-center transition shadow-sm z-20"
+          aria-label="Close dialogue"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Modal Header */}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-mono font-black shadow-xs">
+            Process #{process.num} of 25
+          </span>
+          <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold">
+            {process.categoryLabel}
+          </span>
+          {isNationalBenchmark && (
+            <span className="px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-mono font-black flex items-center gap-1">
+              ★ India's Biggest Cold Forging Machines
+            </span>
+          )}
+        </div>
+
+        <h3 className="text-2xl sm:text-3xl font-black font-display text-gray-950 mb-4">
+          {process.title}
+        </h3>
+
+        {isNationalBenchmark && (
+          <div className="mb-4 p-4 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border-2 border-amber-400/50">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-900 mb-1">
+              <span>🇮🇳</span>
+              <span>INDIA'S NATIONAL BENCHMARK SPECIFICATIONS</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 text-xs font-mono">
+              <div className="p-2.5 rounded-xl bg-white border border-amber-300 shadow-xs">
+                <span className="text-gray-500 text-[10px] block">India's Max Cold Forged Length</span>
+                <strong className="text-amber-900 font-bold text-sm">Up to M16 x 375 mm</strong>
+              </div>
+              <div className="p-2.5 rounded-xl bg-white border border-amber-300 shadow-xs">
+                <span className="text-gray-500 text-[10px] block">India's Max Cold Forging Diameter</span>
+                <strong className="text-blue-900 font-bold text-sm">Up to M30 Diameter</strong>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="space-y-3.5 mb-6 text-sm text-gray-700">
+          <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-200">
+            <span className="text-xs font-mono text-blue-900 font-extrabold block mb-1">
+              Process Overview:
+            </span>
+            <p className="text-gray-800 leading-relaxed text-xs sm:text-sm">
+              {process.desc}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200">
+            <span className="text-[11px] font-mono text-gray-500 font-bold block mb-1">
+              Machinery &amp; Technology Deployed:
+            </span>
+            <p className="text-gray-950 font-medium text-xs sm:text-sm">
+              {process.details}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+            <span className="text-[11px] font-mono text-emerald-900 font-bold block mb-1 flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              Why It Matters for Automotive &amp; Industrial Reliability:
+            </span>
+            <p className="text-emerald-950 font-medium text-xs sm:text-sm">
+              {process.importance}
+            </p>
+          </div>
+        </div>
+
+        {/* Modal Action Footer */}
+        <div className="pt-4 border-t border-gray-200 flex flex-col sm:flex-row items-center gap-3">
+          <button
+            onClick={() => { onClose(); onOpenQuote(`Process Capability: ${process.title}`); }}
+            className="btn-primary w-full sm:flex-1 py-3.5 text-xs sm:text-sm font-bold shadow-lg"
+          >
+            ENQUIRE ABOUT THIS PROCESS / CAPABILITY →
+          </button>
+          <button
+            onClick={onClose}
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gray-100 hover:bg-gray-200 border border-gray-300 text-xs sm:text-sm font-bold text-gray-800 transition"
+          >
+            Close Window
           </button>
         </div>
       </div>
@@ -901,15 +1014,15 @@ const DedicatedCatalogPage: React.FC<{
                 className="rounded-2xl bg-white border border-gray-200 hover:border-blue-400 p-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer flex flex-col justify-between group shadow-sm"
               >
                 <div>
-                  {/* Clean Studio Photo */}
-                  <div className="w-full h-48 rounded-xl bg-[#FAFAF9] p-3 flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-blue-300 shadow-inner relative mb-4">
+                  {/* Clean 3D Studio Showcase */}
+                  <div className="w-full h-52 sm:h-56 rounded-2xl bg-gradient-to-b from-slate-50/90 via-white to-slate-100/70 p-2 sm:p-3 flex items-center justify-center relative mb-4 border border-slate-200/80 group-hover:border-blue-400 group-hover:shadow-lg transition-all duration-300 overflow-hidden">
                     <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain filter drop-shadow-md group-hover:drop-shadow-xl scale-115 group-hover:scale-125 transition-all duration-300 relative z-10"
                     />
-                    <span className="absolute top-2 right-2 bg-gray-950/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-cyan-300 font-bold">
-                      Open Dialogue
+                    <span className="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 font-bold opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm z-20 flex items-center gap-1">
+                      <Eye className="w-3 h-3" /> Inspect
                     </span>
                   </div>
 
@@ -1033,6 +1146,11 @@ export default function App() {
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
   const [isGalleryAutoPlaying, setIsGalleryAutoPlaying] = useState(false);
   const galleryScrollRef = useRef<HTMLDivElement>(null);
+
+  // 25 In-House Manufacturing Processes State
+  const [processCategory, setProcessCategory] = useState<string>('all');
+  const [processSearchQuery, setProcessSearchQuery] = useState<string>('');
+  const [selectedProcess, setSelectedProcess] = useState<any | null>(null);
 
   const toggleCardFlip = (id: number) => {
     setFlippedCards((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -1267,7 +1385,311 @@ export default function App() {
     },
   ];
 
-    /* ─── DATA: 10 SECONDARY OPERATIONS (FOR SMOOTH AUTO SLIDER) ─── */
+  /* ─── DATA: 25 IN-HOUSE MANUFACTURING & FINISHING PROCESSES ─── */
+  const manufacturingProcesses = [
+    {
+      id: 1,
+      num: '01',
+      title: 'Raw Material Testing',
+      category: 'testing',
+      categoryLabel: 'Material & Testing',
+      tag: '100% OES Spectrometry',
+      badge: 'Chemical & Mechanical Gate',
+      desc: '100% Optical Emission Spectrometer (OES) chemical alloy verification, tensile elongation checks, microstructure grain analysis, and inclusion grading on all incoming wire rod coils before cold heading.',
+      details: 'Optical Emission Spectrometer (OES), Microstructure Image Analyser, UTM, Digital Hardness Testers.',
+      importance: 'Guarantees zero hidden impurities or off-chemistry coils before cold heading begins.',
+    },
+    {
+      id: 2,
+      num: '02',
+      title: 'Cold Forging',
+      category: 'forging',
+      categoryLabel: 'Forging & Forming',
+      tag: 'India\'s Biggest: M16x375 & M30',
+      badge: 'National Benchmark',
+      desc: 'Multi-station progressive cold heading preserving continuous metallurgical grain flow without cutting metal fibers. Houses India\'s biggest cold forging machines forging lengths up to M16 x 375mm and diameters up to M30.',
+      details: '5-Die & 6-Die Formers, Multi-Station High Speed Bolt Makers, Continuous Uninterrupted Grain Tooling.',
+      importance: 'Unbroken grain lines prevent fatigue fractures under extreme automotive engine & chassis vibrations.',
+    },
+    {
+      id: 3,
+      num: '03',
+      title: 'Hot Forging',
+      category: 'forging',
+      categoryLabel: 'Forging & Forming',
+      tag: 'Heavy Chassis & Large Formats',
+      badge: 'High-Tonnage Induction',
+      desc: 'Induction-heated precision high-tonnage forging for heavy automotive chassis fasteners, large diameter flange bolts, heavy structural anchors, and specialized high-tensile components.',
+      details: 'Induction Billet Heaters, Mechanical & Friction Drop Forging Presses, Flash Trimming Presses.',
+      importance: 'Forms high-density large-diameter fasteners beyond typical cold-heading tonnage limits.',
+    },
+    {
+      id: 4,
+      num: '04',
+      title: 'Warm Forging',
+      category: 'forging',
+      categoryLabel: 'Forging & Forming',
+      tag: 'Complex Alloy Plasticity',
+      badge: 'Controlled Thermal Flow',
+      desc: 'Temperature-controlled forging between ambient and hot forging ranges, reducing forging tonnage while improving material plasticity, dimensional tolerances, and surface smoothness on tough alloy steels.',
+      details: 'Atmosphere-controlled preheaters, progressive warm forming dies with thermal barrier tooling.',
+      importance: 'Enables intricate geometric upsets on tough alloy steels with near-net-shape tolerances.',
+    },
+    {
+      id: 5,
+      num: '05',
+      title: 'Flat Thread Rolling',
+      category: 'thread',
+      categoryLabel: 'Thread & Rolling',
+      tag: 'High-Speed Reciprocal Rolling',
+      badge: 'Work-Hardened Threads',
+      desc: 'High-speed reciprocal flat die thread rolling producing uniform, burnished screw threads with unbroken grain flow lines, superior root radii, and significantly elevated fatigue life.',
+      details: 'High-speed flat die thread rolling machines with laser pitch alignment and automatic bowl feed.',
+      importance: 'Rolled threads are up to 30% stronger than cut threads due to continuous compressive grain flow.',
+    },
+    {
+      id: 6,
+      num: '06',
+      title: 'Circular Thread Rolling',
+      category: 'thread',
+      categoryLabel: 'Thread & Rolling',
+      tag: 'Heavy Diameter & Cylindrical Dies',
+      badge: 'Zero Pitch Error',
+      desc: 'Hydraulic 2-roll and 3-roll cylindrical die rolling for large-diameter studs, lead screws, precision tie-rods, and heavy machine threads with zero pitch error and mirror surface finish.',
+      details: '2-Die and 3-Die Hydraulic Cylindrical Rollers with programmable feed rate and pressure controls.',
+      importance: 'Provides ultra-precise pitch repeatability on large-diameter transmission and chassis studs.',
+    },
+    {
+      id: 7,
+      num: '07',
+      title: 'Heat Treatment (Mesh Belt Furnaces)',
+      category: 'heat',
+      categoryLabel: 'Thermal & Heat Treatment',
+      tag: 'Continuous SCADA Interlocked',
+      badge: 'Grade 8.8, 10.9 & 12.9',
+      desc: 'SCADA-interlocked continuous mesh-belt hardening and tempering furnaces under protective endothermic atmosphere to prevent decarburization, ensuring precise Grade 8.8, 10.9, and 12.9 mechanical properties.',
+      details: 'Continuous mesh belt hardening furnace, oil quench tank, wash station, tempering furnace + SCADA.',
+      importance: 'Locks in extreme tensile strength while preserving vital core impact toughness.',
+    },
+    {
+      id: 8,
+      num: '08',
+      title: 'Acid Zinc Plating',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'High-Brightness Trivalent',
+      badge: 'Bright Lustrous Barrier',
+      desc: 'Automated acid zinc electroplating delivering high-brightness decorative and protective zinc deposits with uniform thickness, excellent throwing power, and blue or yellow trivalent passivation.',
+      details: 'Automated barrel & rack electroplating lines, ultrasonic cleaners, trivalent passivation baths.',
+      importance: 'Delivers aesthetic brilliance and corrosion protection for general automotive and industrial hardware.',
+    },
+    {
+      id: 9,
+      num: '09',
+      title: 'Alkaline Zinc Plating',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'Exceptional Thickness Uniformity',
+      badge: 'Cyanide-Free OEM Spec',
+      desc: 'Cyanide-free alkaline zinc electroplating offering superior thickness distribution across deep recesses, complex geometries, and internal fastener bores for stringent automotive OEM specs.',
+      details: 'PLC-controlled hoist transporters, alkaline zinc electrolyte tanks, continuous chemical dosers.',
+      importance: 'Ensures even plating thickness from head to tip on threaded parts without edge build-up.',
+    },
+    {
+      id: 10,
+      num: '10',
+      title: 'Zinc Nickel Plating (Zn-Ni)',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: '1,500+ Hours Salt Spray NSS',
+      badge: 'Under-the-Hood OEM Standard',
+      desc: 'High-performance Zinc-Nickel alloy electroplating (12-15% Ni) providing extreme corrosion resistance (>1,500 hrs NSS) and high thermal resistance for under-the-hood automotive environments.',
+      details: 'Automated multi-tank Zn-Ni line, continuous temperature/pH logging, passivation and nano-sealers.',
+      importance: 'Premier automotive standard for extreme salt, engine heat, and galvanic corrosion resistance.',
+    },
+    {
+      id: 11,
+      num: '11',
+      title: 'Zinc Phosphating',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'Cold Forming & Oil Retention',
+      badge: 'Micro-Crystalline Conversion',
+      desc: 'Fine-crystal zinc phosphate conversion coating providing robust corrosion protection, excellent oil absorption for wear resistance, and reduced friction for automotive assembly torque tensioning.',
+      details: 'Multi-stage immersion phosphating line, de-greasing baths, activator tanks, hot oil sealers.',
+      importance: 'Provides tight torque-tension repeatability during automated vehicle assembly.',
+    },
+    {
+      id: 12,
+      num: '12',
+      title: 'Manganese Phosphating',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'Heavy Load Anti-Galling',
+      badge: 'Extreme Pressure Lubrication',
+      desc: 'Heavy manganese phosphate coating tailored for gears, engine fasteners, and sliding components to eliminate metal-to-metal galling, scuffing, and seizing under extreme contact pressures.',
+      details: 'Hot manganese phosphate immersion tanks, ultrasonic rinses, heavy rust preventive oil dip.',
+      importance: 'Prevents thread galling and seizing during high-torque power tool assembly.',
+    },
+    {
+      id: 13,
+      num: '13',
+      title: 'Zinc Aluminium Flake Coating',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'Non-Electrolytic Zero Hydrogen Embrittlement',
+      badge: 'Geomet / Dacromet Process',
+      desc: 'Dip-spin Geomet / Dacromet zinc-aluminium flake coating providing extreme anti-corrosion barrier with zero risk of hydrogen embrittlement for ultra-high-tensile Class 10.9 and 12.9 fasteners.',
+      details: 'Automated dip-spin coating centrifuges, continuous convection curing ovens, topcoat applicators.',
+      importance: 'Mandatory for Grade 10.9/12.9 critical safety fasteners where acid embrittlement is unacceptable.',
+    },
+    {
+      id: 14,
+      num: '14',
+      title: 'Copper Tin Plating',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'High Electrical Conductivity',
+      badge: 'Solderable & Anti-Seize',
+      desc: 'Specialized copper and tin electroplating for electrical grounding fasteners, battery terminals, high-conductivity electrical connections, and anti-seize high-temperature applications.',
+      details: 'Electrolytic copper strike and matte/bright tin baths with micro-thickness controls.',
+      importance: 'Low electrical resistance and high solderability for EV battery packs and wiring harness grounds.',
+    },
+    {
+      id: 15,
+      num: '15',
+      title: 'Centerless Grinding',
+      category: 'machining',
+      categoryLabel: 'Precision Secondary & Machining',
+      tag: 'Sub-Micron Dimensional Precision',
+      badge: '±5 µm Tolerance',
+      desc: 'High-precision in-feed and thru-feed centerless grinding achieving mirror shank surface finish and tight cylindrical tolerances down to ±5 microns for dowel pins and valve components.',
+      details: 'High-precision thru-feed and in-feed centerless grinding machines with diamond dressing units.',
+      importance: 'Produces mirror-smooth shanks required for precision locating pins and hydraulic valve studs.',
+    },
+    {
+      id: 16,
+      num: '16',
+      title: 'Auto Grooving',
+      category: 'machining',
+      categoryLabel: 'Precision Secondary & Machining',
+      tag: 'Circlip & O-Ring Retention',
+      badge: 'High-Speed Precision Turning',
+      desc: 'High-speed automatic grooving stations cutting precision snap-ring grooves, circlip recesses, and seal seating channels into fastener shanks with exact depth control.',
+      details: 'Multi-slide automatic grooving machines with optical position sensors and carbide cutters.',
+      importance: 'Ensures snap rings and rubber seals seat securely without slippage or shearing.',
+    },
+    {
+      id: 17,
+      num: '17',
+      title: 'Auto Drilling',
+      category: 'machining',
+      categoryLabel: 'Precision Secondary & Machining',
+      tag: 'Safety Lock-Wire & Cotter Holes',
+      badge: 'Burr-Free Cross Drilling',
+      desc: 'Multi-spindle automated drilling machines performing precision cross-drilling, axial holes, and lock-wire apertures across bolt tips and hex heads with zero burr formation.',
+      details: 'Rotary transfer auto-drilling centers with high-pressure coolant and drill breakage detection.',
+      importance: 'Crucial for aviation and racing safety lock-wiring and automotive cotter pin assembly.',
+    },
+    {
+      id: 18,
+      num: '18',
+      title: 'CNC (Computer Numerical Control)',
+      category: 'machining',
+      categoryLabel: 'Precision Secondary & Machining',
+      tag: 'Custom OEM Contour Turning',
+      badge: 'Multi-Axis Precision',
+      desc: 'Multi-axis CNC lathes and turning centers machining complex custom geometry, eccentric contours, precision steps, and low-volume aerospace / defense prototype fasteners.',
+      details: 'Multi-axis CNC turning centers, live tooling, Renishaw probe metrology, CAD/CAM CAMWorks.',
+      importance: 'Enables rapid turnaround of complex bespoke OEM designs directly from 3D CAD files.',
+    },
+    {
+      id: 19,
+      num: '19',
+      title: 'Optical Sorting',
+      category: 'testing',
+      categoryLabel: 'Material & Testing',
+      tag: '100% 360° Laser & Glass Disc',
+      badge: 'Zero Defect <5 PPM',
+      desc: 'High-speed glass disc optical sorting machines using high-resolution 360° cameras and lasers to verify 100% head dimensions, thread pitch, shank straightness, and surface defects at up to 600 PPM.',
+      details: 'Multi-camera glass disc optical sorters, eddy current integration, pneumatic blow-off gates.',
+      importance: 'Guarantees zero defective or mixed parts reach customer automotive robotic assembly lines.',
+    },
+    {
+      id: 20,
+      num: '20',
+      title: 'Micro Encapsulation (MEC)',
+      category: 'plating',
+      categoryLabel: 'Surface Treatments & Plating',
+      tag: 'Pre-Applied Threadlocker Adhesives',
+      badge: 'Loctite / 3M MEC Process',
+      desc: 'Automated pre-application of microencapsulated adhesives (Loctite / 3M MEC) on bolt threads that activate upon assembly to provide vibration-proof locking and pressure tight sealing.',
+      details: 'Continuous 360° adhesive coating machines with convection drying and visual inspection.',
+      importance: 'Eliminates liquid threadlocker mess on customer assembly lines; locks threads permanently.',
+    },
+    {
+      id: 21,
+      num: '21',
+      title: 'Serration Rolling',
+      category: 'thread',
+      categoryLabel: 'Thread & Rolling',
+      tag: 'Under-Head Anti-Rotation Teeth',
+      badge: 'Vibration-Proof Grip',
+      desc: 'Dedicated rotary and flat rolling of under-head locking serrations, axial splines, and knurls that bite into mating surfaces to prevent loosening under dynamic vibrations.',
+      details: 'Specialized profile serration dies, hydraulic rolling machines with tooth depth monitors.',
+      importance: 'Locks fastener into mating chassis plates, preventing back-off without separate washers.',
+    },
+    {
+      id: 22,
+      num: '22',
+      title: 'Combi / Sem Screw Rolling',
+      category: 'thread',
+      categoryLabel: 'Thread & Rolling',
+      tag: 'Captive Pre-Assembled Washers',
+      badge: 'Speed Assembly Design',
+      desc: 'High-speed automated assembly units loading captive plain, spring, or Belleville washers onto blanks prior to thread rolling, permanently retaining the washer on the screw shank.',
+      details: 'Dual-feed hopper assembly machines feeding washers directly onto headed blanks before rolling.',
+      importance: 'Prevents dropped or missing washers on vehicle assembly lines, slashing assembly time.',
+    },
+    {
+      id: 23,
+      num: '23',
+      title: 'Special Pointing',
+      category: 'machining',
+      categoryLabel: 'Precision Secondary & Machining',
+      tag: 'Robotic Assembly Pilot Lead-In',
+      badge: 'Dog, Cone & Pilot Tips',
+      desc: 'High-speed pointing and chamfering machines carving dog points, cone points, pilot tips, and cup points for effortless guidance during high-speed automated factory robot assembly.',
+      details: 'Automatic pointing lathes with carbide form tools and continuous pneumatic part indexing.',
+      importance: 'Prevents cross-threading when automated robotic nut-runners drive bolts into tapped holes.',
+    },
+    {
+      id: 24,
+      num: '24',
+      title: 'Bending Machines',
+      category: 'machining',
+      categoryLabel: 'Precision Secondary & Machining',
+      tag: 'U-Bolts, J-Bolts & Suspension Hooks',
+      badge: 'Hydraulic & CNC Forming',
+      desc: 'Heavy hydraulic and CNC wire bending machines forming precise U-bolts, eye bolts, J-bolts, and custom chassis bracket hangers with repeatable angles and zero wall thinning.',
+      details: 'CNC 3D wire benders, heavy hydraulic mandrel bending presses with angle compensation.',
+      importance: 'Maintains uniform tensile cross-section across bend radii for heavy truck suspension U-bolts.',
+    },
+    {
+      id: 25,
+      num: '25',
+      title: 'Presses (Stamping & Forming)',
+      category: 'forging',
+      categoryLabel: 'Forging & Forming',
+      tag: 'Heavy Precision Stamping',
+      badge: 'Washers, Clips & Brackets',
+      desc: 'High-tonnage mechanical and hydraulic stamping presses manufacturing precision washers, lock clips, automotive stamped brackets, retaining plates, and Belleville disc springs.',
+      details: 'Progressive stamping presses (30T to 250T), de-coilers, straighteners, and carbide tooling dies.',
+      importance: 'Produces high-precision spring washers and stamped automotive bracketry under one roof.',
+    },
+  ];
+
+  /* ─── DATA: 10 SECONDARY OPERATIONS (FOR SMOOTH AUTO SLIDER) ─── */
   const secondaryOperations = [
     { num: '01', title: 'Automatic Tapping', desc: 'Fast, automated tapping to create smooth, clean internal threads inside flange and weld nuts without metal burrs.' },
     { num: '02', title: 'Slot Milling', desc: 'Precision carving of screwdriver slots and castle nut slots so drivers and safety pins fit like a glove.' },
@@ -1281,31 +1703,49 @@ export default function App() {
     { num: '10', title: 'Precision Cross-Drilling', desc: 'Drilling clean tiny holes across bolt tips for safety cotter pins or safety lock-wires.' },
   ];
 
-  /* ─── CLIENT NAMES ─── */
+  /* ─── CLIENT LOGOS (38 OEM & TIER-1 CLIENTS) ─── */
   const customersTrack1 = [
-    { name: 'TATA MOTORS', tier: 'Commercial & Passenger Cars' },
-    { name: 'MAHINDRA & MAHINDRA', tier: 'SUVs & Farm Tractors' },
-    { name: 'BOSCH INDIA', tier: 'Fuel & Braking Systems' },
-    { name: 'BAJAJ AUTO', tier: 'Motorcycles & 3-Wheelers' },
-    { name: 'BHARAT FORGE', tier: 'Global Powertrain Systems' },
-    { name: 'ASHOK LEYLAND', tier: 'Heavy Commercial Trucks & Buses' },
-    { name: 'JOHN DEERE', tier: 'Agricultural Machinery' },
-    { name: 'TVS MOTOR COMPANY', tier: 'Two-Wheeler Platform' },
-    { name: 'ENDURANCE TECHNOLOGIES', tier: 'Suspension & Transmission' },
-    { name: 'CUMMINS INDIA', tier: 'Diesel & Gas Engines' },
+    { name: 'Tata Motors', logo: '/logo/tata-motors-logo.jpeg' },
+    { name: 'Force Motors', logo: '/logo/force-motor.jpeg' },
+    { name: 'Cummins', logo: '/logo/cummins.jpeg' },
+    { name: 'FIAT', logo: '/logo/fiat.jpeg' },
+    { name: 'VinFast', logo: '/logo/vinfast.jpeg' },
+    { name: 'SANY', logo: '/logo/sany.jpeg' },
+    { name: 'VST Tillers Tractors', logo: '/logo/vst.jpeg' },
+    { name: 'JBM Group', logo: '/logo/jbm.jpeg' },
+    { name: 'TMTL - Eicher Engines', logo: '/logo/tmtl.jpeg' },
+    { name: 'Sharda Motor', logo: '/logo/sharda.jpeg' },
+    { name: 'Automann USA', logo: '/logo/automann.jpeg' },
+    { name: 'Craftsman Automation', logo: '/logo/craftman.jpeg' },
+    { name: 'Tata International', logo: '/logo/tata-international.jpeg' },
+    { name: 'FRAP Italy', logo: '/logo/frap-italy.jpeg' },
+    { name: 'Gestamp', logo: '/logo/genstamp.jpeg' },
+    { name: 'CIE Automotive', logo: '/logo/cie.jpeg' },
+    { name: 'Lear Corporation', logo: '/logo/lear.jpeg' },
+    { name: 'Parker Hannifin', logo: '/logo/parker.jpeg' },
+    { name: 'Kinetic Engineering', logo: '/logo/kinetic.jpeg' },
   ];
 
   const customersTrack2 = [
-    { name: 'ESCORTS KUBOTA', tier: 'Agricultural Tractors' },
-    { name: 'DANA CORPORATION', tier: 'Driveline & E-Propulsion' },
-    { name: 'GABRIEL INDIA', tier: 'Vehicle Ride Control' },
-    { name: 'BREMBO BRAKES', tier: 'High Performance Brakes' },
-    { name: 'MARUTI SUZUKI TIER-1', tier: 'Chassis & Subframe Fasteners' },
-    { name: 'HERO MOTOCORP', tier: 'Motorcycle Assemblies' },
-    { name: 'FORCE MOTORS', tier: 'Commercial & Utility Vans' },
-    { name: 'EICHER COMMERCIAL', tier: 'Trucks & School Buses' },
-    { name: 'GREAVES COTTON', tier: 'Engines & E-Mobility' },
-    { name: 'UNITED STATES EXPORT', tier: 'Heavy Industrial Machinery' },
+    { name: 'Mitsubishi Electric', logo: '/logo/mitsubhi.jpeg' },
+    { name: 'IAC Group', logo: '/logo/iac.jpeg' },
+    { name: 'RSB Transmissions', logo: '/logo/rsb.jpeg' },
+    { name: 'Panse Group', logo: '/logo/panse.jpeg' },
+    { name: 'Mungi Engineers', logo: '/logo/mungi.jpeg' },
+    { name: 'Munjal Showa', logo: '/logo/munjal.jpeg' },
+    { name: 'Kay Jay Forgings', logo: '/logo/kay-jay.jpeg' },
+    { name: 'Takshi Auto', logo: '/logo/takshi.jpeg' },
+    { name: 'Autoline Industries', logo: '/logo/autoine.jpeg' },
+    { name: 'Rucha Group', logo: '/logo/ruchaa.jpeg' },
+    { name: 'Mahabal Auto', logo: '/logo/mahabal.jpeg' },
+    { name: 'Pooja Castings', logo: '/logo/pooja-casting.jpeg' },
+    { name: 'Rollon Hydraulics', logo: '/logo/rollon.jpeg' },
+    { name: 'Victoria', logo: '/logo/victoria.jpeg' },
+    { name: 'Gloria', logo: '/logo/gloria.jpeg' },
+    { name: 'MSL Driveline', logo: '/logo/msl.jpeg' },
+    { name: 'ALF Engineering', logo: '/logo/alf.jpeg' },
+    { name: 'Aakar Foundry', logo: '/logo/aakarr.jpeg' },
+    { name: 'Belrise Industries', logo: '/logo/OIP (3).jpeg' },
   ];
 
   /* ─── 12 PLANT AREA & FACILITY FLIP CARDS ─── */
@@ -1577,6 +2017,27 @@ export default function App() {
     return matchesCat && matchesSearch;
   });
 
+  /* ─── FILTER 25 MANUFACTURING PROCESSES ─── */
+  const filteredProcesses = manufacturingProcesses.filter((proc) => {
+    const matchesCategory =
+      processCategory === 'all' ||
+      (processCategory === 'forging' && proc.category === 'forging') ||
+      (processCategory === 'thread' && proc.category === 'thread') ||
+      (processCategory === 'heat_plating' && (proc.category === 'heat' || proc.category === 'plating')) ||
+      (processCategory === 'machining' && proc.category === 'machining') ||
+      (processCategory === 'testing' && proc.category === 'testing');
+
+    const matchesSearch =
+      processSearchQuery.trim() === '' ||
+      proc.title.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
+      proc.desc.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
+      proc.details.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
+      proc.tag.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
+      proc.badge.toLowerCase().includes(processSearchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+
     /* ─────────────────────────── RENDER DEDICATED CONTACT US & 3D MAP VIEW ─────────────────────────── */
   if (currentView === 'contact') {
     return (
@@ -1591,6 +2052,11 @@ export default function App() {
         <ProductDetailModal
           product={selectedCatalogItem}
           onClose={() => setSelectedCatalogItem(null)}
+          onOpenQuote={(name) => openQuote(name)}
+        />
+        <ProcessDetailModal
+          process={selectedProcess}
+          onClose={() => setSelectedProcess(null)}
           onOpenQuote={(name) => openQuote(name)}
         />
       </div>
@@ -1610,6 +2076,11 @@ export default function App() {
         <ProductDetailModal
           product={selectedCatalogItem}
           onClose={() => setSelectedCatalogItem(null)}
+          onOpenQuote={(name) => openQuote(name)}
+        />
+        <ProcessDetailModal
+          process={selectedProcess}
+          onClose={() => setSelectedProcess(null)}
           onOpenQuote={(name) => openQuote(name)}
         />
       </div>
@@ -1643,19 +2114,23 @@ export default function App() {
               <span className="font-display font-black text-[13px] sm:text-[15px] lg:text-[16px] tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight uppercase">
                 Hindustan Fasteners
               </span>
-              <span className="text-[10px] sm:text-[11.5px] lg:text-[12px] font-mono font-bold text-blue-900 leading-tight uppercase tracking-wider">
+              <span className="font-display font-black text-[13px] sm:text-[15px] lg:text-[16px] tracking-wide text-gray-950 group-hover:text-blue-600 transition leading-tight uppercase">
                 Precision Forging &amp; Stamping
               </span>
-              <span className="text-[9.5px] sm:text-[11px] lg:text-[11.5px] font-sans text-gray-500 font-medium italic leading-tight">
+              <span className="text-[9.5px] sm:text-[11px] lg:text-[11.5px] font-sans text-gray-500 font-medium italic leading-tight mt-0.5">
                 Indian at heart with world class part
               </span>
             </div>
           </a>
 
-          {/* Nav Links — Sequence: About -> Process -> Quality/Photos -> Catalogue -> Contact Us */}
+          {/* Nav Links — Sequence: About -> 25 Processes -> Process Pipeline -> Quality/Photos -> Catalogue -> Contact Us */}
           <nav className="hidden md:flex items-center gap-5 text-[13px] font-semibold text-gray-600">
             <a href="#overview" className="hover:text-blue-600 transition-colors">About</a>
-            <a href="#pipeline" className="hover:text-blue-600 transition-colors">Process</a>
+            <a href="#processes" className="hover:text-blue-600 transition-colors font-bold text-blue-900 flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-blue-600" />
+              <span>Processes (25)</span>
+            </a>
+            <a href="#pipeline" className="hover:text-blue-600 transition-colors">Pipeline</a>
             <a href="#gallery" className="hover:text-blue-600 transition-colors">Quality / Photos</a>
             <button
               onClick={openCatalogPage}
@@ -1691,13 +2166,16 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile Dropdown — Sequence: About -> Process -> Quality/Photos -> Catalogue -> Contact Us */}
+        {/* Mobile Dropdown — Sequence: About -> 25 Processes -> Process Pipeline -> Quality/Photos -> Catalogue -> Contact Us */}
         {menuOpen && (
           <div className="md:hidden bg-white border-t border-gray-200 px-5 py-4 space-y-3.5 shadow-xl animate-fadeIn">
             <a href="#overview" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">About Us</a>
-            <a href="#pipeline" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">Process Pipeline</a>
+            <a href="#processes" onClick={() => setMenuOpen(false)} className="block text-blue-900 font-bold text-sm flex items-center justify-between">
+              <span>25 Manufacturing Processes</span>
+              <span className="text-[10px] bg-blue-100 text-blue-900 px-2 py-0.5 rounded font-mono font-bold">25 Suite</span>
+            </a>
+            <a href="#pipeline" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">10-Stage Pipeline</a>
             <a href="#gallery" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">Quality / Photos</a>
-            <a href="#secondary" onClick={() => setMenuOpen(false)} className="block text-gray-800 font-semibold text-sm">In-House Operations</a>
             <button
               onClick={() => { setMenuOpen(false); openCatalogPage(); }}
               className="block w-full text-left text-gray-900 font-bold text-sm"
@@ -1882,44 +2360,40 @@ export default function App() {
         </div>
 
         {/* Track 1: Left to Right Marquee */}
-        <div className="relative w-full overflow-hidden py-2">
-          <div className="animate-marquee-ltr gap-4">
+        <div className="relative w-full overflow-hidden py-3">
+          <div className="animate-marquee-ltr gap-5 flex items-center">
             {[...customersTrack1, ...customersTrack1, ...customersTrack1].map((client, idx) => (
               <div
                 key={`t1-${idx}`}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-blue-400 hover:bg-white/10 transition-all duration-300 whitespace-nowrap shadow-sm group cursor-default"
+                className="w-40 sm:w-48 h-20 sm:h-24 p-3 sm:p-4 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-md hover:shadow-xl hover:shadow-cyan-500/20 border border-slate-200/90 hover:border-cyan-400 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                title={client.name}
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(56,189,248,0.7)] group-hover:scale-125 transition-transform" />
-                <div>
-                  <div className="font-display font-black text-sm tracking-wide text-white group-hover:text-cyan-300 transition-colors">
-                    {client.name}
-                  </div>
-                  <div className="text-[10px] font-mono text-gray-400 ">
-                    {client.tier}
-                  </div>
-                </div>
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
         </div>
 
         {/* Track 2: Right to Left Marquee */}
-        <div className="relative w-full overflow-hidden py-2 mt-2">
-          <div className="animate-marquee-rtl gap-4">
+        <div className="relative w-full overflow-hidden py-3 mt-3">
+          <div className="animate-marquee-rtl gap-5 flex items-center">
             {[...customersTrack2, ...customersTrack2, ...customersTrack2].map((client, idx) => (
               <div
                 key={`t2-${idx}`}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400 hover:bg-white/10 transition-all duration-300 whitespace-nowrap shadow-sm group cursor-default"
+                className="w-40 sm:w-48 h-20 sm:h-24 p-3 sm:p-4 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-md hover:shadow-xl hover:shadow-cyan-500/20 border border-slate-200/90 hover:border-cyan-400 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                title={client.name}
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.7)] group-hover:scale-125 transition-transform" />
-                <div>
-                  <div className="font-display font-black text-sm tracking-wide text-white group-hover:text-cyan-300 transition-colors">
-                    {client.name}
-                  </div>
-                  <div className="text-[10px] font-mono text-gray-400 ">
-                    {client.tier}
-                  </div>
-                </div>
+                <img
+                  src={client.logo}
+                  alt={client.name}
+                  className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
@@ -1927,7 +2401,7 @@ export default function App() {
 
         <div className="text-center mt-6">
           <span className="text-[11px] font-mono text-gray-500 tracking-widest">
-            AUTOMATIC CONTINUOUS SCROLLER · HOVER OVER ANY CLIENT CARD TO INSPECT
+            AUTOMATIC CONTINUOUS OEM LOGO STREAM · 38+ TIER-1 GLOBAL CLIENTS
           </span>
         </div>
       </section>
@@ -2522,8 +2996,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* ════════════ IN-HOUSE SECONDARY OPERATIONS: AUTO MOVING SLIDER (LIGHT THEME) ════════════ */}
-      <section id="secondary" className="py-20 sm:py-28 bg-white border-t border-gray-200 relative overflow-hidden">
+      {/* ════════════ 25 IN-HOUSE MANUFACTURING & FINISHING PROCESSES (CONTINUOUS SCROLLER) ════════════ */}
+      <section id="processes" className="py-16 sm:py-24 bg-white border-t border-gray-200 relative overflow-hidden">
+        {/* Anchor compatibility for existing #secondary links */}
+        <div id="secondary" className="absolute -top-20" />
+
         {/* Floating Bolt & Nut SVG Watermarks & Animations */}
         <WatermarkBolt className="-left-20 -bottom-20" size={420} rotation={20} />
         <div className="absolute top-10 right-12 pointer-events-none animate-float-3 hidden sm:block z-0">
@@ -2533,54 +3010,80 @@ export default function App() {
           <NutSvg size={75} opacity={0.8} />
         </div>
 
-        <div className="container-custom mb-10 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-3">
-            <Cog className="w-3.5 h-3.5 text-blue-600" /> 100% In-House Managed Control
+        <div className="container-custom relative z-10 mb-8 sm:mb-10 text-center">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-3 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            <span>100% In-House Integrated Manufacturing Suite · Zero Subcontractors</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-gray-950">
-            IN-HOUSE SECONDARY OPERATIONS
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-gray-950 mb-3">
+            25 WORLD-CLASS MANUFACTURING &amp; FINISHING PROCESSES
           </h2>
-          <p className="text-xs sm:text-sm text-gray-600 max-w-xl mx-auto mt-1.5">
-            100% in-house secondary processing with zero subcontractor dependency.
+          <p className="text-xs sm:text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Complete fastener engineering under one roof — from chemical spectrometry &amp; India's largest cold forging (M16x375mm &amp; M30) to continuous SCADA heat treatment and 1,500+ hour corrosion protection.
           </p>
         </div>
 
-        {/* Automatic Continuous Moving Slider (Marquee style with hover pause) */}
-        <div className="relative w-full overflow-hidden py-4">
-          <div className="animate-marquee-ltr gap-5">
-            {[...secondaryOperations, ...secondaryOperations, ...secondaryOperations].map((op, idx) => (
+        {/* ─── CONTINUOUS AUTOMATIC MARQUEE SLIDER OF ALL 25 PROCESSES ─── */}
+        <div className="relative w-full overflow-hidden py-3">
+          <div className="animate-marquee-ltr gap-4">
+            {[...manufacturingProcesses, ...manufacturingProcesses].map((proc, idx) => (
               <div
-                key={`op-${idx}`}
-                className="w-64 sm:w-80 p-4 sm:p-6 rounded-2xl bg-[#FAFAF9] border border-gray-200 hover:border-blue-400 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between flex-shrink-0 shadow-sm group"
+                key={`proc-ltr-${proc.id}-${idx}`}
+                onClick={() => setSelectedProcess(proc)}
+                className={`w-72 sm:w-80 p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between flex-shrink-0 shadow-sm hover:shadow-xl group cursor-pointer select-none ${
+                  proc.id === 2
+                    ? 'bg-gradient-to-br from-blue-50 via-white to-amber-50/50 border-2 border-amber-400 hover:border-amber-500 ring-2 ring-amber-300/30'
+                    : 'bg-[#FAFAF9] border-gray-200 hover:border-blue-400 hover:bg-white'
+                }`}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 font-mono font-bold text-xs flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      {op.num}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`w-8 h-8 rounded-xl font-mono font-bold text-xs flex items-center justify-center transition-colors ${
+                      proc.id === 2
+                        ? 'bg-amber-400 text-slate-950 font-black shadow-xs'
+                        : 'bg-blue-50 border border-blue-200 text-blue-900 group-hover:bg-blue-600 group-hover:text-white'
+                    }`}>
+                      #{proc.num}
                     </span>
-                    <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded font-bold flex items-center gap-1">
-                      <Check className="w-3 h-3" /> In-House
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full font-bold flex items-center gap-1 ${
+                      proc.id === 2
+                        ? 'bg-amber-100 border border-amber-300 text-amber-900 font-black'
+                        : 'bg-emerald-50 border border-emerald-300 text-emerald-800'
+                    }`}>
+                      <Check className="w-3 h-3" /> {proc.id === 2 ? '★ National Benchmark' : '100% In-House'}
                     </span>
                   </div>
-                  <h3 className="font-display font-bold text-base text-gray-950 mb-2 group-hover:text-blue-600 transition-colors">
-                    {op.title}
+
+                  <h3 className="font-display font-bold text-sm sm:text-base text-gray-950 group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
+                    {proc.title}
                   </h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    {op.desc}
+
+                  <div className="mb-2">
+                    <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
+                      proc.id === 2
+                        ? 'bg-amber-400/20 text-amber-950 border border-amber-400/40'
+                        : 'bg-blue-50 text-blue-900 border border-blue-200'
+                    }`}>
+                      {proc.tag}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                    {proc.desc}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-gray-200 flex items-center justify-between text-[10px] font-mono text-gray-500">
-                  <span>Zero Sub-Contractors</span>
-                  <span className="text-blue-600 font-bold">Strict Quality Control</span>
+                <div className="mt-4 pt-3 border-t border-gray-200 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-gray-400 truncate max-w-[150px]">{proc.categoryLabel}</span>
+                  <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">Inspect →</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="hidden sm:block text-center mt-6 text-xs font-mono text-gray-500">
-          Continuous automatic slider. Hover over any card to pause and read details.
+        <div className="text-center mt-4 text-[11px] font-mono text-gray-500">
+          ✦ 100% In-House Operations · Hover to pause conveyor · Click any capability card to inspect technical specifications
         </div>
       </section>
 
@@ -2632,14 +3135,14 @@ export default function App() {
                 className="w-64 sm:w-80 p-3 sm:p-4 rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between flex-shrink-0 shadow-sm cursor-pointer group"
               >
                 <div>
-                  <div className="w-full h-44 rounded-xl bg-[#FAFAF9] p-3 flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-blue-300 relative mb-3">
+                  <div className="w-full h-48 sm:h-52 rounded-2xl bg-gradient-to-b from-slate-50/90 via-white to-slate-100/70 p-2 sm:p-3 flex items-center justify-center relative mb-3 border border-slate-200/80 group-hover:border-blue-400 group-hover:shadow-md transition-all duration-300 overflow-hidden">
                     <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
-                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-contain filter drop-shadow-md group-hover:drop-shadow-xl scale-115 group-hover:scale-125 transition-all duration-300 relative z-10"
                     />
-                    <span className="absolute top-2 right-2 bg-gray-950/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-cyan-300 font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      Open Details
+                    <span className="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 font-bold opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm z-20 flex items-center gap-1">
+                      <Eye className="w-3 h-3" /> Details
                     </span>
                   </div>
 
@@ -2675,14 +3178,14 @@ export default function App() {
                 className="w-64 sm:w-80 p-3 sm:p-4 rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between flex-shrink-0 shadow-sm cursor-pointer group"
               >
                 <div>
-                  <div className="w-full h-44 rounded-xl bg-[#FAFAF9] p-3 flex items-center justify-center overflow-hidden border border-gray-200 group-hover:border-blue-300 relative mb-3">
+                  <div className="w-full h-48 sm:h-52 rounded-2xl bg-gradient-to-b from-slate-50/90 via-white to-slate-100/70 p-2 sm:p-3 flex items-center justify-center relative mb-3 border border-slate-200/80 group-hover:border-blue-400 group-hover:shadow-md transition-all duration-300 overflow-hidden">
                     <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
-                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-contain filter drop-shadow-md group-hover:drop-shadow-xl scale-115 group-hover:scale-125 transition-all duration-300 relative z-10"
                     />
-                    <span className="absolute top-2 right-2 bg-gray-950/80 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-cyan-300 font-bold group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                      Open Details
+                    <span className="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 font-bold opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm z-20 flex items-center gap-1">
+                      <Eye className="w-3 h-3" /> Details
                     </span>
                   </div>
 
@@ -3016,6 +3519,11 @@ export default function App() {
       <ProductDetailModal
         product={selectedCatalogItem}
         onClose={() => setSelectedCatalogItem(null)}
+        onOpenQuote={(name) => openQuote(name)}
+      />
+      <ProcessDetailModal
+        process={selectedProcess}
+        onClose={() => setSelectedProcess(null)}
         onOpenQuote={(name) => openQuote(name)}
       />
 
