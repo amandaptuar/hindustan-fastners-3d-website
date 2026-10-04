@@ -547,17 +547,13 @@ const ProductDetailModal: React.FC<{
 
         {/* Two-Column Responsive Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start mb-6">
-          {/* Left Column: Big Studio Image */}
-          <div className="md:col-span-6 bg-gradient-to-b from-slate-50/90 via-white to-slate-100/80 rounded-2xl overflow-hidden p-4 sm:p-6 flex flex-col items-center justify-center border border-slate-200 shadow-sm relative group min-h-[320px]">
+          {/* Left Column: Direct Product Image — Clean No Background */}
+          <div className="md:col-span-6 flex flex-col items-center justify-center p-4 min-h-[260px]">
             <img loading="lazy" decoding="async"
               src={product.img}
               alt={product.name}
-              className="max-h-72 sm:max-h-80 w-full object-contain filter drop-shadow-2xl scale-110 group-hover:scale-120 transition-transform duration-500 relative z-10"
+              className="max-h-72 sm:max-h-80 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200 text-[11px] font-mono text-slate-700 shadow-sm relative z-10">
-              <Sparkles className="w-3 h-3 text-blue-600" />
-              <span>3D Precision Engineered Studio Showcase</span>
-            </div>
           </div>
 
           {/* Right Column: Engineering Details */}
@@ -1014,16 +1010,13 @@ const DedicatedCatalogPage: React.FC<{
                 className="rounded-2xl bg-white border border-gray-200 hover:border-blue-400 p-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer flex flex-col justify-between group shadow-sm"
               >
                 <div>
-                  {/* Clean 3D Studio Showcase */}
-                  <div className="w-full h-52 sm:h-56 rounded-2xl bg-gradient-to-b from-slate-50/90 via-white to-slate-100/70 p-2 sm:p-3 flex items-center justify-center relative mb-4 border border-slate-200/80 group-hover:border-blue-400 group-hover:shadow-lg transition-all duration-300 overflow-hidden">
+                  {/* Direct Product Image — Clean No Background */}
+                  <div className="w-full h-44 sm:h-48 flex items-center justify-center relative mb-3">
                     <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
-                      className="w-full h-full object-contain filter drop-shadow-md group-hover:drop-shadow-xl scale-115 group-hover:scale-125 transition-all duration-300 relative z-10"
+                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
-                    <span className="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 font-bold opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm z-20 flex items-center gap-1">
-                      <Eye className="w-3 h-3" /> Inspect
-                    </span>
                   </div>
 
                   {/* Little Info of Products */}
@@ -1042,16 +1035,13 @@ const DedicatedCatalogPage: React.FC<{
                   </div>
                 </div>
 
-                <div className="mt-2 pt-3 border-t border-gray-100 flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-gray-500 line-clamp-1 max-w-[140px]">
+                <div className="mt-2 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-[10px] font-mono text-gray-500 line-clamp-1 max-w-[160px]">
                     {item.use}
                   </span>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); onSelectProduct(item); }}
-                    className="px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-600 text-blue-900 hover:text-white text-[11px] font-mono font-bold transition flex items-center gap-1 border border-blue-200"
-                  >
-                    Dialogue Box →
-                  </button>
+                  <span className="text-blue-600 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Inspect →
+                  </span>
                 </div>
               </div>
             ))}
@@ -1703,10 +1693,9 @@ export default function App() {
     { num: '10', title: 'Precision Cross-Drilling', desc: 'Drilling clean tiny holes across bolt tips for safety cotter pins or safety lock-wires.' },
   ];
 
-  /* ─── CLIENT LOGOS (38 OEM & TIER-1 CLIENTS) ─── */
+  /* ─── CLIENT LOGOS (35 OEM & TIER-1 CLIENTS) ─── */
   const customersTrack1 = [
     { name: 'Tata Motors', logo: '/logo/tata-motors-logo.jpeg' },
-    { name: 'Force Motors', logo: '/logo/force-motor.jpeg' },
     { name: 'Cummins', logo: '/logo/cummins.jpeg' },
     { name: 'FIAT', logo: '/logo/fiat.jpeg' },
     { name: 'VinFast', logo: '/logo/vinfast.jpeg' },
@@ -1719,11 +1708,11 @@ export default function App() {
     { name: 'Craftsman Automation', logo: '/logo/craftman.jpeg' },
     { name: 'Tata International', logo: '/logo/tata-international.jpeg' },
     { name: 'FRAP Italy', logo: '/logo/frap-italy.jpeg' },
-    { name: 'Gestamp', logo: '/logo/genstamp.jpeg' },
     { name: 'CIE Automotive', logo: '/logo/cie.jpeg' },
     { name: 'Lear Corporation', logo: '/logo/lear.jpeg' },
     { name: 'Parker Hannifin', logo: '/logo/parker.jpeg' },
     { name: 'Kinetic Engineering', logo: '/logo/kinetic.jpeg' },
+    { name: 'Belrise Industries', logo: '/logo/OIP (3).jpeg' },
   ];
 
   const customersTrack2 = [
@@ -1740,12 +1729,10 @@ export default function App() {
     { name: 'Mahabal Auto', logo: '/logo/mahabal.jpeg' },
     { name: 'Pooja Castings', logo: '/logo/pooja-casting.jpeg' },
     { name: 'Rollon Hydraulics', logo: '/logo/rollon.jpeg' },
-    { name: 'Victoria', logo: '/logo/victoria.jpeg' },
     { name: 'Gloria', logo: '/logo/gloria.jpeg' },
     { name: 'MSL Driveline', logo: '/logo/msl.jpeg' },
     { name: 'ALF Engineering', logo: '/logo/alf.jpeg' },
     { name: 'Aakar Foundry', logo: '/logo/aakarr.jpeg' },
-    { name: 'Belrise Industries', logo: '/logo/OIP (3).jpeg' },
   ];
 
   /* ─── 12 PLANT AREA & FACILITY FLIP CARDS ─── */
@@ -2360,18 +2347,18 @@ export default function App() {
         </div>
 
         {/* Track 1: Left to Right Marquee */}
-        <div className="relative w-full overflow-hidden py-3">
-          <div className="animate-marquee-ltr gap-5 flex items-center">
+        <div className="relative w-full overflow-hidden py-4">
+          <div className="animate-marquee-ltr gap-6 flex items-center">
             {[...customersTrack1, ...customersTrack1, ...customersTrack1].map((client, idx) => (
               <div
                 key={`t1-${idx}`}
-                className="w-40 sm:w-48 h-20 sm:h-24 p-3 sm:p-4 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-md hover:shadow-xl hover:shadow-cyan-500/20 border border-slate-200/90 hover:border-cyan-400 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                className="w-44 sm:w-52 h-20 sm:h-24 flex items-center justify-center flex-shrink-0 group cursor-pointer hover:scale-110 transition-transform duration-300"
                 title={client.name}
               >
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain filter transition-all duration-300 group-hover:brightness-110"
                   loading="lazy"
                 />
               </div>
@@ -2380,18 +2367,18 @@ export default function App() {
         </div>
 
         {/* Track 2: Right to Left Marquee */}
-        <div className="relative w-full overflow-hidden py-3 mt-3">
-          <div className="animate-marquee-rtl gap-5 flex items-center">
+        <div className="relative w-full overflow-hidden py-4 mt-2">
+          <div className="animate-marquee-rtl gap-6 flex items-center">
             {[...customersTrack2, ...customersTrack2, ...customersTrack2].map((client, idx) => (
               <div
                 key={`t2-${idx}`}
-                className="w-40 sm:w-48 h-20 sm:h-24 p-3 sm:p-4 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 shadow-md hover:shadow-xl hover:shadow-cyan-500/20 border border-slate-200/90 hover:border-cyan-400 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                className="w-44 sm:w-52 h-20 sm:h-24 flex items-center justify-center flex-shrink-0 group cursor-pointer hover:scale-110 transition-transform duration-300"
                 title={client.name}
               >
                 <img
                   src={client.logo}
                   alt={client.name}
-                  className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-contain filter transition-all duration-300 group-hover:brightness-110"
                   loading="lazy"
                 />
               </div>
@@ -2401,7 +2388,7 @@ export default function App() {
 
         <div className="text-center mt-6">
           <span className="text-[11px] font-mono text-gray-500 tracking-widest">
-            AUTOMATIC CONTINUOUS OEM LOGO STREAM · 38+ TIER-1 GLOBAL CLIENTS
+            AUTOMATIC CONTINUOUS OEM LOGO STREAM · 35+ TIER-1 GLOBAL CLIENTS
           </span>
         </div>
       </section>
@@ -3135,15 +3122,13 @@ export default function App() {
                 className="w-64 sm:w-80 p-3 sm:p-4 rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between flex-shrink-0 shadow-sm cursor-pointer group"
               >
                 <div>
-                  <div className="w-full h-48 sm:h-52 rounded-2xl bg-gradient-to-b from-slate-50/90 via-white to-slate-100/70 p-2 sm:p-3 flex items-center justify-center relative mb-3 border border-slate-200/80 group-hover:border-blue-400 group-hover:shadow-md transition-all duration-300 overflow-hidden">
+                  {/* Direct Product Image — Clean No Background */}
+                  <div className="w-full h-40 sm:h-44 flex items-center justify-center relative mb-3">
                     <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
-                      className="w-full h-full object-contain filter drop-shadow-md group-hover:drop-shadow-xl scale-115 group-hover:scale-125 transition-all duration-300 relative z-10"
+                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
-                    <span className="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 font-bold opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm z-20 flex items-center gap-1">
-                      <Eye className="w-3 h-3" /> Details
-                    </span>
                   </div>
 
                   <span className="text-[10px] font-mono text-blue-600 font-bold tracking-wider block mb-1">
@@ -3178,15 +3163,13 @@ export default function App() {
                 className="w-64 sm:w-80 p-3 sm:p-4 rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between flex-shrink-0 shadow-sm cursor-pointer group"
               >
                 <div>
-                  <div className="w-full h-48 sm:h-52 rounded-2xl bg-gradient-to-b from-slate-50/90 via-white to-slate-100/70 p-2 sm:p-3 flex items-center justify-center relative mb-3 border border-slate-200/80 group-hover:border-blue-400 group-hover:shadow-md transition-all duration-300 overflow-hidden">
+                  {/* Direct Product Image — Clean No Background */}
+                  <div className="w-full h-40 sm:h-44 flex items-center justify-center relative mb-3">
                     <img loading="lazy" decoding="async"
                       src={item.img}
                       alt={item.name}
-                      className="w-full h-full object-contain filter drop-shadow-md group-hover:drop-shadow-xl scale-115 group-hover:scale-125 transition-all duration-300 relative z-10"
+                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
-                    <span className="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-mono text-cyan-300 font-bold opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm z-20 flex items-center gap-1">
-                      <Eye className="w-3 h-3" /> Details
-                    </span>
                   </div>
 
                   <span className="text-[10px] font-mono text-blue-600 font-bold tracking-wider block mb-1">
