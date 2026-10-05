@@ -60,7 +60,7 @@ export const ContactUsPage: React.FC<{
                 Precision Forging &amp; Stamping
               </span>
               <span className="text-[8.5px] sm:text-[10px] font-sans text-gray-500 italic leading-tight mt-0.5">
-                Indian at heart with world class part
+                &ldquo;Indian At Heart, World Class Parts&rdquo;
               </span>
             </div>
           </button>
@@ -108,13 +108,13 @@ export const ContactUsPage: React.FC<{
             </a>
 
             {/* Phone */}
-            <a href="tel:+912532350890" className="p-3 sm:p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3 shadow-sm active:scale-[0.98] transition">
+            <a href="tel:+917888013673" className="p-3 sm:p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3 shadow-sm active:scale-[0.98] transition">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center flex-shrink-0">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div>
                 <span className="text-[10px] text-gray-500 font-semibold block uppercase">Call Us</span>
-                <span className="font-bold text-emerald-900 text-sm block">+91 (253) 235 0890</span>
+                <span className="font-bold text-emerald-900 text-sm block">+91 78880 13673</span>
               </div>
             </a>
 
@@ -315,8 +315,8 @@ export const ContactUsPage: React.FC<{
               <p className="text-gray-600 leading-relaxed mb-2 text-[11px] sm:text-xs">
                 Plot 42, 43, 58 &amp; 112, Satpur MIDC, Nashik - 422 007, Maharashtra
               </p>
-              <a href="tel:+912532350890" className="text-gray-700 font-mono text-[11px] pt-2 border-t border-gray-100 flex items-center gap-1">
-                <Phone className="w-3 h-3 text-blue-600" /> +91 (253) 235 0890
+              <a href="tel:+917888013673" className="text-gray-700 font-mono text-[11px] pt-2 border-t border-gray-100 flex items-center gap-1">
+                <Phone className="w-3 h-3 text-blue-600" /> +91 78880 13673
               </a>
             </div>
 
