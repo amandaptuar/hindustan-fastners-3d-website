@@ -41,6 +41,7 @@ import {
   Briefcase,
 } from 'lucide-react';
 import catalogData from './fasteners_catalog.json';
+import { manufacturingProcesses } from './data/manufacturingProcesses';
 const InteractiveUnboltScroll = React.lazy(() =>
   import('./components/InteractiveUnboltScroll').then((m) => ({ default: m.InteractiveUnboltScroll }))
 );
@@ -634,7 +635,7 @@ const ProcessDetailModal: React.FC<{
 }> = ({ process, onClose, onOpenQuote }) => {
   if (!process) return null;
 
-  const isNationalBenchmark = process.id === 2;
+  const isNationalBenchmark = process.id === 3;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 bg-black/70 backdrop-blur-md animate-fadeIn" onClick={onClose}>
@@ -654,14 +655,19 @@ const ProcessDetailModal: React.FC<{
         {/* Modal Header */}
         <div className="flex flex-wrap items-center gap-2 mb-3">
           <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-mono font-black shadow-xs">
-            Process #{process.num} of 25
+            Stage {process.buttonCode || `ST-${process.num}`} (#{process.num} of 25)
           </span>
           <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold">
-            {process.categoryLabel}
+            {process.category || process.categoryLabel}
           </span>
+          {process.benchmarkRange && (
+            <span className="px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-950 text-xs font-mono font-bold">
+              Range: {process.benchmarkRange}
+            </span>
+          )}
           {isNationalBenchmark && (
             <span className="px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-xs font-mono font-black flex items-center gap-1">
-              ★ India's Biggest Cold Forging Machines
+              ★ India's Cold Forging National Benchmark
             </span>
           )}
         </div>
@@ -678,12 +684,12 @@ const ProcessDetailModal: React.FC<{
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 text-xs font-mono">
               <div className="p-2.5 rounded-xl bg-white border border-amber-300 shadow-xs">
-                <span className="text-gray-500 text-[10px] block">India's Max Cold Forged Length</span>
-                <strong className="text-amber-900 font-bold text-sm">Up to M16 x 375 mm</strong>
+                <span className="text-gray-500 text-[10px] block">National Benchmark Range</span>
+                <strong className="text-amber-900 font-bold text-sm">M3 to M30 mm+ Diameter</strong>
               </div>
               <div className="p-2.5 rounded-xl bg-white border border-amber-300 shadow-xs">
-                <span className="text-gray-500 text-[10px] block">India's Max Cold Forging Diameter</span>
-                <strong className="text-blue-900 font-bold text-sm">Up to M30 Diameter</strong>
+                <span className="text-gray-500 text-[10px] block">High-Speed Multi-Stage</span>
+                <strong className="text-blue-900 font-bold text-sm">5-Die &amp; 6-Die Formers</strong>
               </div>
             </div>
           </div>
@@ -695,26 +701,27 @@ const ProcessDetailModal: React.FC<{
               Process Overview:
             </span>
             <p className="text-gray-800 leading-relaxed text-xs sm:text-sm">
-              {process.desc}
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200">
-            <span className="text-[11px] font-mono text-gray-500 font-bold block mb-1">
-              Machinery &amp; Technology Deployed:
-            </span>
-            <p className="text-gray-950 font-medium text-xs sm:text-sm">
-              {process.details}
+              {process.processOverview || process.desc}
             </p>
           </div>
 
           <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
             <span className="text-[11px] font-mono text-emerald-900 font-bold block mb-1 flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-              Why It Matters for Automotive &amp; Industrial Reliability:
+              Engineering Quality Gate (100% In-House Verified):
             </span>
             <p className="text-emerald-950 font-medium text-xs sm:text-sm">
-              {process.importance}
+              {process.engineeringQualityGate || process.whyItMatters}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-[#FAFAF9] border border-gray-200">
+            <span className="text-[11px] font-mono text-gray-500 font-bold block mb-1 flex items-center gap-1.5">
+              <Factory className="w-3.5 h-3.5 text-blue-600" />
+              Machinery &amp; Technology Deployed:
+            </span>
+            <p className="text-gray-950 font-medium text-xs sm:text-sm">
+              {process.machinery || process.equipment}
             </p>
           </div>
         </div>
@@ -725,7 +732,7 @@ const ProcessDetailModal: React.FC<{
             onClick={() => { onClose(); onOpenQuote(`Process Capability: ${process.title}`); }}
             className="btn-primary w-full sm:flex-1 py-3.5 text-xs sm:text-sm font-bold shadow-lg"
           >
-            ENQUIRE ABOUT THIS PROCESS / CAPABILITY →
+            ENQUIRE ABOUT THIS IN-HOUSE CAPABILITY →
           </button>
           <button
             onClick={onClose}
@@ -1227,384 +1234,7 @@ export default function App() {
     setMenuOpen(false);
   };
 
-  /* ─── DATA: 25 IN-HOUSE MANUFACTURING & FINISHING PROCESSES (STREAMLINED & CONCISE) ─── */
-  const manufacturingProcesses = [
-    {
-      id: 1,
-      num: '01',
-      buttonCode: 'ST-01',
-      shortName: 'Raw Testing',
-      title: 'Raw Material Testing',
-      stageTitle: 'RAW MATERIAL TESTING & SPECTROMETRY',
-      category: 'testing',
-      categoryLabel: 'Material & Testing',
-      badge: 'Chemical & Mechanical Gate',
-      metric: '100% OES Alloy Verification & Grain Analysis',
-      simpleExpl: '100% Optical Emission Spectrometer (OES) chemical alloy verification, tensile testing, and microstructure analysis on raw wire coils.',
-      whyItMatters: 'Zero off-spec chemistry or raw material defects enter production.',
-      equipment: 'Optical Emission Spectrometer (OES), UTM Tensile & Hardness Testers',
-    },
-    {
-      id: 2,
-      num: '02',
-      buttonCode: 'ST-02',
-      shortName: 'Cold Forging',
-      title: 'Cold Forging',
-      stageTitle: '5 & 6-DIE PROGRESSIVE COLD FORGING',
-      category: 'forging',
-      categoryLabel: 'Forging & Forming',
-      badge: 'National Benchmark',
-      metric: "India's Largest Range: Up to M16x375mm & M30",
-      simpleExpl: 'High-speed multi-station cold heading preserving unbroken metallurgical grain flow for maximum tensile strength.',
-      whyItMatters: 'Unbroken grain lines prevent fatigue fractures under extreme automotive engine and chassis loads.',
-      equipment: '5-Die & 6-Die Formers, Multi-Station High Speed Bolt Makers',
-    },
-    {
-      id: 3,
-      num: '03',
-      buttonCode: 'ST-03',
-      shortName: 'Hot Forging',
-      title: 'Hot Forging',
-      stageTitle: 'HIGH-TONNAGE INDUCTION HOT FORGING',
-      category: 'forging',
-      categoryLabel: 'Forging & Forming',
-      badge: 'Large Diameter',
-      metric: 'Induction Billet Heating · Heavy Structural M36 to M120',
-      simpleExpl: 'Induction-heated precision forging for heavy commercial vehicle chassis fasteners and large structural anchors.',
-      whyItMatters: 'Forges heavy large-diameter fasteners beyond cold-heading capacity.',
-      equipment: 'Induction Billet Heaters, Friction Drop Presses, Flash Trimmers',
-    },
-    {
-      id: 4,
-      num: '04',
-      buttonCode: 'ST-04',
-      shortName: 'Warm Forging',
-      title: 'Warm Forging',
-      stageTitle: 'CONTROLLED THERMAL WARM FORGING',
-      category: 'forging',
-      categoryLabel: 'Forging & Forming',
-      badge: 'Complex Geometries',
-      metric: 'Atmospheric Preheating · Near-Net-Shape Tooling',
-      simpleExpl: 'Temperature-controlled forging improving steel ductility and tolerances on complex high-alloy components.',
-      whyItMatters: 'Enables intricate part shapes on tough alloy steels with near-net accuracy.',
-      equipment: 'Atmospheric Preheaters & Progressive Warm Forming Dies',
-    },
-    {
-      id: 5,
-      num: '05',
-      buttonCode: 'ST-05',
-      shortName: 'Flat Rolling',
-      title: 'Flat Thread Rolling',
-      stageTitle: 'HIGH-SPEED FLAT DIE THREAD ROLLING',
-      category: 'thread',
-      categoryLabel: 'Thread & Rolling',
-      badge: 'Work-Hardened Threads',
-      metric: 'Reciprocal Flat Dies · 30% Stronger Rolled Threads',
-      simpleExpl: 'High-speed reciprocal flat die rolling producing burnished threads with continuous grain flow and high fatigue life.',
-      whyItMatters: 'Rolled threads are up to 30% stronger than cut threads with superior fatigue life.',
-      equipment: 'High-Speed Flat Die Thread Rollers with Laser Pitch Alignment',
-    },
-    {
-      id: 6,
-      num: '06',
-      buttonCode: 'ST-06',
-      shortName: 'Circular Rolling',
-      title: 'Circular Thread Rolling',
-      stageTitle: 'HYDRAULIC 2 & 3-ROLL CYLINDRICAL THREAD ROLLING',
-      category: 'thread',
-      categoryLabel: 'Thread & Rolling',
-      badge: 'Zero Pitch Error',
-      metric: 'Hydraulic 2-Roll & 3-Roll Dies · Mirror Surface Finish',
-      simpleExpl: 'Precision cylindrical die rolling for large-diameter studs, tie-rods, and heavy machine threads with zero pitch deviation.',
-      whyItMatters: 'Provides ultra-precise pitch consistency on large transmission and chassis studs.',
-      equipment: '2-Die and 3-Die Hydraulic Cylindrical Rollers with Programmable Feed',
-    },
-    {
-      id: 7,
-      num: '07',
-      buttonCode: 'ST-07',
-      shortName: 'SCADA Heat',
-      title: 'Heat Treatment',
-      stageTitle: 'SCADA CONTINUOUS MESH BELT HEAT TREATMENT',
-      category: 'heat',
-      categoryLabel: 'Thermal & Heat Treatment',
-      badge: 'Grade 8.8 to 12.9',
-      metric: 'SCADA Atmosphere Control · High-Tensile Hardening',
-      simpleExpl: 'Automated continuous mesh-belt hardening and tempering under protective atmosphere to prevent decarburization.',
-      whyItMatters: 'Locks in extreme tensile strength while preserving vital core impact toughness.',
-      equipment: 'Continuous Mesh Belt Furnace, Oil Quench, Tempering Furnace + SCADA',
-    },
-    {
-      id: 8,
-      num: '08',
-      buttonCode: 'ST-08',
-      shortName: 'Acid Zinc',
-      title: 'Acid Zinc Plating',
-      stageTitle: 'AUTOMATED ACID ZINC ELECTROPLATING',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'Trivalent Passivation',
-      metric: 'High-Brightness Finish · Blue & Yellow Passivation',
-      simpleExpl: 'Automated barrel and rack electroplating delivering a bright, uniform corrosion-resistant zinc barrier.',
-      whyItMatters: 'Delivers aesthetic shine and reliable corrosion barrier for industrial fasteners.',
-      equipment: 'Automated Barrel & Rack Lines, Ultrasonic Cleaners, Trivalent Baths',
-    },
-    {
-      id: 9,
-      num: '09',
-      buttonCode: 'ST-09',
-      shortName: 'Alkaline Zinc',
-      title: 'Alkaline Zinc Plating',
-      stageTitle: 'CYANIDE-FREE ALKALINE ZINC ELECTROPLATING',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'OEM Standard',
-      metric: 'Uniform Recess Coverage · Cyanide-Free Process',
-      simpleExpl: 'Cyanide-free alkaline zinc plating providing uniform layer thickness across deep recesses and fine threads.',
-      whyItMatters: 'Ensures even coating thickness from bolt head to thread tip without edge build-up.',
-      equipment: 'PLC-Controlled Hoist Transporters, Alkaline Zinc Electrolyte Tanks',
-    },
-    {
-      id: 10,
-      num: '10',
-      buttonCode: 'ST-10',
-      shortName: 'Zn-Ni Plating',
-      title: 'Zinc Nickel Plating',
-      stageTitle: 'ZINC-NICKEL (Zn-Ni 12-15%) ALLOY PLATING',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: '1,500+ Hours NSS',
-      metric: '12-15% Ni Alloy · 1,500+ Hours Salt Spray Protection',
-      simpleExpl: 'High-performance Zinc-Nickel alloy plating engineered for extreme corrosion and heat resistance in automotive applications.',
-      whyItMatters: 'Top automotive OEM standard for extreme salt, engine heat, and galvanic protection.',
-      equipment: 'Automated Zn-Ni Line, Continuous Temp/pH Logging, Nano-Sealers',
-    },
-    {
-      id: 11,
-      num: '11',
-      buttonCode: 'ST-11',
-      shortName: 'Zinc Phosphate',
-      title: 'Zinc Phosphating',
-      stageTitle: 'MICRO-CRYSTALLINE ZINC PHOSPHATE CONVERSION',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'Torque-Tension Control',
-      metric: 'Micro-Crystalline Layer · High Oil Retention',
-      simpleExpl: 'Fine-crystal zinc phosphate conversion coating providing oil retention and stable friction for vehicle assembly.',
-      whyItMatters: 'Ensures predictable torque-tension clamping during robotic assembly.',
-      equipment: 'Multi-Stage Immersion Phosphating Line, Activator Tanks, Hot Oil Sealers',
-    },
-    {
-      id: 12,
-      num: '12',
-      buttonCode: 'ST-12',
-      shortName: 'Manganese Phos',
-      title: 'Manganese Phosphating',
-      stageTitle: 'HEAVY ANTI-GALLING MANGANESE PHOSPHATING',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'Anti-Seize Coating',
-      metric: 'Heavy Manganese Layer · Zero Thread Seizing',
-      simpleExpl: 'Heavy manganese phosphate coating for engine fasteners and sliding parts to eliminate thread galling and seizing.',
-      whyItMatters: 'Prevents thread damage during high-speed power-tool assembly.',
-      equipment: 'Hot Manganese Immersion Tanks, Ultrasonic Rinses, Oil Dip Units',
-    },
-    {
-      id: 13,
-      num: '13',
-      buttonCode: 'ST-13',
-      shortName: 'Zn-Al Flake',
-      title: 'Zinc Flake Coating',
-      stageTitle: 'GEOMET / DACROMET ZINC-ALUMINIUM FLAKE',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'Zero Hydrogen Embrittlement',
-      metric: 'Dip-Spin Process · Class 10.9 & 12.9 Safety Standard',
-      simpleExpl: 'Non-electrolytic dip-spin coating providing extreme corrosion barrier with zero risk of hydrogen embrittlement.',
-      whyItMatters: 'Mandatory for critical automotive high-tensile safety fasteners.',
-      equipment: 'Automated Dip-Spin Centrifuges, Continuous Convection Curing Ovens',
-    },
-    {
-      id: 14,
-      num: '14',
-      buttonCode: 'ST-14',
-      shortName: 'Copper Tin',
-      title: 'Copper & Tin Plating',
-      stageTitle: 'HIGH-CONDUCTIVITY COPPER & TIN ELECTROPLATING',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'EV & Battery Fasteners',
-      metric: 'Low Electrical Resistance · High Solderability',
-      simpleExpl: 'Specialized copper and tin plating for EV battery terminals, electrical grounding bolts, and anti-seize joints.',
-      whyItMatters: 'Ensures maximum electrical conductivity and grounding reliability in EV battery packs.',
-      equipment: 'Electrolytic Copper Strike & Tin Baths with Micro-Thickness Controls',
-    },
-    {
-      id: 15,
-      num: '15',
-      buttonCode: 'ST-15',
-      shortName: 'Centerless Grind',
-      title: 'Centerless Grinding',
-      stageTitle: 'HIGH-PRECISION CENTERLESS GRINDING',
-      category: 'machining',
-      categoryLabel: 'Precision Secondary & Machining',
-      badge: '±5 µm Tolerance',
-      metric: 'Sub-Micron Precision · Mirror Shank Finish',
-      simpleExpl: 'Precision centerless grinding achieving mirror shank surface finish and cylindrical tolerances down to ±5 microns.',
-      whyItMatters: 'Produces ultra-smooth shanks required for precision locating dowel pins.',
-      equipment: 'Thru-Feed and In-Feed Centerless Grinders with Diamond Dressers',
-    },
-    {
-      id: 16,
-      num: '16',
-      buttonCode: 'ST-16',
-      shortName: 'Auto Grooving',
-      title: 'Auto Grooving',
-      stageTitle: 'AUTOMATIC CIRCLIP & O-RING GROOVING',
-      category: 'machining',
-      categoryLabel: 'Precision Secondary & Machining',
-      badge: 'Snap-Ring Seating',
-      metric: 'Exact Depth Control · Zero Shank Distortion',
-      simpleExpl: 'Automated grooving stations cutting precision snap-ring channels and O-ring recesses into fastener shanks.',
-      whyItMatters: 'Guarantees snap rings and rubber seals seat securely without slippage.',
-      equipment: 'Multi-Slide Automatic Grooving Machines with Optical Sensors',
-    },
-    {
-      id: 17,
-      num: '17',
-      buttonCode: 'ST-17',
-      shortName: 'Auto Drilling',
-      title: 'Auto Drilling',
-      stageTitle: 'AUTOMATIC CROSS & AXIAL DRILLING',
-      category: 'machining',
-      categoryLabel: 'Precision Secondary & Machining',
-      badge: 'Burr-Free Holes',
-      metric: 'Rotary Transfer Centers · Lock-Wire & Cotter Pin Holes',
-      simpleExpl: 'Multi-spindle automatic machines drilling clean cross-holes and axial holes through bolt heads and tips without burrs.',
-      whyItMatters: 'Essential for safety cotter pins and aviation lock-wire applications.',
-      equipment: 'Rotary Transfer Auto-Drilling Centers with Drill Breakage Sensors',
-    },
-    {
-      id: 18,
-      num: '18',
-      buttonCode: 'ST-18',
-      shortName: 'CNC Machining',
-      title: 'CNC Machining',
-      stageTitle: 'MULTI-AXIS CNC CONTOUR TURNING & MILLING',
-      category: 'machining',
-      categoryLabel: 'Precision Secondary & Machining',
-      badge: 'Custom Blueprint Parts',
-      metric: 'Live Tooling · Rapid 3D CAD to Production',
-      simpleExpl: 'Multi-axis CNC lathes machining custom contours, stepped shanks, and precision defense/aerospace prototype fasteners.',
-      whyItMatters: 'Enables fast turnaround of custom OEM parts directly from CAD drawings.',
-      equipment: 'Multi-Axis CNC Turning Centers with Live Tooling and Probing',
-    },
-    {
-      id: 19,
-      num: '19',
-      buttonCode: 'ST-19',
-      shortName: 'Optical Sorting',
-      title: 'Optical Sorting',
-      stageTitle: '100% 360° HIGH-SPEED GLASS DISC LASER SORTING',
-      category: 'testing',
-      categoryLabel: 'Material & Testing',
-      badge: 'Zero Defect <5 PPM',
-      metric: '360° Vision & Laser · 600 PPM High-Speed Inspection',
-      simpleExpl: 'High-speed glass disc sorting machines inspecting dimensions, pitch, and flaws at 600 parts/min.',
-      whyItMatters: 'Guarantees zero defective or mixed fasteners reach automated assembly lines.',
-      equipment: 'Multi-Camera Glass Disc Optical Sorters, Eddy Current Sensors',
-    },
-    {
-      id: 20,
-      num: '20',
-      buttonCode: 'ST-20',
-      shortName: 'Micro Adhesives',
-      title: 'Micro Encapsulation (MEC)',
-      stageTitle: 'AUTOMATED THREADLOCKER COATING (MEC)',
-      category: 'plating',
-      categoryLabel: 'Surface Treatments & Plating',
-      badge: 'Loctite / 3M MEC',
-      metric: 'Pre-Applied Adhesive · Vibration-Proof Lock',
-      simpleExpl: 'Automated pre-application of microencapsulated threadlocker that activates upon assembly for permanent anti-vibration locking.',
-      whyItMatters: 'Eliminates manual glue on assembly lines and prevents fastener back-off.',
-      equipment: 'Continuous 360° Adhesive Coating Machines with Convection Curing',
-    },
-    {
-      id: 21,
-      num: '21',
-      buttonCode: 'ST-21',
-      shortName: 'Serration Roll',
-      title: 'Serration Rolling',
-      stageTitle: 'UNDER-HEAD ANTI-ROTATION SERRATIONS',
-      category: 'thread',
-      categoryLabel: 'Thread & Rolling',
-      badge: 'Mechanical Lock',
-      metric: 'Profile Dies · Anti-Loosening Grip Teeth',
-      simpleExpl: 'Rotary rolling of under-head locking teeth and knurls that bite into mating surfaces to resist heavy vibration.',
-      whyItMatters: 'Locks bolts firmly into chassis plates without requiring separate loose washers.',
-      equipment: 'Specialized Profile Serration Dies and Hydraulic Rolling Machines',
-    },
-    {
-      id: 22,
-      num: '22',
-      buttonCode: 'ST-22',
-      shortName: 'SEMS Assembly',
-      title: 'SEMS Captive Washer Assembly',
-      stageTitle: 'AUTOMATED SEMS CAPTIVE WASHER ASSEMBLY',
-      category: 'thread',
-      categoryLabel: 'Thread & Rolling',
-      badge: 'Speed Assembly',
-      metric: 'Dual-Feed Automated Assembly · Pre-Assembled Washers',
-      simpleExpl: 'Automated units assembling plain, spring, or Belleville washers onto blanks prior to thread rolling, locking washers permanently.',
-      whyItMatters: 'Prevents dropped or missing washers on high-speed factory assembly lines.',
-      equipment: 'Dual-Feed Hopper Assembly Machines with Auto Feeding',
-    },
-    {
-      id: 23,
-      num: '23',
-      buttonCode: 'ST-23',
-      shortName: 'Special Point',
-      title: 'Special Pointing',
-      stageTitle: 'AUTOMATED DOG, CONE & PILOT TIP POINTING',
-      category: 'machining',
-      categoryLabel: 'Precision Secondary & Machining',
-      badge: 'Robotic Pilot Lead-In',
-      metric: 'Carbide Form Tools · Prevents Cross-Threading',
-      simpleExpl: 'High-speed pointing stations shaping dog points, cone tips, and pilot leads for effortless robotic nut-runner alignment.',
-      whyItMatters: 'Prevents cross-threading when factory robots drive bolts into tapped holes.',
-      equipment: 'Automatic Pointing Lathes with Carbide Tooling and Pneumatic Indexing',
-    },
-    {
-      id: 24,
-      num: '24',
-      buttonCode: 'ST-24',
-      shortName: 'Wire Bending',
-      title: 'U-Bolt & Wire Bending',
-      stageTitle: 'CNC & HYDRAULIC U-BOLT WIRE BENDING',
-      category: 'machining',
-      categoryLabel: 'Precision Secondary & Machining',
-      badge: 'Suspension U-Bolts',
-      metric: 'CNC 3D & Hydraulic Mandrel · Zero Wall Thinning',
-      simpleExpl: 'Hydraulic and CNC wire bending forming heavy-duty truck suspension U-bolts, J-bolts, and custom chassis brackets.',
-      whyItMatters: 'Maintains uniform tensile cross-section across bend radii for heavy truck suspensions.',
-      equipment: 'CNC 3D Wire Benders, Heavy Hydraulic Mandrel Bending Presses',
-    },
-    {
-      id: 25,
-      num: '25',
-      buttonCode: 'ST-25',
-      shortName: 'Stamping Press',
-      title: 'Stamping & Forming Presses',
-      stageTitle: 'HIGH-TONNAGE PROGRESSIVE STAMPING PRESSES',
-      category: 'forging',
-      categoryLabel: 'Forging & Forming',
-      badge: 'Washers & Brackets',
-      metric: '30T to 250T Presses · Belleville Springs & Brackets',
-      simpleExpl: 'Progressive mechanical and hydraulic stamping presses producing precision washers, lock clips, and automotive brackets.',
-      whyItMatters: 'Produces high-precision spring washers and stamped automotive bracketry under one roof.',
-      equipment: 'Progressive Stamping Presses (30T to 250T), De-Coilers, Carbide Dies',
-    },
-  ];
+  /* ─── DATA: 25 IN-HOUSE MANUFACTURING & ENGINEERING PROCESSES (IMPORTED FROM ./data/manufacturingProcesses) ─── */
 
   /* ─── DATA: 10 SECONDARY OPERATIONS (FOR SMOOTH AUTO SLIDER) ─── */
   const secondaryOperations = [
@@ -1933,24 +1563,28 @@ export default function App() {
     return matchesCat && matchesSearch;
   });
 
-  /* ─── FILTER 25 MANUFACTURING PROCESSES ─── */
+  /* ─── FILTER 25 IN-HOUSE MANUFACTURING PROCESSES ─── */
   const filteredProcesses = manufacturingProcesses.filter((proc) => {
+    const cat = proc.category.toLowerCase();
     const matchesCategory =
       processCategory === 'all' ||
-      (processCategory === 'forging' && proc.category === 'forging') ||
-      (processCategory === 'thread' && proc.category === 'thread') ||
-      (processCategory === 'heat_plating' && (proc.category === 'heat' || proc.category === 'plating')) ||
-      (processCategory === 'machining' && proc.category === 'machining') ||
-      (processCategory === 'testing' && proc.category === 'testing');
+      (processCategory === 'forging' && cat.includes('forging')) ||
+      (processCategory === 'thread' && (cat.includes('thread') || cat.includes('serration') || cat.includes('assembly'))) ||
+      (processCategory === 'heat_plating' && (cat.includes('heat') || cat.includes('coating') || cat.includes('treatment') || cat.includes('preparation'))) ||
+      (processCategory === 'machining' && (cat.includes('machining') || cat.includes('forming') || cat.includes('wire') || cat.includes('stamping'))) ||
+      (processCategory === 'testing' && (cat.includes('quality') || cat.includes('testing') || cat.includes('inspection') || cat.includes('approval')));
 
+    const query = processSearchQuery.trim().toLowerCase();
     const matchesSearch =
-      processSearchQuery.trim() === '' ||
-      proc.title.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
-      proc.stageTitle.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
-      proc.simpleExpl.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
-      proc.metric.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
-      proc.whyItMatters.toLowerCase().includes(processSearchQuery.toLowerCase()) ||
-      proc.badge.toLowerCase().includes(processSearchQuery.toLowerCase());
+      query === '' ||
+      proc.title.toLowerCase().includes(query) ||
+      proc.stageTitle.toLowerCase().includes(query) ||
+      proc.buttonCode.toLowerCase().includes(query) ||
+      proc.category.toLowerCase().includes(query) ||
+      proc.processOverview.toLowerCase().includes(query) ||
+      proc.engineeringQualityGate.toLowerCase().includes(query) ||
+      proc.machinery.toLowerCase().includes(query) ||
+      proc.benchmarkRange.toLowerCase().includes(query);
 
     return matchesCategory && matchesSearch;
   });
@@ -2748,7 +2382,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ════════════ 25-STAGE INTEGRATED MANUFACTURING PIPELINE (EXACT SLIDING CAROUSEL UI) ════════════ */}
+      {/* ════════════ 100% IN-HOUSE INTEGRATED MANUFACTURING INFRASTRUCTURE (25 STATIONS) ════════════ */}
       <section id="processes" className="py-14 sm:py-20 bg-[#FAFAF9] border-t border-gray-200 relative overflow-hidden">
         {/* Anchor compatibility for existing #secondary and #pipeline links */}
         <div id="secondary" className="absolute -top-20" />
@@ -2759,299 +2393,494 @@ export default function App() {
         <WatermarkNut className="-right-20 -top-20 opacity-15" size={420} />
 
         <div className="container-custom relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+          {/* Section Heading & In-House Plant Authority */}
+          <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8">
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-900 text-xs font-mono font-bold tracking-wider mb-3 shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                <span>100% IN-HOUSE INTEGRATED MANUFACTURING SUITE · ZERO SUBCONTRACTORS</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100 border border-blue-300 text-blue-950 text-xs font-mono font-black tracking-wider mb-3 shadow-xs">
+                <Factory className="w-3.5 h-3.5 text-blue-700" />
+                <span>100% IN-HOUSE INTEGRATED PLANT · ZERO OUTSOURCING</span>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-gray-950">
-                25-STAGE INTEGRATED MANUFACTURING SUITE
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-gray-950 uppercase">
+                OUR COMPLETE IN-HOUSE MANUFACTURING UNIT
               </h2>
             </Reveal>
-          </div>
 
-          {/* Desktop & Tablet Stage Buttons Ribbon Track (Smooth Scrollable 25-Stage Bar) */}
-          <div className="hidden sm:block mb-8">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1" style={{ WebkitOverflowScrolling: 'touch' }}>
-              {manufacturingProcesses.map((st, idx) => {
-                const isActive = idx === activeProcessStage;
-                const isPassed = idx < activeProcessStage;
-                return (
-                  <button
-                    key={`desk-pill-${st.buttonCode}`}
-                    id={`desk-proc-pill-${idx}`}
-                    onClick={() => goToStage(idx)}
-                    className={`flex-shrink-0 p-2.5 rounded-xl font-mono text-center transition-all duration-300 flex flex-col items-center justify-between border cursor-pointer min-w-[105px] h-[78px] ${
-                      isActive
-                        ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-400/40 scale-105 font-bold z-10'
-                        : isPassed
-                        ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold hover:bg-emerald-100'
-                        : 'bg-white text-gray-700 hover:bg-blue-50 border-gray-200 hover:border-blue-300'
-                    }`}
-                  >
-                    <span className={`text-[10px] font-bold block ${isActive ? 'text-blue-100' : isPassed ? 'text-emerald-700' : 'text-gray-500'}`}>
-                      Stage {st.num}
-                    </span>
-                    <span className="text-xs font-black truncate max-w-[95px] my-0.5 block">
-                      {st.shortName}
-                    </span>
-                    <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded ${
-                      isActive ? 'bg-blue-700 text-blue-100' : isPassed ? 'bg-emerald-200/70 text-emerald-900' : 'bg-gray-100 text-gray-600'
-                    }`}>
-                      {st.buttonCode}
-                    </span>
-                  </button>
-                );
-              })}
+            {/* View Mode Toggle (Interactive Station Navigator vs Full Process Table View) */}
+            <div className="mt-6 inline-flex p-1 rounded-2xl bg-gray-200/80 border border-gray-300 shadow-inner">
+              <button
+                onClick={() => setProcessViewMode('pipeline')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition flex items-center gap-2 cursor-pointer ${
+                  processViewMode === 'pipeline'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-700 hover:text-gray-950'
+                }`}
+              >
+                <Layers className="w-4 h-4" />
+                <span>Interactive Station Navigator</span>
+              </button>
+              <button
+                onClick={() => setProcessViewMode('grid')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold transition flex items-center gap-2 cursor-pointer ${
+                  processViewMode === 'grid'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-700 hover:text-gray-950'
+                }`}
+              >
+                <FileText className="w-4 h-4" />
+                <span>Complete Plant Matrix (Table View)</span>
+              </button>
             </div>
           </div>
 
-          {/* Mobile Stage Buttons Ribbon Bar */}
-          <div className="block sm:hidden mb-4 overflow-x-auto no-scrollbar py-1">
-            <div className="flex items-center gap-1.5 min-w-max px-1">
-              {manufacturingProcesses.map((st, idx) => {
-                const isActive = idx === activeProcessStage;
-                return (
-                  <button
-                    key={`mob-pill-${st.buttonCode}`}
-                    onClick={() => goToStage(idx)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition flex items-center gap-1 cursor-pointer border ${
-                      isActive
-                        ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                        : 'bg-white text-gray-700 border-gray-200'
-                    }`}
-                  >
-                    <span>{st.buttonCode}</span>
-                    <span className="truncate max-w-[70px]">{st.shortName}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* ─── MOBILE DEDICATED ACTIVE STAGE CARD ─── */}
-          <div className="block sm:hidden">
-            {(() => {
-              const st = manufacturingProcesses[activeProcessStage] || manufacturingProcesses[0];
-              const isHighlight = st.id === 2;
-              return (
-                <div className="rounded-2xl bg-white border-2 border-blue-600 shadow-xl p-4 relative overflow-hidden flex flex-col justify-between min-h-[280px]">
-                  <div>
-                    {/* Top Header Badge Row */}
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-1.5">
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black shadow-xs ${
-                          isHighlight ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' : 'bg-blue-600 text-white'
+          {/* ════════════ VIEW 1: INTERACTIVE STATION NAVIGATOR & CAROUSEL ════════════ */}
+          {processViewMode === 'pipeline' && (
+            <>
+              {/* Desktop & Tablet Stage Buttons Ribbon Track (Smooth Scrollable 25-Stage Bar) */}
+              <div className="hidden sm:block mb-8">
+                <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1" style={{ WebkitOverflowScrolling: 'touch' }}>
+                  {manufacturingProcesses.map((st, idx) => {
+                    const isActive = idx === activeProcessStage;
+                    const isPassed = idx < activeProcessStage;
+                    return (
+                      <button
+                        key={`desk-pill-${st.buttonCode}`}
+                        id={`desk-proc-pill-${idx}`}
+                        onClick={() => goToStage(idx)}
+                        className={`flex-shrink-0 p-2.5 rounded-xl font-mono text-center transition-all duration-300 flex flex-col items-center justify-between border cursor-pointer min-w-[110px] h-[82px] ${
+                          isActive
+                            ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-400/40 scale-105 font-bold z-10'
+                            : isPassed
+                            ? 'bg-emerald-50 text-emerald-950 border-emerald-300 font-semibold hover:bg-emerald-100'
+                            : 'bg-white text-gray-700 hover:bg-blue-50 border-gray-200 hover:border-blue-300'
+                        }`}
+                      >
+                        <span className={`text-[10px] font-bold block ${isActive ? 'text-blue-100' : isPassed ? 'text-emerald-700' : 'text-gray-500'}`}>
+                          Stage {st.num}
+                        </span>
+                        <span className="text-xs font-black truncate max-w-[100px] my-0.5 block">
+                          {st.shortName}
+                        </span>
+                        <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded ${
+                          isActive ? 'bg-blue-700 text-blue-100 font-bold' : isPassed ? 'bg-emerald-200/70 text-emerald-900' : 'bg-gray-100 text-gray-600'
                         }`}>
-                          Stage {st.num} of 25
+                          {st.buttonCode}
                         </span>
-                        <span className="text-[10px] font-mono font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
-                          {st.categoryLabel}
-                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Mobile Stage Buttons Ribbon Bar */}
+              <div className="block sm:hidden mb-4 overflow-x-auto no-scrollbar py-1">
+                <div className="flex items-center gap-1.5 min-w-max px-1">
+                  {manufacturingProcesses.map((st, idx) => {
+                    const isActive = idx === activeProcessStage;
+                    return (
+                      <button
+                        key={`mob-pill-${st.buttonCode}`}
+                        onClick={() => goToStage(idx)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition flex items-center gap-1 cursor-pointer border ${
+                          isActive
+                            ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                            : 'bg-white text-gray-700 border-gray-200'
+                        }`}
+                      >
+                        <span>{st.buttonCode}</span>
+                        <span className="truncate max-w-[85px]">{st.shortName}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Mobile Dedicated Active Stage Card */}
+              <div className="block sm:hidden">
+                {(() => {
+                  const st = manufacturingProcesses[activeProcessStage] || manufacturingProcesses[0];
+                  const isHighlight = st.id === 3;
+                  return (
+                    <div className="rounded-2xl bg-white border-2 border-blue-600 shadow-xl p-4 relative overflow-hidden flex flex-col justify-between min-h-[320px]">
+                      <div>
+                        {/* Top Header Badge Row */}
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-1.5">
+                            <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black shadow-xs ${
+                              isHighlight ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' : 'bg-blue-600 text-white'
+                            }`}>
+                              Stage {st.num} of 25
+                            </span>
+                            <span className="text-[10px] font-mono font-bold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">
+                              {st.category}
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-mono text-gray-500">
+                            ID: <strong className="text-gray-900">{st.buttonCode}</strong>
+                          </span>
+                        </div>
+
+                        {/* Stage Title */}
+                        <h3 className="text-base font-black font-display tracking-tight text-gray-950 mb-1.5">
+                          {st.stageTitle}
+                        </h3>
+
+                        {/* Benchmark Range Banner */}
+                        <div className="p-2 rounded-lg bg-blue-50/90 border border-blue-200 text-xs font-semibold text-blue-950 font-mono mb-2 flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
+                          <span className="leading-snug"><strong className="text-blue-900">Benchmark:</strong> {st.benchmarkRange}</span>
+                        </div>
+
+                        {/* Process & Quality Gate Grid */}
+                        <div className="space-y-2 mb-2 text-xs">
+                          <div className="p-2.5 rounded-xl bg-[#FAFAF9] border border-gray-200 text-gray-800 leading-snug">
+                            <span className="text-[10px] font-mono text-blue-900 font-bold uppercase tracking-wider block mb-0.5">
+                              Process Overview:
+                            </span>
+                            <p>{st.processOverview}</p>
+                          </div>
+
+                          <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 font-medium">
+                            <span className="text-[10px] font-mono text-emerald-900 font-bold uppercase tracking-wider block mb-0.5 flex items-center gap-1">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                              Engineering Quality Gate (100% In-House):
+                            </span>
+                            <p className="leading-snug">{st.engineeringQualityGate}</p>
+                          </div>
+
+                          <div className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-[11px] font-mono text-gray-700">
+                            <strong className="text-gray-900">Machinery:</strong> {st.machinery}
+                          </div>
+                        </div>
                       </div>
-                      <span className="text-[10px] font-mono text-gray-500">
-                        ID: <strong className="text-gray-900">{st.buttonCode}</strong>
-                      </span>
+
+                      {/* Mobile Bottom Navigation */}
+                      <div className="pt-2 border-t border-gray-200 flex items-center gap-2">
+                        <button
+                          onClick={prevStage}
+                          className="flex-1 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-mono font-bold transition flex items-center justify-center gap-1 cursor-pointer active:scale-95 border border-gray-200"
+                        >
+                          <ChevronLeft className="w-4 h-4" /> Previous
+                        </button>
+                        <button
+                          onClick={() => setSelectedProcess(st)}
+                          className="px-3 py-2 rounded-xl bg-blue-50 text-blue-800 border border-blue-200 text-xs font-mono font-bold hover:bg-blue-100"
+                        >
+                          Specs
+                        </button>
+                        <button
+                          onClick={nextStage}
+                          className="flex-1 py-2 rounded-xl btn-primary text-xs font-mono font-bold transition flex items-center justify-center gap-1 cursor-pointer shadow-md active:scale-95"
+                        >
+                          Next <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
+                  );
+                })()}
+              </div>
 
-                    {/* Stage Title */}
-                    <h3 className="text-base font-black font-display tracking-tight text-gray-950 mb-1.5">
-                      {st.stageTitle}
-                    </h3>
+              {/* Desktop & Tablet Continuous Sliding Stage Cards Track */}
+              <div className="hidden sm:block relative w-full overflow-hidden py-3 sm:py-5">
+                <div className="relative w-full">
+                  {/* Left / Right Floating Navigation Arrow Buttons */}
+                  <button
+                    onClick={prevStage}
+                    className="hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border border-gray-300 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-105 group cursor-pointer"
+                    aria-label="Previous manufacturing stage"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-gray-800 group-hover:text-blue-600 transition-colors" />
+                  </button>
+                  <button
+                    onClick={nextStage}
+                    className="hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border border-gray-300 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-105 group cursor-pointer"
+                    aria-label="Next manufacturing stage"
+                  >
+                    <ChevronRight className="w-5 h-5 text-gray-800 group-hover:text-blue-600 transition-colors" />
+                  </button>
 
-                    {/* Metric Banner */}
-                    <div className="p-2 rounded-lg bg-blue-50/80 border border-blue-200 text-xs font-semibold text-blue-950 font-mono mb-2 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />
-                      <span className="leading-snug">{st.metric}</span>
-                    </div>
+                  {/* Continuous Sliding Flex Track */}
+                  <div
+                    className="flex gap-5 sm:gap-6 transition-transform duration-500 ease-out will-change-transform items-stretch"
+                    style={{
+                      transform: `translateX(calc(50% - ${(activeProcessStage + 0.5)} * min(800px, 86vw) - ${activeProcessStage} * 24px))`,
+                    }}
+                  >
+                    {manufacturingProcesses.map((st, idx) => {
+                      const isActive = idx === activeProcessStage;
+                      const isNext = idx === activeProcessStage + 1;
+                      const isPrev = idx < activeProcessStage;
+                      const isHighlight = st.id === 3;
 
-                    {/* Process & Quality Gate Grid */}
-                    <div className="space-y-2 mb-2 text-xs">
-                      <div className="p-2.5 rounded-xl bg-[#FAFAF9] border border-gray-200 text-gray-700 leading-snug">
-                        <p>{st.simpleExpl}</p>
-                      </div>
+                      return (
+                        <div
+                          key={`card-${st.buttonCode}`}
+                          onClick={() => { if (!isActive) goToStage(idx); }}
+                          className={`w-[min(800px,86vw)] flex-shrink-0 rounded-2xl sm:rounded-3xl p-5 sm:p-6 transition-all duration-500 flex flex-col justify-between relative overflow-hidden min-h-[320px] ${
+                            isActive
+                              ? 'bg-white border-2 border-blue-600 shadow-xl ring-4 ring-blue-500/15 scale-100 opacity-100 z-20'
+                              : isNext
+                              ? 'bg-white/95 border-2 border-dashed border-blue-300 shadow-md scale-95 opacity-75 hover:opacity-100 cursor-pointer z-10'
+                              : isPrev
+                              ? 'bg-white/90 border border-emerald-300 shadow-md scale-95 opacity-65 hover:opacity-95 cursor-pointer z-10'
+                              : 'bg-white/80 border border-gray-200 shadow-sm scale-90 opacity-40 hover:opacity-80 cursor-pointer z-0'
+                          }`}
+                        >
+                          {/* Non-active Preview Ribbon */}
+                          {!isActive && (
+                            <div className={`mb-2 px-3 py-1 rounded-xl text-xs font-mono font-bold flex items-center justify-between ${
+                              isNext ? 'bg-blue-50 text-blue-900 border border-blue-200' : 'bg-emerald-50 text-emerald-900 border border-emerald-200'
+                            }`}>
+                              <span className="truncate">{isNext ? `👉 UPCOMING: ${st.buttonCode} · ${st.title}` : `✓ STAGE ${st.num} · ${st.title}`}</span>
+                              <span className="text-[11px] underline flex-shrink-0 ml-2">Inspect →</span>
+                            </div>
+                          )}
 
-                      <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950 font-medium flex items-center gap-1.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                        <span><strong className="text-emerald-900 font-mono">Quality Gate:</strong> {st.whyItMatters}</span>
-                      </div>
+                          {/* Active Card Content */}
+                          <div>
+                            {/* Top Header Badge Row */}
+                            <div className="flex items-center justify-between gap-2 mb-2">
+                              <div className="flex items-center gap-2">
+                                <span className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-black shadow-xs ${
+                                  isHighlight ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' : 'bg-blue-600 text-white'
+                                }`}>
+                                  Stage {st.num} of 25
+                                </span>
+                                <span className="text-[10px] sm:text-xs font-mono font-bold text-gray-700 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">
+                                  {st.category}
+                                </span>
+                                {st.benchmarkRange && (
+                                  <span className="text-[10px] sm:text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 border border-blue-200">
+                                    ✦ {st.benchmarkRange}
+                                  </span>
+                                )}
+                              </div>
+                              <span className="text-xs font-mono text-gray-500">
+                                In-House Station: <strong className="text-gray-900 font-bold">{st.buttonCode}</strong>
+                              </span>
+                            </div>
 
-                      <div className="text-[11px] font-mono text-gray-500 px-1">
-                        <strong className="text-gray-700">Machinery:</strong> {st.equipment}
-                      </div>
-                    </div>
-                  </div>
+                            {/* Stage Title */}
+                            <h3 className="text-base sm:text-xl font-black font-display tracking-tight text-gray-950 mb-2">
+                              {st.stageTitle}
+                            </h3>
 
-                  {/* Mobile Bottom Navigation */}
-                  <div className="pt-2 border-t border-gray-200 flex items-center gap-2">
-                    <button
-                      onClick={prevStage}
-                      className="flex-1 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-mono font-bold transition flex items-center justify-center gap-1 cursor-pointer active:scale-95 border border-gray-200"
-                    >
-                      <ChevronLeft className="w-4 h-4" /> Previous
-                    </button>
-                    <button
-                      onClick={nextStage}
-                      className="flex-1 py-2 rounded-xl btn-primary text-xs font-mono font-bold transition flex items-center justify-center gap-1 cursor-pointer shadow-md active:scale-95"
-                    >
-                      Next <ChevronRight className="w-4 h-4" />
-                    </button>
+                            {/* Benchmark Metric Banner */}
+                            <div className="p-2.5 rounded-xl bg-blue-50/90 border border-blue-200 text-xs sm:text-sm font-semibold text-blue-950 font-mono mb-3 flex items-center justify-between gap-2">
+                              <div className="flex items-center gap-2">
+                                <span className="w-2.5 h-2.5 rounded-full bg-blue-600 flex-shrink-0" />
+                                <span><strong>Benchmark Specification:</strong> {st.benchmarkRange}</span>
+                              </div>
+                              <span className="hidden md:inline-block text-[11px] text-blue-700 font-mono">100% In-House Plant Station</span>
+                            </div>
+
+                            {/* Process Details & Quality Gate Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                              <div className="p-3 rounded-xl bg-[#FAFAF9] border border-gray-200 text-xs text-gray-800 leading-relaxed flex flex-col justify-start">
+                                <span className="text-[10px] font-mono text-blue-900 font-bold uppercase tracking-wider block mb-1">
+                                  Process Overview:
+                                </span>
+                                <p>{st.processOverview}</p>
+                              </div>
+
+                              <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 leading-relaxed flex flex-col justify-between">
+                                <div>
+                                  <span className="text-[10px] font-mono text-emerald-900 font-bold uppercase tracking-wider block mb-1 flex items-center gap-1">
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                    Engineering Quality Gate:
+                                  </span>
+                                  <p>{st.engineeringQualityGate}</p>
+                                </div>
+                                <div className="mt-2 pt-1 border-t border-emerald-200/60 text-[10px] font-mono text-emerald-800 flex items-center gap-1">
+                                  <CheckCircle2 className="w-3 h-3 text-emerald-600 flex-shrink-0" />
+                                  <span>100% In-House Verified Gate</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* In-House Machinery Line */}
+                            <div className="p-2 sm:p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono text-gray-700 flex items-center gap-2">
+                              <Factory className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                              <span className="truncate"><strong>Machinery Deployed:</strong> {st.machinery}</span>
+                            </div>
+                          </div>
+
+                          {/* Bottom Navigation Controls */}
+                          <div className="pt-3 mt-3 border-t border-gray-200 flex items-center justify-between">
+                            <button
+                              onClick={(e) => { e.stopPropagation(); prevStage(); }}
+                              className="px-3 py-1.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-mono font-bold transition flex items-center gap-1 cursor-pointer border border-gray-300 active:scale-95"
+                            >
+                              <ChevronLeft className="w-4 h-4" /> Previous Stage
+                            </button>
+
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setSelectedProcess(st); }}
+                              className="px-3.5 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 text-xs font-mono font-bold transition flex items-center gap-1"
+                            >
+                              <span>Inspect Station Specs</span>
+                            </button>
+                            
+                            <button
+                              onClick={(e) => { e.stopPropagation(); nextStage(); }}
+                              className="px-4 py-1.5 rounded-xl btn-primary text-xs font-mono font-bold transition flex items-center gap-1 cursor-pointer shadow-md active:scale-95"
+                            >
+                              Next Stage → <ChevronRight className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-              );
-            })()}
-          </div>
-        </div>
+              </div>
+            </>
+          )}
 
-        {/* ─── DESKTOP & TABLET CONTINUOUS SLIDING STAGE CARDS TRACK (FULL WIDTH SYMMETRIC) ─── */}
-        <div className="hidden sm:block relative w-full overflow-hidden py-3 sm:py-5">
-          <div className="relative w-full">
-            {/* Left / Right Floating Navigation Arrow Buttons */}
-            <button
-              onClick={prevStage}
-              className="hidden sm:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border border-gray-300 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-105 group cursor-pointer"
-              aria-label="Previous manufacturing stage"
-            >
-              <ChevronLeft className="w-5 h-5 text-gray-800 group-hover:text-blue-600 transition-colors" />
-            </button>
-            <button
-              onClick={nextStage}
-              className="hidden sm:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md border border-gray-300 shadow-xl items-center justify-center hover:bg-blue-50 text-gray-900 transition hover:scale-105 group cursor-pointer"
-              aria-label="Next manufacturing stage"
-            >
-              <ChevronRight className="w-5 h-5 text-gray-800 group-hover:text-blue-600 transition-colors" />
-            </button>
-
-            {/* Continuous Sliding Flex Track */}
-            <div
-              className="flex gap-5 sm:gap-6 transition-transform duration-500 ease-out will-change-transform items-stretch"
-              style={{
-                transform: `translateX(calc(50% - ${(activeProcessStage + 0.5)} * min(780px, 86vw) - ${activeProcessStage} * 24px))`,
-              }}
-            >
-              {manufacturingProcesses.map((st, idx) => {
-                const isActive = idx === activeProcessStage;
-                const isNext = idx === activeProcessStage + 1;
-                const isPrev = idx < activeProcessStage;
-                const isHighlight = st.id === 2;
-
-                return (
-                  <div
-                    key={`card-${st.buttonCode}`}
-                    onClick={() => { if (!isActive) goToStage(idx); }}
-                    className={`w-[min(780px,86vw)] flex-shrink-0 rounded-2xl sm:rounded-3xl p-4 sm:p-5 transition-all duration-500 flex flex-col justify-between relative overflow-hidden min-h-[300px] sm:min-h-[310px] ${
-                      isActive
-                        ? 'bg-white border-2 border-blue-600 shadow-xl ring-4 ring-blue-500/15 scale-100 opacity-100 z-20'
-                        : isNext
-                        ? 'bg-white/95 border-2 border-dashed border-blue-300 shadow-md scale-95 opacity-75 hover:opacity-100 cursor-pointer z-10'
-                        : isPrev
-                        ? 'bg-white/90 border border-emerald-300 shadow-md scale-95 opacity-65 hover:opacity-95 cursor-pointer z-10'
-                        : 'bg-white/80 border border-gray-200 shadow-sm scale-90 opacity-40 hover:opacity-80 cursor-pointer z-0'
-                    }`}
-                  >
-                    {/* Non-active Preview Ribbon */}
-                    {!isActive && (
-                      <div className={`mb-2 px-3 py-1 rounded-xl text-xs font-mono font-bold flex items-center justify-between ${
-                        isNext ? 'bg-blue-50 text-blue-900 border border-blue-200' : 'bg-emerald-50 text-emerald-900 border border-emerald-200'
-                      }`}>
-                        <span className="truncate">{isNext ? `👉 UPCOMING: ${st.buttonCode} · ${st.title}` : `✓ STAGE ${st.num} · ${st.title}`}</span>
-                        <span className="text-[11px] underline flex-shrink-0 ml-2">Inspect →</span>
-                      </div>
+          {/* ════════════ VIEW 2: COMPLETE PLANT PROCESS SPECIFICATION MATRIX (TABLE VIEW) ════════════ */}
+          {processViewMode === 'grid' && (
+            <div className="mt-4 animate-fadeIn">
+              {/* Table Search & Category Filter Controls */}
+              <div className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm mb-5">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                  {/* Search input */}
+                  <div className="relative w-full md:w-96">
+                    <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={processSearchQuery}
+                      onChange={(e) => setProcessSearchQuery(e.target.value)}
+                      placeholder="Search processes, machinery, quality gates..."
+                      className="w-full pl-10 pr-4 py-2 text-xs font-mono rounded-xl border border-gray-200 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                    />
+                    {processSearchQuery && (
+                      <button
+                        onClick={() => setProcessSearchQuery('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 text-xs"
+                      >
+                        ✕
+                      </button>
                     )}
-
-                    {/* Active Card Content */}
-                    <div>
-                      {/* Top Header Badge Row */}
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-black shadow-xs ${
-                            isHighlight ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' : 'bg-blue-600 text-white'
-                          }`}>
-                            Stage {st.num} of 25
-                          </span>
-                          <span className="text-[10px] sm:text-xs font-mono font-bold text-gray-700 bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">
-                            {st.categoryLabel}
-                          </span>
-                          {st.badge && (
-                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-900 border border-blue-200">
-                              ✦ {st.badge}
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-xs font-mono text-gray-500">
-                          ID: <strong className="text-gray-900 font-bold">{st.buttonCode}</strong>
-                        </span>
-                      </div>
-
-                      {/* Stage Title */}
-                      <h3 className="text-base sm:text-lg font-black font-display tracking-tight text-gray-950 mb-2">
-                        {st.stageTitle}
-                      </h3>
-
-                      {/* Metric Banner */}
-                      <div className="p-2 rounded-lg bg-blue-50/80 border border-blue-200 text-xs sm:text-sm font-semibold text-blue-950 font-mono mb-2.5 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
-                        <span>{st.metric}</span>
-                      </div>
-
-                      {/* Process Details & Quality Gate Grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-2.5 mb-2.5">
-                        <div className="p-2.5 rounded-xl bg-[#FAFAF9] border border-gray-200 text-xs text-gray-700 leading-relaxed flex flex-col justify-start">
-                          <span className="text-[10px] font-mono text-blue-900 font-bold uppercase tracking-wider block mb-0.5">
-                            Process Overview:
-                          </span>
-                          <p>{st.simpleExpl}</p>
-                        </div>
-
-                        <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-950 leading-relaxed flex flex-col justify-between">
-                          <div>
-                            <span className="text-[10px] font-mono text-emerald-900 font-bold uppercase tracking-wider block mb-0.5">
-                              Engineering Quality Gate:
-                            </span>
-                            <p>{st.whyItMatters}</p>
-                          </div>
-                          <div className="mt-1.5 pt-1 border-t border-emerald-200/60 text-[10px] font-mono text-emerald-800 flex items-center gap-1">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-600 flex-shrink-0" />
-                            <span>100% Verified In-House</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* In-House Machinery Line */}
-                      <div className="p-1.5 sm:p-2 rounded-lg bg-slate-50 border border-slate-200 text-[11px] sm:text-xs font-mono text-gray-600 flex items-center gap-2">
-                        <Factory className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
-                        <span className="truncate"><strong>Machinery:</strong> {st.equipment}</span>
-                      </div>
-                    </div>
-
-                    {/* Bottom Navigation Controls */}
-                    <div className="pt-2.5 mt-2.5 border-t border-gray-200 flex items-center justify-between">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); prevStage(); }}
-                        className="px-3 py-1.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-mono font-bold transition flex items-center gap-1 cursor-pointer border border-gray-300 active:scale-95"
-                      >
-                        <ChevronLeft className="w-4 h-4" /> Previous Stage
-                      </button>
-                      
-                      <button
-                        onClick={(e) => { e.stopPropagation(); nextStage(); }}
-                        className="px-3.5 py-1.5 rounded-xl btn-primary text-xs font-mono font-bold transition flex items-center gap-1 cursor-pointer shadow-md active:scale-95"
-                      >
-                        Next Stage → <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
 
-        <div className="container-custom relative z-10 text-center mt-2 text-[11px] font-mono text-gray-500">
-          ✦ 100% In-House Operations · All 25 Stages Manufactured Under Strict IATF 16949 &amp; BIS Standards
+                  {/* Category Pills */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar w-full md:w-auto py-1">
+                    {[
+                      { id: 'all', label: 'All 25 Stations' },
+                      { id: 'forging', label: 'Forging & Forming' },
+                      { id: 'thread', label: 'Thread & Rolling' },
+                      { id: 'heat_plating', label: 'Thermal & Coatings' },
+                      { id: 'machining', label: 'Precision Machining' },
+                      { id: 'testing', label: 'Testing & QA' },
+                    ].map((cat) => (
+                      <button
+                        key={`cat-pill-${cat.id}`}
+                        onClick={() => setProcessCategory(cat.id)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition flex-shrink-0 cursor-pointer ${
+                          processCategory === cat.id
+                            ? 'bg-blue-600 text-white shadow-xs'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        {cat.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Responsive Industrial Table */}
+              <div className="rounded-2xl border border-gray-200 overflow-hidden shadow-sm bg-white">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="bg-slate-900 text-white font-mono uppercase text-[11px] tracking-wider border-b border-slate-800">
+                        <th className="py-3 px-3 w-14 text-center">Stage</th>
+                        <th className="py-3 px-3 w-20">ID</th>
+                        <th className="py-3 px-4 min-w-[180px]">Stage Title</th>
+                        <th className="py-3 px-3 min-w-[140px]">Category</th>
+                        <th className="py-3 px-4 min-w-[240px]">Process Overview</th>
+                        <th className="py-3 px-4 min-w-[240px]">Engineering Quality Gate</th>
+                        <th className="py-3 px-4 min-w-[220px]">Machinery Deployed</th>
+                        <th className="py-3 px-3 min-w-[150px]">Benchmark Range</th>
+                        <th className="py-3 px-3 w-20 text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 font-sans">
+                      {filteredProcesses.map((p, idx) => (
+                        <tr
+                          key={`table-row-${p.buttonCode}`}
+                          className={`hover:bg-blue-50/60 transition-colors ${
+                            idx % 2 === 0 ? 'bg-white' : 'bg-[#FAFAF9]'
+                          }`}
+                        >
+                          <td className="py-3 px-3 text-center font-mono font-bold text-gray-600">
+                            {p.stageNo}
+                          </td>
+                          <td className="py-3 px-3 font-mono font-black text-blue-900">
+                            <span className="px-2 py-0.5 rounded bg-blue-100/70 border border-blue-200 text-[10px]">
+                              {p.buttonCode}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4 font-bold text-gray-950 font-display">
+                            {p.title}
+                          </td>
+                          <td className="py-3 px-3 font-mono text-[11px] text-gray-700">
+                            <span className="px-2 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[10px] font-semibold">
+                              {p.category}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4 text-gray-700 text-xs leading-relaxed">
+                            {p.processOverview}
+                          </td>
+                          <td className="py-3 px-4 text-emerald-950 text-xs leading-relaxed bg-emerald-50/30">
+                            <div className="flex items-start gap-1.5">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                              <span>{p.engineeringQualityGate}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-4 text-gray-800 text-xs font-mono">
+                            {p.machinery}
+                          </td>
+                          <td className="py-3 px-3 font-mono text-[11px] font-bold text-blue-900">
+                            <span className="px-2 py-0.5 rounded bg-blue-50 border border-blue-200">
+                              {p.benchmarkRange}
+                            </span>
+                          </td>
+                          <td className="py-3 px-3 text-center">
+                            <button
+                              onClick={() => setSelectedProcess(p)}
+                              className="px-2.5 py-1 rounded-lg bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-700 text-[10px] font-mono font-bold transition"
+                            >
+                              View
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {filteredProcesses.length === 0 && (
+                  <div className="py-12 text-center text-gray-500 font-mono text-xs">
+                    No matching manufacturing processes found for &ldquo;{processSearchQuery}&rdquo;.
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Plant Footer Guarantee Strip */}
+          <div className="mt-8 p-3 rounded-2xl bg-white border border-gray-200 text-center text-xs font-mono text-gray-600 flex flex-wrap items-center justify-center gap-3 shadow-xs">
+            <span className="text-blue-900 font-black flex items-center gap-1.5">
+              <Factory className="w-4 h-4 text-blue-600" />
+              100% IN-HOUSE PLANT FACILITIES:
+            </span>
+            <span>All 25 Stations Operate Under One Roof Across Our Pantnagar &amp; Upcoming Sambhajinagar Plants</span>
+            <span className="text-gray-400">|</span>
+            <span className="text-emerald-800 font-bold">IATF 16949 · ISO 9001 · BIS Certified</span>
+          </div>
         </div>
       </section>
 
@@ -3444,7 +3273,7 @@ export default function App() {
               <ul className="space-y-2 text-xs text-gray-600 font-medium flex flex-col items-center">
                 <li><a href="#overview" className="hover:text-blue-600 transition">Company Profile &amp; Legacy</a></li>
                 <li><a href="#range" className="hover:text-blue-600 transition">Bolt &amp; Nut Size Range (M4-M120)</a></li>
-                <li><a href="#processes" className="hover:text-blue-600 transition">25 Manufacturing Processes</a></li>
+                <li><a href="#processes" className="hover:text-blue-600 transition">Our In-House Manufacturing Setup (25 Processes)</a></li>
                 <li><a href="#gallery" className="hover:text-blue-600 transition">Plant Gallery &amp; Facilities</a></li>
                 <li><button onClick={openCatalogPage} className="hover:text-blue-600 transition">Product Catalogue ({catalogData.length})</button></li>
                 <li><button onClick={openCareersPage} className="hover:text-emerald-700 transition font-bold text-emerald-800">Careers &amp; Vacancies (hr@hfpfc.com)</button></li>
